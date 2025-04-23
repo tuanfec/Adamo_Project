@@ -1,0 +1,10 @@
+declare module "@components/*";
+declare module "@layouts/*";
+declare module "@app/*";
+declare module "@assets/*";
+declare module "@theme/*";
+declare module "@pages/*";
+declare module "@router/*";
+declare module "@src/*";
+declare module "@services/*";
+declare module "@config/*";
