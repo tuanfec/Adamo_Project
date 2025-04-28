@@ -8,21 +8,10 @@ import "./ListTour.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setHeader, setTourData } from "@/app/slide/tourDataSlide";
-import { setLocation } from "@/app/slide/statePageSlide";
-interface CardTourProps {
-  image?: string;
-  title?: string;
-  description?: string;
-  experiences?: number;
-  location?: string;
-  votes?: number;
-  duration?: string;
-  price?: number;
-  isSave?: boolean;
-}
+import { TourData } from "@/types/tour";
 
 interface ListTourProps {
-  data: CardTourProps[];
+  data: TourData[];
   header?: string;
   slidesPerView?: number;
   spaceBetween?: number;
@@ -40,9 +29,9 @@ export const ListTour: React.FC<ListTourProps> = ({
   const handleViewAll = () => {
     dispatch(setTourData(data));
     dispatch(setHeader(header));
-    dispatch(setLocation("Tour"));
-    navigate("/view_all");
+    navigate(`/view_all/${header}`);
   };
+
   return (
     <div className="flex flex-col gap-4 my-10">
       <div className="flex justify-between items-center">
@@ -80,11 +69,11 @@ export const ListTour: React.FC<ListTourProps> = ({
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <CardTour
-                image={item.image}
+                image={item.image?.[0]}
                 title={item.title}
                 description={item.description}
                 experiences={item.experiences}
-                votes={item.votes}
+                votes={item.reviews?.rating}
                 location={item.location}
                 duration={item.duration}
                 price={item.price}

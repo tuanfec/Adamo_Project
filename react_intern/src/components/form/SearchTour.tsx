@@ -73,22 +73,18 @@ export const SearchTour: React.FC<SearchTourProps> = ({ isHeader }) => {
             <CustomDropdown
               isOpen={isOpenTour}
               onToggle={handleTourClick}
-              value={selectedTour}
               placeholder="Type of tour"
-              options={tourTypes}
-              onSelect={setSelectedTour}
+              isSelect={true}
               icon={<IoFlagOutline className="text-xl text-[#FF7B42]" />}
             />
 
             <CustomDropdown
               isOpen={isOpenGuests}
+              isTotalGuest={true}
               onToggle={handleGuestsClick}
-              value={selectedGuests}
+              isSelect={true}
               placeholder="Number of guests"
-              options={Array.from({ length: 10 }, (_, i) => (i + 1).toString())}
-              onSelect={setSelectedGuests}
               icon={<FiUsers className="text-xl text-[#FF7B42]" />}
-              formatSelectedValue={formatGuestCount}
             />
           </div>
 
