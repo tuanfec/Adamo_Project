@@ -5,6 +5,10 @@ export const PageState = {
   FORGOT_PASSWORD: "forgotPassword",
   NEW_PASSWORD: "newPassword",
   REGISTER: "register",
+  DESCRIPTION: "description",
+  ADDITIONAL_INFOR: "additionalInfor",
+  REVIEWS: "reviews",
+  SELECT_ROOM: "selectRoom",
 };
 
 const initialState = {
