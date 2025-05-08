@@ -11,7 +11,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ stats }) => {
       <AiFillStar
         key={index}
         className={`text-xl lg:text-2xl ${
-          index < rating ? "text-yellow-400" : "text-gray-300"
+          index < rating ? "text-[#FFAD32]" : "text-gray-300"
         }`}
       />
     ));

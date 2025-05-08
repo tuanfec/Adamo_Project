@@ -2,7 +2,7 @@ import { Comment, ReviewStats, Overview } from "@/types/tour";
 
 export interface HotelFormData {
   id: string;
-  name: string;
+  title: string;
   image: string[];
   isSave: boolean;
   location: string;
@@ -30,6 +30,17 @@ export interface HotelFormData {
   };
   comments: Comment[];
   rooms: Room[];
+  addOn?: AddOn;
+}
+export interface AddOn {
+  breakfast: {
+    numberSelect: number;
+    price: number;
+  };
+  extraBed: {
+    numberSelect: number;
+    price: number;
+  };
 }
 
 export interface Room {
@@ -42,4 +53,7 @@ export interface Room {
   bed: string;
   guests: number;
   amenities: string[];
+  quantity: number;
+  numberSelect?: number;
+  discount?: number;
 }

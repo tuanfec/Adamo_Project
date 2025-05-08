@@ -1,58 +1,56 @@
 import { useState } from "react";
 import { CardTour } from "./CardTour";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FilterForm } from "../form/FilterForm";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
-
-interface CardTourProps {
-  image?: string;
-  title?: string;
-  description?: string;
-  experiences?: number;
-  location?: string;
-  votes?: number;
-  duration?: string;
-  price?: number;
-  isSave?: boolean;
-  type?: string;
-}
+import { useNavigate, useParams } from "react-router-dom";
+import { Pagination } from "../common/Pagination";
+import { Loading } from "../common/Loading";
+import { TourData } from "@/types/tour";
 
 interface ViewAllProps {
-  data: CardTourProps[];
+  tourData: TourData[];
+  isLoading: boolean;
+  header: string;
+  from?: string;
 }
 
-export const ViewAll: React.FC<ViewAllProps> = ({ data }) => {
-  const header = useSelector((state: any) => state.tourDataSlide.header);
+export const ViewAll: React.FC<ViewAllProps> = ({
+  tourData,
+  isLoading,
+  header,
+  from,
+}) => {
   const filter = useSelector((state: any) => state.tourDataSlide.filter);
-  console.log(data);
-
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [isFilter, setIsFilter] = useState(false);
   const [itemsPerPage] = useState(21);
-  const navigate = useNavigate();
+  const { source } = useParams();
+  const sourceView = source || from;
   // Check if filter has been applied (after clicking Apply Filter)
   const isFilterApplied = filter?.isApplied;
 
-  const displayData = isFilterApplied
-    ? data.filter((item) => {
-        const priceMatch =
-          !filter.budget ||
-          ((item.price ?? 0) >= filter.budget[0] &&
-            (item.price ?? 0) <= filter.budget[1]);
+  const displayData =
+    isFilterApplied && tourData
+      ? tourData.filter((item) => {
+          const priceMatch =
+            !filter.budget ||
+            ((item.price ?? 0) >= filter.budget[0] &&
+              (item.price ?? 0) <= filter.budget[1]);
 
-        const durationMatch =
-          !filter.duration?.length ||
-          filter.duration.includes(item.duration ?? "");
+          const durationMatch =
+            !filter.duration?.length ||
+            filter.duration.includes(item.duration ?? "");
 
-        const typeMatch =
-          !filter.typeTour?.length || filter.typeTour.includes(item.type ?? "");
+          const typeMatch =
+            !filter.typeTour?.length ||
+            filter.typeTour.includes(item.type ?? "");
 
-        return priceMatch && durationMatch && typeMatch;
-      })
-    : data;
+          return priceMatch && durationMatch && typeMatch;
+        })
+      : tourData || [];
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -66,11 +64,9 @@ export const ViewAll: React.FC<ViewAllProps> = ({ data }) => {
     }
   }, [filter, isFilterApplied]);
 
-  React.useEffect(() => {
-    if (data.length === 0) {
-      navigate(-1);
-    }
-  }, [data]);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1);
@@ -79,52 +75,25 @@ export const ViewAll: React.FC<ViewAllProps> = ({ data }) => {
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
-
+  const viewDetail = (id: string) => {
+    navigate(`/tours/view_detail/${sourceView}/${id}`, {
+      state: { previousHeader: header, id },
+    });
+  };
   const renderPaginationButtons = () => {
     if (totalPages <= 1) return null;
 
-    const handleViewDetail = (id: string) => {
-      navigate(`/view_detail/${id}`);
-    };
-
     return (
-      <div className="flex justify-between items-center w-full gap-2 my-4">
-        <div className="text-gray-500 md:ml-[45%]  lg:ml-[45%]">
-          Showing {currentPage}/{totalPages}
-        </div>
-        <div className="flex items-center gap-2">
-          {currentPage > 1 && (
-            <span
-              onClick={handlePrevPage}
-              className="bg-gray-200 h-[40px] w-[40.6px] flex items-center justify-center cursor-pointer hover:bg-gray-300">
-              <FaArrowLeft />
-            </span>
-          )}
-
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => setCurrentPage(index + 1)}
-              className={`px-4 py-2 ${
-                currentPage === index + 1
-                  ? "bg-black text-white"
-                  : "bg-gray-200 text-black hover:bg-gray-300"
-              }`}>
-              {index + 1}
-            </button>
-          ))}
-          {currentPage < totalPages && (
-            <span
-              onClick={handleNextPage}
-              className="bg-gray-200 h-[40px] w-[40.6px] flex items-center justify-center cursor-pointer hover:bg-gray-300">
-              <FaArrowRight />
-            </span>
-          )}
-        </div>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePrevPage={handlePrevPage}
+        handleNextPage={handleNextPage}
+        onPageChange={setCurrentPage}
+        isShow={true}
+      />
     );
   };
-
   return (
     <div className="flex flex-col gap-4">
       <div className="lg:mb-10 w-full font-medium flex flex-col lg:flex-row md:flex-col">
@@ -144,8 +113,8 @@ export const ViewAll: React.FC<ViewAllProps> = ({ data }) => {
             </button>
           )}
           {isFilter && (
-            <div className="absolute w-1/2 top-20  lg:right-0 z-10 shadow-lg">
-              <FilterForm />
+            <div className="absolute w-1/2 top-20 lg:right-0 z-10 shadow-lg">
+              <FilterForm tourData={tourData} />
             </div>
           )}
         </div>
@@ -159,19 +128,21 @@ export const ViewAll: React.FC<ViewAllProps> = ({ data }) => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {currentItems.map((item, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {currentItems.map((item: TourData, index) => (
               <CardTour
+                onClick={() => viewDetail(item.id)}
                 key={index}
-                image={item.image}
+                image={item.image?.[0]}
                 title={item.title}
                 description={item.description}
                 experiences={item.experiences}
                 location={item.location}
-                votes={item.votes}
+                votes={item.reviews.rating}
                 duration={item.duration}
                 price={item.price}
                 isSave={item.isSave}
+                isHover={true}
               />
             ))}
           </div>

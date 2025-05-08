@@ -5,14 +5,16 @@ import { queryClient } from "@app/queryClient";
 import { BrowserRouter } from "react-router-dom";
 import AuthRouter from "@router/authRouter";
 import HomeRouter from "@router/homeRouter";
-
+import { NotificationProvider } from "@components/notifiction/NotificationProvider";
 function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <AuthRouter />
-          <HomeRouter />
+          <NotificationProvider>
+            <AuthRouter />
+            <HomeRouter />
+          </NotificationProvider>
         </Provider>
       </QueryClientProvider>
     </BrowserRouter>

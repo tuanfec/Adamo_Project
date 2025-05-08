@@ -21,6 +21,13 @@ const initialState = {
     },
     address: "",
   },
+  allTour: [],
+  searchTour: {
+    location: "",
+    startDate: "",
+    endDate: "",
+    type: [],
+  },
 };
 
 const tourDataSlide = createSlice({
@@ -45,6 +52,12 @@ const tourDataSlide = createSlice({
     setLocation: (state, action) => {
       state.location = action.payload;
     },
+    setAllTour: (state, action) => {
+      state.allTour = action.payload;
+    },
+    setSearchTour: (state, action) => {
+      state.searchTour = action.payload;
+    },
   },
 });
 
@@ -55,5 +68,7 @@ export const {
   setTourDetail,
   setTotalGuest,
   setLocation,
+  setAllTour,
+  setSearchTour,
 } = tourDataSlide.actions;
 export default tourDataSlide.reducer;

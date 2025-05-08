@@ -1,10 +1,19 @@
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalGuest } from "@/app/slide/tourDataSlide";
 import { AiOutlineArrowRight } from "react-icons/ai";
-
-interface CustomDropdownProps {
+import {
+  UseFormRegister,
+  UseFormHandleSubmit,
+  FieldValues,
+  Path,
+  UseFormSetValue,
+} from "react-hook-form";
+import { HotelFormData } from "@/types/hotel";
+interface CustomDropdownProps<
+  T extends { adult: any; child: any; type?: string[] },
+> {
   isOpen?: boolean;
   onToggle?: () => void;
   placeholder?: string;
@@ -13,6 +22,17 @@ interface CustomDropdownProps {
   isSelect: boolean;
   isDuration?: boolean;
   tourDetail?: TourDetail;
+  hotelData?: HotelFormData;
+  register: UseFormRegister<T>;
+  handleSubmit: UseFormHandleSubmit<T>;
+  errors?: any;
+  type?: string[];
+  watch?: any;
+  totalGuest?: {
+    adult: number;
+    child: number;
+  };
+  setValue?: UseFormSetValue<T>;
 }
 
 interface TourDetail {
@@ -20,7 +40,9 @@ interface TourDetail {
   endDate: string;
 }
 
-export const CustomDropdown = ({
+export const CustomDropdown = <
+  T extends { adult: any; child: any; type?: string[] },
+>({
   isOpen,
   onToggle,
   placeholder,
@@ -29,69 +51,173 @@ export const CustomDropdown = ({
   isSelect,
   isDuration,
   tourDetail,
-}: CustomDropdownProps) => {
+  hotelData,
+  register,
+  handleSubmit,
+  errors,
+  type,
+  watch,
+  totalGuest,
+  setValue,
+}: CustomDropdownProps<T>) => {
   const dispatch = useDispatch();
-  const [adult, setAdult] = useState<number>(0);
-  const [child, setChild] = useState<number>(0);
-  const [confirmed, setConfirmed] = useState<boolean>(false);
-  const totalGuest = useSelector(
-    (state: any) => state.tourDataSlide.totalGuest
-  );
+
+  // State để lưu lựa chọn đã xác nhận cho type
+  const [selectedTypeConfirmed, setSelectedTypeConfirmed] = React.useState<
+    string[]
+  >([]);
+
+  // Lấy giá trị type hiện tại từ react-hook-form
+  const selectedTypes = watch && type ? watch("type") : [];
+  const onConfirm = (data: any) => {
+    dispatch(setTotalGuest({ adult: data.adult, child: data.child }));
+    onToggle?.();
+  };
+
+  // Hàm xác nhận lựa chọn type
+  const onConfirmType = () => {
+    if (selectedTypes && selectedTypes.length > 0) {
+      setSelectedTypeConfirmed(
+        Array.isArray(selectedTypes) ? selectedTypes : [selectedTypes]
+      );
+      onToggle?.();
+    } else {
+      setSelectedTypeConfirmed([]);
+      onToggle?.();
+    }
+  };
+
+  useEffect(() => {
+    if (isTotalGuest && setValue && totalGuest) {
+      if (typeof totalGuest.adult === "number")
+        setValue("adult" as Path<T>, totalGuest.adult as any, {
+          shouldValidate: true,
+        });
+      if (typeof totalGuest.child === "number")
+        setValue("child" as Path<T>, totalGuest.child as any, {
+          shouldValidate: true,
+        });
+    }
+  }, [isTotalGuest, setValue, totalGuest]);
+
   return (
     <div className="relative bg-white w-full">
       <div className="absolute left-5 top-1/2 -translate-y-1/2">{icon}</div>
       <div
         onClick={onToggle}
         className="w-full py-5 pl-12 pr-4 text-sm cursor-pointer flex justify-between items-center">
-        <span className={confirmed ? "text-black" : "text-gray-500"}>
-          {isTotalGuest && confirmed
-            ? `${totalGuest?.adult} Adult, ${totalGuest?.child} Child`
-            : placeholder}
-        </span>
+        {/* Hiển thị cho dropdown số khách */}
+        {isTotalGuest ? (
+          <span
+            className={
+              totalGuest?.adult !== undefined ? "text-black" : "text-gray-500"
+            }>
+            {totalGuest?.adult !== undefined
+              ? `${totalGuest?.adult} Adult, ${totalGuest?.child} Child`
+              : placeholder}
+          </span>
+        ) : type ? (
+          <span
+            className={
+              selectedTypes && selectedTypes.length > 0
+                ? "text-black"
+                : "text-gray-500"
+            }>
+            {selectedTypes && selectedTypes.length > 0
+              ? Array.isArray(selectedTypes)
+                ? selectedTypes.join(", ")
+                : selectedTypes
+              : placeholder}
+          </span>
+        ) : (
+          <span className="text-gray-500">{placeholder}</span>
+        )}
         {isDuration && (
           <div className="flex-1 flex items-center gap-2">
-            {tourDetail?.endDate} <AiOutlineArrowRight />{" "}
-            {tourDetail?.startDate}
+            {tourDetail?.endDate || hotelData?.endDate} <AiOutlineArrowRight />{" "}
+            {tourDetail?.startDate || hotelData?.startDate}
           </div>
         )}
         <div className="absolute right-5 top-1/2 -translate-y-1/2">
           {isSelect && (isOpen ? <AiFillCaretUp /> : <AiFillCaretDown />)}
         </div>
       </div>
+
+      {/* Dropdown chọn loại tour */}
+      {type && isOpen && (
+        <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-[200px] overflow-y-auto p-4 flex flex-col gap-2">
+          {type.map((item: string) => (
+            <label
+              key={item}
+              className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                value={item}
+                {...register("type" as Path<T>)}
+                className="accent-[#FF7B42]"
+                defaultChecked={selectedTypeConfirmed.includes(item)}
+              />
+              <span className="text-gray-700">{item}</span>
+            </label>
+          ))}
+          <button
+            type="button"
+            onClick={onConfirmType}
+            className="mt-2 bg-[#FF7B42] w-full font-medium text-white py-2 hover:bg-orange-600 transition-colors rounded-md">
+            Xác nhận
+          </button>
+        </div>
+      )}
+
+      {/* Dropdown chọn số khách */}
       {isTotalGuest && isOpen && (
-        <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-[200px] overflow-y-auto">
+        <form
+          onSubmit={handleSubmit(onConfirm)}
+          className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-[200px] overflow-y-auto">
           <div className="flex flex-col py-5 px-5 gap-6">
             <div className="flex flex-row gap-4">
               <div className="flex flex-col">
                 <p className="text-gray-600 text-sm mb-2 font-medium">Adult</p>
                 <input
                   type="number"
-                  value={adult}
-                  onChange={(e) => setAdult(Number(e.target.value))}
                   className="w-full p-2 border border-gray-200 rounded-md"
+                  {...register("adult" as Path<T>, {
+                    valueAsNumber: true,
+                    min: { value: 0, message: "Must be at least 0" },
+                    max: { value: 100, message: "Must be at most 100" },
+                  })}
                 />
+                {errors?.adult && (
+                  <span className="text-red-500 text-xs">
+                    {errors.adult.message}
+                  </span>
+                )}
               </div>
               <div className="flex flex-col">
                 <p className="text-gray-600 text-sm mb-2 font-medium">Child</p>
                 <input
                   type="number"
-                  value={child}
-                  onChange={(e) => setChild(Number(e.target.value))}
                   className="w-full p-2 border border-gray-200 rounded-md"
+                  {...register("child" as Path<T>, {
+                    valueAsNumber: true,
+                    min: { value: 0, message: "Must be at least 0" },
+                    max: { value: 100, message: "Must be at most 100" },
+                  })}
                 />
+                {errors?.child && (
+                  <span className="text-red-500 text-xs">
+                    {errors.child.message}
+                  </span>
+                )}
               </div>
             </div>
             <button
-              onClick={() => {
-                dispatch(setTotalGuest({ adult, child }));
-                setConfirmed(true);
-                onToggle?.();
-              }}
+              type="submit"
               className="bg-[#FF7B42] w-full font-medium text-white py-5 hover:bg-orange-600 transition-colors rounded-md">
               Confirm
             </button>
           </div>
-        </div>
+        </form>
       )}
     </div>
   );

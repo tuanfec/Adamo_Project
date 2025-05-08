@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutUser } from "@/services/authService";
 
 interface NavItem {
@@ -10,10 +10,11 @@ interface NavItem {
   onClick?: () => void;
 }
 
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Check login status from localStorage
@@ -51,7 +52,7 @@ export const Navbar: React.FC = () => {
     { label: "Contact", path: "/contact" },
     {
       label: "Login",
-      path: "/login",
+      path: "/Login",
       isLoggedIn: false,
     },
     {
@@ -68,26 +69,42 @@ export const Navbar: React.FC = () => {
     return item.isLoggedIn === isLoggedIn;
   });
 
+  const isActive = (path: string) => {
+    if (path === "/" && location.pathname !== "/") {
+      return false;
+    }
+    return location.pathname.startsWith(path);
+  };
+
   return (
-    <nav className="relative z-10 ">
-      <button onClick={toggleMenu} className="lg:hidden text-white">
+    <nav className="relative z-10">
+      <button
+        onClick={toggleMenu}
+        className={`lg:hidden ${textColor ? textColor : "text-white"}`}
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}>
         {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
 
-      <div className="hidden ml-35 lg:flex items-center justify-center gap-20 text-white">
+      <div
+        className={`hidden ml-35 lg:flex items-center justify-center gap-20 ${
+          textColor ? textColor : "text-white"
+        }`}>
         {filteredNavItems.map((item) =>
           item.onClick ? (
             <button
               key={item.label}
               onClick={item.onClick}
-              className="hover:text-orange-400 transition-colors duration-200">
+              className={`transition-colors duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1`}>
               {item.label}
             </button>
           ) : (
             <Link
               key={item.path}
               to={item.path}
-              className="hover:text-orange-400 transition-colors duration-200">
+              className={`transition-colors duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
+                isActive(item.path) ? "text-orange-400" : ""
+              }`}>
               {item.label}
             </Link>
           )
@@ -95,7 +112,10 @@ export const Navbar: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="lg:hidden absolute right-1 text-right flex flex-col gap-2 mt-2 text-white cursor-pointer bg-black/50 p-4 rounded">
+        <div
+          className="lg:hidden absolute right-1 text-right flex flex-col gap-2 mt-2 text-white cursor-pointer bg-black/50 p-4 rounded"
+          role="menu"
+          aria-orientation="vertical">
           {filteredNavItems.map((item) =>
             item.onClick ? (
               <button
@@ -104,15 +124,19 @@ export const Navbar: React.FC = () => {
                   item.onClick?.();
                   setIsOpen(false);
                 }}
-                className="hover:text-orange-400 transition-colors duration-200">
+                className="hover:text-orange-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1"
+                role="menuitem">
                 {item.label}
               </button>
             ) : (
               <Link
                 key={item.path}
                 to={item.path}
-                className="hover:text-orange-400 transition-colors duration-200"
-                onClick={() => setIsOpen(false)}>
+                className={`hover:text-orange-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
+                  isActive(item.path) ? "text-orange-400" : ""
+                }`}
+                onClick={() => setIsOpen(false)}
+                role="menuitem">
                 {item.label}
               </Link>
             )

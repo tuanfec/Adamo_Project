@@ -2,7 +2,7 @@ import axios from "axios";
 import { getCurrentToken, refreshToken } from "./authService";
 
 const instance = axios.create({
-  baseURL: "https://68005c4ab72e9cfaf72754ed.mockapi.io",
+  baseURL: "http://localhost:3000",
   timeout: 10000,
 });
 

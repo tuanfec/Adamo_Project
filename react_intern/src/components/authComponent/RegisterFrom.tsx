@@ -86,7 +86,6 @@ export const RegisterFrom: React.FC = () => {
       firstName: data.firstName,
       lastName: data.lastName,
     };
-    console.log(userData);
 
     registerMutation.mutate(userData);
   };

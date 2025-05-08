@@ -7,14 +7,12 @@ export const useTourList = (header: string | undefined) => {
   const [data, setData] = useState<any[]>([]);
   const reduxData = useSelector((state: any) => state.tourDataSlide.tourData);
   const reduxHeader = useSelector((state: any) => state.tourDataSlide.header);
-
   // Function to determine which API to call based on header
   const getToursByHeader = async (headerText: string) => {
     switch (headerText) {
-      case "Discover fascinating destinations":
-      case "Attractive tour and interesting experiences":
+      case "attractive":
         return getAttractiveTours();
-      case "Experience the traditional cultural beauties of Vietnam":
+      case "traditional":
         return getTraditionalCultureTours();
       default:
         throw new Error("Invalid tour type");
@@ -23,7 +21,7 @@ export const useTourList = (header: string | undefined) => {
 
   // Query for fetching data from API
   const { data: apiData, isLoading } = useQuery({
-    queryKey: ["tours", header],
+    queryKey: ["tours"],
     queryFn: () => (header ? getToursByHeader(header) : null),
     enabled: !!header && (!reduxData || reduxHeader !== header), // Only run if header exists and redux data is not available
   });

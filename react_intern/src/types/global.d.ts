@@ -8,3 +8,5 @@ declare module "@router/*";
 declare module "@src/*";
 declare module "@services/*";
 declare module "@config/*";
+declare module "@types/*";
+declare module "@hooks/*";

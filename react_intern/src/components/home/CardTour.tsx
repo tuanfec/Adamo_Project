@@ -12,6 +12,8 @@ interface CardTourProps {
   duration?: string;
   price?: number;
   isSave?: boolean;
+  onClick?: () => void;
+  isHover?: boolean;
 }
 
 export const CardTour: React.FC<CardTourProps> = ({
@@ -24,11 +26,15 @@ export const CardTour: React.FC<CardTourProps> = ({
   duration,
   price,
   isSave,
+  onClick,
+  isHover,
 }) => {
   return (
-    <div className="flex flex-col w-full">
+    <div
+      className={`flex flex-col w-full ${isHover ? "hover:scale-105 transition-all duration-300" : ""}`}
+      onClick={onClick}>
       <div className="relative aspect-[4/3] w-full overflow-hidden min-h-[291px]">
-        {votes && (
+        {votes && votes > 0 && (
           <div className="absolute bottom-4 left-0 flex items-center  gap-2 bg-[#FF7B42] h-[30px] w-[65px] text-white">
             <FaStar className=" ml-2" />
             <span>{votes}</span>
