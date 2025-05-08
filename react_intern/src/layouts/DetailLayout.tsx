@@ -1,6 +1,7 @@
 import { Logo } from "@/components/header/Logo";
 import { Navbar } from "@/components/header/Navbar";
 import logo from "../assets/logo.jpg";
+import { FooterMain } from "@/components/footer/FooterMain";
 
 export const DetailLayout: React.FC<{
   children: React.ReactNode;
@@ -12,9 +13,10 @@ export const DetailLayout: React.FC<{
         <Navbar textColor="text-black" />
       </div>
       <div className="border-t border-1 border-gray-300"></div>
-      <div className="flex lg:px-40 px-4  flex-col min-h-screen">
+      <div className="flex lg:px-43 px-4  flex-col min-h-screen">
         {children}
       </div>
+      <FooterMain />
     </div>
   );
 };

@@ -17,9 +17,7 @@ const TravelerForm: React.FC<TravelerFormProps> = ({
   handleSubmit,
   errors,
 }) => {
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-  };
+  const onSubmit = (data: FormValues) => {};
   return (
     <div onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       {/* Lead Traveler Section */}

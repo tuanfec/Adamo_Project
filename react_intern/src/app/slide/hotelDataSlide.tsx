@@ -1,4 +1,4 @@
-import { HotelFormData } from "@/types/hotel";
+import { HotelFormData, Room } from "@/types/hotel";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface HotelDataSlideState {
@@ -10,6 +10,15 @@ interface HotelDataSlideState {
   };
   sortBy: string;
   hotelDetail: HotelFormData;
+  selectedRoom: Room[];
+  addOn: {
+    breakfast: {
+      numberSelect: number;
+    };
+    extraBed: {
+      numberSelect: number;
+    };
+  };
 }
 
 const initialState: HotelDataSlideState = {
@@ -34,13 +43,22 @@ const initialState: HotelDataSlideState = {
     location: "",
     hotelStar: 0,
     tourDescription: {
-      overview: [{ content: "" }],
+      overview: [],
       hotelAmenities: [],
       rules: { time: { checkIn: "", checkOut: "" }, roleInformation: [] },
       map: { coordinates: { lat: 0, lng: 0 } },
     },
     comments: [],
     rooms: [],
+  },
+  selectedRoom: [],
+  addOn: {
+    breakfast: {
+      numberSelect: 0,
+    },
+    extraBed: {
+      numberSelect: 0,
+    },
   },
 };
 
@@ -60,9 +78,21 @@ const HotelDataSlide = createSlice({
     setHotelDetail: (state, action) => {
       state.hotelDetail = action.payload;
     },
+    setSelectedRoom: (state, action) => {
+      state.selectedRoom = action.payload;
+    },
+    setAddOn: (state, action) => {
+      state.addOn = action.payload;
+    },
   },
 });
 
-export const { setHotelData, setFilter, setSortBy, setHotelDetail } =
-  HotelDataSlide.actions;
+export const {
+  setHotelData,
+  setFilter,
+  setSortBy,
+  setHotelDetail,
+  setSelectedRoom,
+  setAddOn,
+} = HotelDataSlide.actions;
 export default HotelDataSlide.reducer;

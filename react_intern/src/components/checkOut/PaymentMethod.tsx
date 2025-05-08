@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import paycard from "@/assets/paycard.png";
 import paypal from "@/assets/paypal.png";
 import {
-  useForm,
   UseFormRegister,
   UseFormHandleSubmit,
   FieldErrors,
 } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import { FormValues } from "./CheckoutForm";
 
 interface PaymentMethodProps {
@@ -22,9 +20,7 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({
   handleSubmit,
   errors,
 }) => {
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-  };
+  const onSubmit = () => {};
 
   return (
     <div onSubmit={handleSubmit(onSubmit)} className="space-y-6">

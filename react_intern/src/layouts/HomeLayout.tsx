@@ -10,7 +10,7 @@ export const HomeLayout: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen ">
       <Banner height="776px">
         {/* Header Section */}
         <div className="flex items-center justify-evenly">
@@ -34,7 +34,7 @@ export const HomeLayout: React.FC<{
 
           {/* Search Tour Section */}
           <div className=" lg:col-span-2 lg:row-span-5 lg:col-start-4 lg:row-start-2 order-2">
-            <SearchTour isHeader={true} />
+            <SearchTour isHeader={true} isTour={true} />
           </div>
 
           {/* Featured Section */}
@@ -45,7 +45,7 @@ export const HomeLayout: React.FC<{
       </Banner>
 
       {/* Main Content */}
-      <main className="flex-1 relative ">
+      <main className="flex-1 relative z-0">
         <div className="container mx-auto lg:px-35 px-4">{children}</div>
       </main>
 

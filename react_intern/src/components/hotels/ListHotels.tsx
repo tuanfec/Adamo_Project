@@ -19,7 +19,6 @@ export const ListHotels: React.FC<{
     setCurrentPage(currentPage - 1);
   };
 
-  console.log(currentItems);
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };

@@ -36,7 +36,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ data, onClick }) => {
         <img
           className="h-full w-full object-cover"
           src={data?.image[0]}
-          alt={data?.name}
+          alt={data?.title}
           loading="lazy"
         />
       </div>
@@ -48,7 +48,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ data, onClick }) => {
             <p className="text-gray-600 text-sm">{data?.location}</p>
           </div>
         )}
-        <p className=" text-lg font-medium">{data?.name}</p>
+        <p className=" text-lg font-medium">{data?.title}</p>
 
         <div className="flex items-center justify-between mt-2 ">
           <div className="flex items-center gap-1">

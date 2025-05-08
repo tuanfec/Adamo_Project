@@ -4,7 +4,7 @@ export const Banner: React.FC<{
 }> = ({ height = "776px", children }) => {
   return (
     <div
-      className="w-full bg-cover bg-center bg-[url(/src/assets/banner_img.jpg)] shadow-sm"
+      className="w-full bg-cover bg-center bg-[url(/src/assets/banner_img.jpg)] shadow-sm z-10"
       style={{ minHeight: height }}>
       <div className="h-full w-full">{children}</div>
     </div>

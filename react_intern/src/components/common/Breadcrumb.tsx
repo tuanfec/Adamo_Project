@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { GoDotFill } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { HiChevronRight } from "react-icons/hi";
 
 interface BreadcrumbItem {
   label: string;
@@ -10,47 +9,53 @@ interface BreadcrumbItem {
 
 export const Breadcrumb = () => {
   const location = useLocation();
+  const { header } = useParams<{ header: string }>();
+  const paths = location.pathname.split("/").filter(Boolean);
+  const isDetailView = paths[0] === "View_detail";
+  const isViewAll = paths[0] === "View_all";
 
-  const generateBreadcrumb = (): BreadcrumbItem[] => {
-    const paths = location.pathname.split("/").filter((path) => path);
-    const items: BreadcrumbItem[] = [{ label: "Home", path: "/" }];
+  // Lấy header từ state nếu có (ưu tiên), fallback về params
+  const currentHeader = location.state?.previousHeader || header || "Search";
+  const items: BreadcrumbItem[] = [{ label: "Home", path: "/" }];
 
-    paths.forEach((path) => {
-      switch (path) {
-        case "view_all":
-          items.push({ label: "Tours", path: "/view_all" });
-          break;
-        case "view_detail":
-          items.push({ label: "Detail tour", path: "/view_detail" });
-          break;
-        default:
-          items.push({ label: path, path: `/${path}` });
-      }
+  if (isViewAll || isDetailView) {
+    items.push({
+      label: "Tours",
+      path: `/View_all/${currentHeader}`,
     });
-
-    return items;
-  };
-
-  const breadcrumbItems = generateBreadcrumb();
+  }
+  // if (currentHeader === "Search") {
+  //   items.push({
+  //     label: "Search",
+  //     path: `/Search`,
+  //   });
+  // }
+  if (isDetailView) {
+    items.push({
+      label: "Tour Detail",
+      path: location.pathname,
+    });
+  }
 
   return (
-    <div className="flex gap-6 items-center text-gray-500 lg:mb-10 mb-4 md:mb-6">
-      {breadcrumbItems.map((item, index) => (
-        <React.Fragment key={item.path}>
-          {index === breadcrumbItems.length - 1 ? (
-            <span className="text-[#FF7B42]">{item.label}</span>
-          ) : (
-            <>
-              <Link
-                to={item.path}
-                className="hover:text-[#FF7B42] transition-colors">
-                {item.label}
-              </Link>
-              <GoDotFill className="size-3" />
-            </>
-          )}
-        </React.Fragment>
-      ))}
-    </div>
+    <nav className="flex mb-4" aria-label="Breadcrumb">
+      <ol className="inline-flex items-center">
+        {items.map((item, index) => (
+          <li key={index} className="inline-flex items-center">
+            {index > 0 && <HiChevronRight className="mx-2 text-gray-400" />}
+            <Link
+              to={item.path}
+              state={location.state}
+              className={`text-sm ${
+                index === items.length - 1
+                  ? "text-gray-500"
+                  : "text-gray-700 hover:text-gray-900"
+              }`}>
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 };

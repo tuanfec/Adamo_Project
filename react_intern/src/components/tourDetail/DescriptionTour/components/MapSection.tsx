@@ -25,7 +25,7 @@ export const MapSection: React.FC<MapSectionProps> = ({ location }) => {
 
   return (
     <div>
-      <div className="h-[300px] overflow-hidden rounded-lg">
+      <div className="h-[300px] overflow-hidden rounded-lg mt-6">
         {location?.coordinates?.lat && location?.coordinates?.lng ? (
           <MapContainer
             center={defaultCenter}

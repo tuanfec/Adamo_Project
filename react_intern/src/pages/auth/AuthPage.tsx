@@ -22,7 +22,6 @@ function Author() {
   const statePage = useSelector(
     (state: RootState) => state.statePageSlide.state
   );
-  console.log(statePage);
 
   const renderFormComponent = () => {
     switch (statePage) {

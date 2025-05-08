@@ -5,9 +5,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./ListTour.css";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setHeader, setTourData } from "@/app/slide/tourDataSlide";
 import { TourData } from "@/types/tour";
 
 interface ListTourProps {
@@ -15,6 +12,7 @@ interface ListTourProps {
   header?: string;
   slidesPerView?: number;
   spaceBetween?: number;
+  onClick?: () => void;
 }
 
 export const ListTour: React.FC<ListTourProps> = ({
@@ -22,16 +20,8 @@ export const ListTour: React.FC<ListTourProps> = ({
   header,
   slidesPerView,
   spaceBetween,
+  onClick,
 }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const handleViewAll = () => {
-    dispatch(setTourData(data));
-    dispatch(setHeader(header));
-    navigate(`/view_all/${header}`);
-  };
-
   return (
     <div className="flex flex-col gap-4 my-10">
       <div className="flex justify-between items-center">
@@ -39,7 +29,7 @@ export const ListTour: React.FC<ListTourProps> = ({
           {header}
         </p>
         <button
-          onClick={handleViewAll}
+          onClick={onClick}
           className="bg-black lg:mt-10 text-white h-[38px] w-[92px]">
           View All
         </button>

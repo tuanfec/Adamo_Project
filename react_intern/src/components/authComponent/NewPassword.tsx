@@ -69,7 +69,7 @@ export const NewPassword: React.FC = () => {
         // Only dispatch if login was successful
         dispatch(setUser(response.user));
         dispatch(setIsLoggedIn(true));
-
+        localStorage.setItem("user", JSON.stringify(response.user));
         console.log("Login successful", response.user);
         navigate("/");
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
@@ -88,6 +88,7 @@ export const NewPassword: React.FC = () => {
     onSuccess: (response) => {
       if (response.success && response.user) {
         dispatch(setUser(response.user));
+        localStorage.setItem("user", JSON.stringify(response.user));
         dispatch(setIsLoggedIn(true));
         navigate("/");
         localStorage.setItem("isLoggedIn", JSON.stringify(true));
@@ -98,7 +99,6 @@ export const NewPassword: React.FC = () => {
   const onSubmit = (data: FormData) => {
     setErrorMessage(""); // Clear any previous error messages
     authMutation.mutate(data);
-    console.log(data);
   };
 
   const navigatePage = (isRegister: boolean) => {
