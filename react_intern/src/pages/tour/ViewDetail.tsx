@@ -61,6 +61,7 @@ export const ViewDetail: React.FC = () => {
               <ReviewTour
                 comments={tourDataDetail?.comments}
                 data={tourDataDetail?.reviews}
+                isHotel={false}
               />
             )}
           </div>

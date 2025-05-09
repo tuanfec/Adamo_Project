@@ -24,13 +24,11 @@ type FormValues = z.infer<typeof zodSchema>;
 
 interface DetailCardFormProps {
   isHotel: boolean;
-  tourData?: TourData;
   hotelData?: HotelFormData;
 }
 
 export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   isHotel,
-  tourData,
   hotelData,
 }) => {
   // Hooks & state
@@ -134,7 +132,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   };
 
   const handleBookNow = () => {
-    if (selectedRoom.length === 0) {
+    if (selectedRoom.length === 0 && isHotel) {
       notification.warning({
         message: "Please select a room! Click here to select room",
         placement: "topRight",
@@ -146,7 +144,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
       });
       return;
     }
-    if (totalGuestCapacity > totalRoomCapacity) {
+    if (totalGuestCapacity > totalRoomCapacity && isHotel) {
       notification.warning({
         message: "Guest Capacity Exceeded",
         description: `The total number of guests (${totalGuestCapacity}) exceeds the room capacity (${totalRoomCapacity}). Please select additional rooms or reduce number of guests.`,

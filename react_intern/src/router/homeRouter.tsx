@@ -9,6 +9,7 @@ import { ViewAllList } from "@/pages/tour/ViewAllList";
 import { ViewDetail } from "@/pages/tour/ViewDetail";
 import { Route, Routes } from "react-router-dom";
 import { HotelDetail } from "@/pages/hotel/HotelDetail";
+import { PolicyPage } from "@/pages/common/PolicyPage";
 
 export default function HomeRouter() {
   return (
@@ -25,6 +26,7 @@ export default function HomeRouter() {
 
       <Route path="/hotels" element={<HotelPage />} />
       <Route path="/hotels/view_detail/:id" element={<HotelDetail />} />
+      <Route path="/policy" element={<PolicyPage />} />
     </Routes>
   );
 }
