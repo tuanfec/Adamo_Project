@@ -4,9 +4,12 @@ import img3 from "@/assets/img3.png";
 import img4 from "@/assets/img4.png";
 import img5 from "@/assets/img5.png";
 import img6 from "@/assets/img6.png";
+import { FloatButton } from "antd";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 function AboutPage() {
   return (
     <AboutLayout>
+      <Breadcrumb />
       <Content />
       {/* Content_2 */}
       <div className="flex  md:flex-row lg:flex-row lg:max-h-full my-10 relative flex-col-reverse">
@@ -39,7 +42,11 @@ function AboutPage() {
 
       {/* Content_3 */}
       <div className="flex flex-col lg:max-h-full my-10 lg:my-20 relative lg:gap-15 gap-10 ">
-        <img className="w-full h-[463px] object-cover" src={img4} alt="image" />
+        <img
+          className="w-full aspect-[16/6] object-cover"
+          src={img4}
+          alt="image"
+        />
         <div className="flex flex-col gap-10">
           <p className="text-4xl md:text-3xl w-[100%] md:w-[90%] lg:w-[44%] font-medium">
             Experience the traditional cultural beauties of Vietnam
@@ -86,6 +93,7 @@ function AboutPage() {
           />
         </div>
       </div>
+      <FloatButton.BackTop visibilityHeight={200} />
     </AboutLayout>
   );
 }

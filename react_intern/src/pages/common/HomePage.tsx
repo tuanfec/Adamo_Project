@@ -1,4 +1,3 @@
-import { HomeLayout } from "@/layouts/HomeLayout";
 import { EmailSubcription } from "@/components/home/EmailSubcription";
 import { Content } from "@/components/home/Content";
 import { ListTour } from "@/components/home/ListTour";
@@ -8,6 +7,9 @@ import { useDispatch } from "react-redux";
 import { setAllTour, setTourData } from "@/app/slide/tourDataSlide";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FloatButton } from "antd";
+import { CommonLayout } from "@/layouts/CommonLayout";
+import banner from "@/assets/banner_img.jpg";
 
 export const HomePage: React.FC = () => {
   const dispatch = useDispatch();
@@ -51,7 +53,15 @@ export const HomePage: React.FC = () => {
     });
   };
   return (
-    <HomeLayout>
+    <CommonLayout
+      title="Perfect place for your stories"
+      content="Welcome to NgaoduVietnam"
+      isDisplaySearchTour={true}
+      isDisplayFeatured={true}
+      img={banner}
+      isHeader={true}
+      isTour={true}
+      isShow={true}>
       <div className="py-8 ">
         <Content />
         {attractiveData && (
@@ -82,6 +92,7 @@ export const HomePage: React.FC = () => {
         )}
         <EmailSubcription />
       </div>
-    </HomeLayout>
+      <FloatButton.BackTop visibilityHeight={200} />
+    </CommonLayout>
   );
 };

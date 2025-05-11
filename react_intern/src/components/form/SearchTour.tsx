@@ -62,7 +62,7 @@ export const SearchTour: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
         child: data.child,
       })
     );
-    navigate("/Tours/Search");
+    navigate("/tours/search");
   };
   return (
     <div className="w-full h-full lg:w-[70%]">

@@ -10,6 +10,7 @@ L.Icon.Default.mergeOptions(MAP_CONSTANTS.DEFAULT_MARKER_ICON);
 
 interface MapSectionProps {
   location: Location | null;
+  isContact?: boolean;
 }
 
 const MapUpdater: React.FC<MapSectionProps> = ({ location }) => {
@@ -17,15 +18,19 @@ const MapUpdater: React.FC<MapSectionProps> = ({ location }) => {
   return null;
 };
 
-export const MapSection: React.FC<MapSectionProps> = ({ location }) => {
+export const MapSection: React.FC<MapSectionProps> = ({
+  location,
+  isContact,
+}) => {
   const defaultCenter: [number, number] =
     location?.coordinates?.lat && location?.coordinates?.lng
       ? [location.coordinates.lat, location.coordinates.lng]
       : [40.8518, 14.2681];
-
+  console.log(isContact);
   return (
     <div>
-      <div className="h-[300px] overflow-hidden rounded-lg mt-6">
+      <div
+        className={`${isContact ? "h-[500px]" : "h-[300px]"}  overflow-hidden rounded-lg mt-6`}>
         {location?.coordinates?.lat && location?.coordinates?.lng ? (
           <MapContainer
             center={defaultCenter}

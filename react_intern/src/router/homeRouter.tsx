@@ -10,6 +10,7 @@ import { ViewDetail } from "@/pages/tour/ViewDetail";
 import { Route, Routes } from "react-router-dom";
 import { HotelDetail } from "@/pages/hotel/HotelDetail";
 import { PolicyPage } from "@/pages/common/PolicyPage";
+import { ContactPage } from "@/pages/common/ContactPage";
 
 export default function HomeRouter() {
   return (
@@ -23,6 +24,7 @@ export default function HomeRouter() {
       <Route path="/checkout/tour/:id" element={<CheckoutForm />} />
       <Route path="/checkout/hotel/:id" element={<CheckoutForm />} />
       <Route path="/thanks" element={<ThanksPage />} />
+      <Route path="/contact" element={<ContactPage />} />
 
       <Route path="/hotels" element={<HotelPage />} />
       <Route path="/hotels/view_detail/:id" element={<HotelDetail />} />

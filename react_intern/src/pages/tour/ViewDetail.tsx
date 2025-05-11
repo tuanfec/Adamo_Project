@@ -66,7 +66,7 @@ export const ViewDetail: React.FC = () => {
             )}
           </div>
           <div className="w-full lg:w-[40%]">
-            <DetailCardForm isHotel={false} tourData={tourDataDetail} />
+            <DetailCardForm isHotel={false} />
           </div>
         </div>
         <RelatedTour source={source ?? ""} currentTourId={id ?? ""} />
