@@ -2,8 +2,9 @@ import { ViewAll } from "@/components/home/ViewAll";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { useLocation, useParams } from "react-router-dom";
 import { useTourList } from "@/hooks/useTourList";
-import { TourLayout } from "@/layouts/TourLayout";
 import { useSelector } from "react-redux";
+import { CommonLayout } from "@/layouts/CommonLayout";
+import banner from "@assets/banner_img.jpg";
 export const ViewAllList: React.FC = () => {
   const { source } = useParams();
   const header = useLocation().state?.header;
@@ -11,7 +12,15 @@ export const ViewAllList: React.FC = () => {
   const tourData = useSelector((state: any) => state.tourDataSlide.tourData);
 
   return (
-    <TourLayout>
+    <CommonLayout
+      title="Attractive tour and interesting experiences"
+      content="Search hundreds of tours and more"
+      isDisplaySearchTour={true}
+      isDisplayFeatured={false}
+      img={banner}
+      isHeader={false}
+      isTour={true}
+      isShow={true}>
       <div className="py-8">
         <Breadcrumb />
         <ViewAll
@@ -20,6 +29,6 @@ export const ViewAllList: React.FC = () => {
           header={header ?? ""}
         />
       </div>
-    </TourLayout>
+    </CommonLayout>
   );
 };

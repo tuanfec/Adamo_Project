@@ -100,9 +100,7 @@ const TourSummary: React.FC = () => {
                         </p>
                         <span className="font-bold text-md">{item?.name}</span>
                       </div>
-                      <span className="font-bold text-lg">
-                        ${item?.price}.00
-                      </span>
+                      <span className="font-bold text-lg">${item?.price}</span>
                     </div>
                   );
                 })}
@@ -123,7 +121,7 @@ const TourSummary: React.FC = () => {
                             </div>
 
                             <span className="font-bold text-lg">
-                              ${addOn?.breakfast.price}.00
+                              ${addOn?.breakfast.price}
                             </span>
                           </div>
                         )}
@@ -139,7 +137,7 @@ const TourSummary: React.FC = () => {
                             </div>
 
                             <span className="font-bold text-lg">
-                              ${addOn?.extraBed.price}.00
+                              ${addOn?.extraBed.price}
                             </span>
                           </div>
                         )}
@@ -155,9 +153,9 @@ const TourSummary: React.FC = () => {
       <div className="flex bg-black items-center justify-between lg:py-8 py-6 text-white px-7 mb-10">
         <p className="text-xl font-normal">Total: </p>{" "}
         {tourDetail ? (
-          <p className="font-bold text-xl ">${total || tourDetail?.price}.00</p>
+          <p className="font-bold text-xl ">${total || tourDetail?.price}</p>
         ) : (
-          <p className="font-bold text-xl ">${totalPrice}.00</p>
+          <p className="font-bold text-xl ">${totalPrice}</p>
         )}
       </div>
     </div>

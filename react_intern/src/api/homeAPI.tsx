@@ -28,3 +28,8 @@ export const getHotelDetail = async (id: string) => {
   const response = await instance.get(`http://localhost:3000/hotels/${id}`);
   return response.data;
 };
+
+export const getPolicy = async () => {
+  const response = await instance.get("http://localhost:3000/policy");
+  return response.data;
+};

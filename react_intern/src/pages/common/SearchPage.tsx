@@ -3,9 +3,10 @@ import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { Loading } from "@/components/common/Loading";
 import { ViewAll } from "@/components/home/ViewAll";
 import { useAttractiveTours, useTraditionalTours } from "@/hooks/useTours";
-import { TourLayout } from "@/layouts/TourLayout";
+import { CommonLayout } from "@/layouts/CommonLayout";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import banner from "@/assets/banner_img.jpg";
 
 export const SearchPage = () => {
   const dispatch = useDispatch();
@@ -67,11 +68,19 @@ export const SearchPage = () => {
   });
 
   return (
-    <TourLayout>
+    <CommonLayout
+      title="Attractive tour and interesting experiences"
+      content="Search hundreds of tours and more"
+      isDisplaySearchTour={true}
+      isDisplayFeatured={false}
+      img={banner}
+      isHeader={false}
+      isTour={true}
+      isShow={true}>
       <div className="py-8 ">
         <Breadcrumb />
         <ViewAll tourData={dataFilter} isLoading={false} header={"Search"} />
       </div>
-    </TourLayout>
+    </CommonLayout>
   );
 };

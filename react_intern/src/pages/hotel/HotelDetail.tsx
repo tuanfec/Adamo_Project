@@ -57,12 +57,13 @@ export const HotelDetail: React.FC = () => {
             {statePage === PageState.SELECT_ROOM && (
               <SelectRoom data={hotelDataDetail} />
             )}
-            {/* {statePage === PageState.REVIEWS && (
+            {statePage === PageState.REVIEWS && (
               <ReviewTour
                 comments={hotelDataDetail?.comments}
                 data={hotelDataDetail?.reviews}
+                isHotel={true}
               />
-            )} */}
+            )}
           </div>
           <div className="w-full lg:w-[40%]">
             <DetailCardForm isHotel={true} hotelData={hotelDataDetail} />

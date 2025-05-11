@@ -61,11 +61,12 @@ export const ViewDetail: React.FC = () => {
               <ReviewTour
                 comments={tourDataDetail?.comments}
                 data={tourDataDetail?.reviews}
+                isHotel={false}
               />
             )}
           </div>
           <div className="w-full lg:w-[40%]">
-            <DetailCardForm isHotel={false} tourData={tourDataDetail} />
+            <DetailCardForm isHotel={false} />
           </div>
         </div>
         <RelatedTour source={source ?? ""} currentTourId={id ?? ""} />

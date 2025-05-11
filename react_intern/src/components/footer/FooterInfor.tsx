@@ -27,9 +27,11 @@ export const FooterInfor: React.FC = () => {
         <p className="cursor-pointer hover:text-[#FF7B42] transition-colors">
           Terms & Conditions
         </p>
-        <p className="cursor-pointer hover:text-[#FF7B42] transition-colors">
+        <Link
+          to="/policy"
+          className="cursor-pointer hover:text-[#FF7B42] transition-colors">
           Privacy Policy
-        </p>
+        </Link>
         <p className="cursor-pointer hover:text-[#FF7B42] transition-colors">
           Guest Policy
         </p>

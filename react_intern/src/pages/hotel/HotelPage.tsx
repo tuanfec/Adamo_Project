@@ -1,5 +1,4 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
-import { HotelLayout } from "@/layouts/HotelLayout";
 import { useHotels } from "@/hooks/useHotels";
 import { Loading } from "@/components/common/Loading";
 import { ListHotels } from "@/components/hotels/ListHotels";
@@ -7,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setHotelData } from "@/app/slide/hotelDataSlide";
 import { useEffect } from "react";
 import { Header } from "@/components/hotels/Header";
+import { CommonLayout } from "@/layouts/CommonLayout";
+import banner from "@/assets/hotel_banner.png";
 export const HotelPage: React.FC = () => {
   const { data: hotels, isLoading } = useHotels();
   const dispatch = useDispatch();
@@ -59,7 +60,15 @@ export const HotelPage: React.FC = () => {
   });
 
   return (
-    <HotelLayout>
+    <CommonLayout
+      title="From cozy country homes to funky city apartments"
+      content="Find deals on hotels, homes, and much more..."
+      isDisplaySearchTour={true}
+      isDisplayFeatured={false}
+      img={banner}
+      isHeader={false}
+      isTour={false}
+      isShow={true}>
       <div className="py-8 ">
         <Breadcrumb />
         <Header hotelData={hotelData} />
@@ -75,6 +84,6 @@ export const HotelPage: React.FC = () => {
           />
         )}
       </div>
-    </HotelLayout>
+    </CommonLayout>
   );
 };
