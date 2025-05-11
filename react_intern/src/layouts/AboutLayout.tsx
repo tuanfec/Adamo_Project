@@ -15,7 +15,7 @@ export const AboutLayout: React.FC<{
           <Navbar />
         </div>
         <div className="flex items-center justify-center my-18 text-5xl font-medium text-white">
-          About us
+          About us a
         </div>
       </Banner>
       <main className="container mx-auto lg:px-35 px-4">{children}</main>
