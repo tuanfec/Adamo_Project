@@ -1,4 +1,3 @@
-import { useNotification } from "@/components/notifiction/NotificationProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -18,12 +17,8 @@ export const ContactForm = () => {
   } = useForm<ContactFormType>({
     resolver: zodResolver(contactSchema),
   });
-  const notify = useNotification();
   const onSubmit = (data: ContactFormType) => {
     console.log(data);
-    notify.success({
-      message: "Message sent successfully",
-    });
   };
   return (
     <form className="flex flex-col gap-4 " onSubmit={handleSubmit(onSubmit)}>

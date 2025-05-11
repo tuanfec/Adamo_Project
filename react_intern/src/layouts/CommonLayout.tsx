@@ -5,7 +5,6 @@ import { SearchTour } from "@/components/form/SearchTour";
 import { FooterMain } from "@/components/footer/FooterMain";
 import { Banner } from "@/components/header/Banner";
 import { Featured } from "@/components/common/Featured";
-import { MapSection } from "@/components/tourDetail/DescriptionTour/components/MapSection";
 export const CommonLayout: React.FC<{
   children: React.ReactNode;
   title: string;
@@ -80,18 +79,6 @@ export const CommonLayout: React.FC<{
           {children}
         </div>
       </main>
-      {isContact && (
-        <MapSection
-          isContact={isContact}
-          location={{
-            locationName: "NgaoDuVietNam",
-            coordinates: {
-              lat: 10.8231,
-              lng: 106.6297,
-            },
-          }}
-        />
-      )}
       <FooterMain />
     </div>
   );
