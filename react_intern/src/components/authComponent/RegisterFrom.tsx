@@ -12,7 +12,7 @@ import { registerUser } from "@services/authService";
 import { loginWithFacebook } from "@/services/authService";
 import { setIsLoggedIn, setUser } from "@/app/slide/userSlide";
 import { useNavigate } from "react-router-dom";
-
+import { useNotification } from "@/components/notifiction/NotificationProvider";
 const schema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
@@ -46,18 +46,28 @@ export const RegisterFrom: React.FC = () => {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
-
+  const notification = useNotification();
   const registerMutation = useMutation<RegisterResponse, Error, FormData>({
     mutationFn: registerUser,
     onSuccess: (data) => {
       if (data.success) {
-        dispatch(setStatePage("signIn"));
+        navigate("/login");
+        notification.success({
+          title: "Success",
+          message: "Registration successful!",
+        });
       } else {
-        setErrorMessage(data.error || "Registration failed");
+        notification.error({
+          title: "Error",
+          message: data.error || "Registration failed",
+        });
       }
     },
     onError: (error) => {
-      setErrorMessage(error.message);
+      notification.error({
+        title: "Error",
+        message: error.message,
+      });
     },
   });
 
@@ -91,7 +101,6 @@ export const RegisterFrom: React.FC = () => {
   };
 
   const navigatePage = () => {
-    dispatch(setStatePage("signIn"));
     navigate("/login");
   };
   return (

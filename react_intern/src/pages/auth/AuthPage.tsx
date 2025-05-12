@@ -1,37 +1,22 @@
 import { AuthLayout } from "@layouts/AuthLayout";
 import { ForgotPasswordForm } from "@components/authComponent/ForgotPasswordForm";
 import { NewPassword } from "@components/authComponent/NewPassword";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { RegisterFrom } from "@components/authComponent/RegisterFrom";
-
-enum PageState {
-  FORGOT_PASSWORD = "forgotPassword",
-  NEW_PASSWORD = "newPassword",
-  REGISTER = "register",
-  SIGN_IN = "signIn",
-}
-
-interface RootState {
-  statePageSlide: {
-    state: PageState;
-  };
-}
+import { useLocation } from "react-router-dom";
 
 function Author() {
-  const statePage = useSelector(
-    (state: RootState) => state.statePageSlide.state
-  );
+  const statePage = useLocation().pathname;
 
   const renderFormComponent = () => {
     switch (statePage) {
-      case PageState.FORGOT_PASSWORD:
-        return <ForgotPasswordForm />;
-      case PageState.NEW_PASSWORD:
+      case "/login":
         return <NewPassword />;
-      case PageState.REGISTER:
+      case "/sign-up":
         return <RegisterFrom />;
-      case PageState.SIGN_IN:
+      case "/forgot-password":
+        return <ForgotPasswordForm />;
+      case "/reset-password":
         return <NewPassword />;
       default:
         return <NewPassword />;

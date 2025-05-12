@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutUser } from "@/services/authService";
-
+import { useNotification } from "@/components/notifiction/NotificationProvider";
 interface NavItem {
   label: string;
   path: string;
@@ -15,7 +15,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const notification = useNotification();
   useEffect(() => {
     // Check login status from localStorage
     const checkLoginStatus = () => {
@@ -39,6 +39,10 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
       setIsLoggedIn(false);
       localStorage.setItem("isLoggedIn", "false");
       navigate("/");
+      notification.success({
+        title: "Success",
+        message: "Logout successful!",
+      });
     } catch (error) {
       console.error("Logout failed:", error);
     }

@@ -22,7 +22,6 @@ interface InputFormProps {
 
 const InputForm: React.FC<InputFormProps> = ({
   type = "text",
-  className,
   title,
   name,
   register,

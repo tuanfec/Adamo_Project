@@ -3,15 +3,13 @@
 import React, { useState } from "react";
 import { ActionButton } from "./ActionButton";
 import InputForm from "./InputForm";
-import { setStatePage } from "@app/slide/statePageSlide";
-import { useDispatch } from "react-redux";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { resetPassword } from "@/services/authService";
 import { useNavigate } from "react-router-dom";
-
+import { useNotification } from "@/components/notifiction/NotificationProvider";
 const schema = z.object({
   email: z.string().email("Invalid email address"),
 });
@@ -25,7 +23,6 @@ interface ResetPasswordResponse {
 }
 
 export const ForgotPasswordForm: React.FC = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
@@ -37,7 +34,7 @@ export const ForgotPasswordForm: React.FC = () => {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
-
+  const notification = useNotification();
   const resetPasswordMutation = useMutation<
     ResetPasswordResponse,
     Error,
@@ -50,8 +47,10 @@ export const ForgotPasswordForm: React.FC = () => {
           data.message || "Password reset email sent successfully!"
         );
         setErrorMessage("");
-        dispatch(setStatePage("newPassword"));
-        navigate("/reset-password-confirm");
+        notification.success({
+          title: "Success",
+          message: data.message || "Password reset email sent successfully!",
+        });
         // Optionally redirect after a delay
       } else if (data.error) {
         setErrorMessage(data.error);
@@ -71,7 +70,6 @@ export const ForgotPasswordForm: React.FC = () => {
   };
 
   const navigatePage = () => {
-    dispatch(setStatePage("signIn"));
     navigate("/login");
   };
 

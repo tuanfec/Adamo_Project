@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const PageState = {
-  SIGN_IN: "signIn",
-  FORGOT_PASSWORD: "forgotPassword",
-  NEW_PASSWORD: "newPassword",
-  REGISTER: "register",
   DESCRIPTION: "description",
   ADDITIONAL_INFOR: "additionalInfor",
   REVIEWS: "reviews",
