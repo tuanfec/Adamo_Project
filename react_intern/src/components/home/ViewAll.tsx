@@ -75,8 +75,8 @@ export const ViewAll: React.FC<ViewAllProps> = ({
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
-  const viewDetail = (id: string) => {
-    navigate(`/tours/view_detail/${sourceView}/${id}`, {
+  const viewDetail = (id: string, source: string) => {
+    navigate(`/tours/view_detail/${sourceView || source}/${id}`, {
       state: { previousHeader: header, id },
     });
   };
@@ -131,7 +131,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentItems.map((item: TourData, index) => (
               <CardTour
-                onClick={() => viewDetail(item.id)}
+                onClick={() => viewDetail(item.id, item.source || "")}
                 key={index}
                 image={item.image?.[0]}
                 title={item.title}

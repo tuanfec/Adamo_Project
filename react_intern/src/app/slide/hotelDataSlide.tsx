@@ -19,6 +19,11 @@ interface HotelDataSlideState {
       numberSelect: number;
     };
   };
+  searchHotel: {
+    location: string;
+    startDate: string;
+    endDate: string;
+  };
 }
 
 const initialState: HotelDataSlideState = {
@@ -31,7 +36,7 @@ const initialState: HotelDataSlideState = {
   sortBy: "Price high to low",
   hotelDetail: {
     id: "",
-    name: "",
+    title: "",
     image: [],
     isSave: false,
     price: 0,
@@ -60,6 +65,11 @@ const initialState: HotelDataSlideState = {
       numberSelect: 0,
     },
   },
+  searchHotel: {
+    location: "",
+    startDate: "",
+    endDate: "",
+  },
 };
 
 const HotelDataSlide = createSlice({
@@ -84,6 +94,10 @@ const HotelDataSlide = createSlice({
     setAddOn: (state, action) => {
       state.addOn = action.payload;
     },
+
+    setSearchHotel: (state, action) => {
+      state.searchHotel = action.payload;
+    },
   },
 });
 
@@ -94,5 +108,6 @@ export const {
   setHotelDetail,
   setSelectedRoom,
   setAddOn,
+  setSearchHotel,
 } = HotelDataSlide.actions;
 export default HotelDataSlide.reducer;

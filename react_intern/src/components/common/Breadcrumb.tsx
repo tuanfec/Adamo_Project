@@ -16,7 +16,7 @@ export const Breadcrumb = () => {
   const isTourDetailView = paths[0] === "tours" && paths[1] === "view_detail";
   const isTourSearch = paths[0] === "tours" && paths[1] === "search";
   const isHotelDetailView = paths[0] === "hotels" && paths[1] === "view_detail";
-
+  const isHotelSearch = paths[0] === "hotels" && paths[1] === "search";
   const items: BreadcrumbItem[] = [{ label: "Home", path: "/" }];
 
   if (paths[0] === "tours") {
@@ -51,6 +51,12 @@ export const Breadcrumb = () => {
       items.push({
         label: "Hotel Detail",
         path: location.pathname,
+      });
+    }
+    if (isHotelSearch) {
+      items.push({
+        label: "Search",
+        path: "/hotels/search",
       });
     }
   }

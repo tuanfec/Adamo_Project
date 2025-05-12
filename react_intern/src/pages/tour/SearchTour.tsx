@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import banner from "@/assets/banner_img.jpg";
 
-export const SearchPage = () => {
+export const SearchTour = () => {
   const dispatch = useDispatch();
   const searchTour = useSelector(
     (state: any) => state.tourDataSlide.searchTour
@@ -55,7 +55,7 @@ export const SearchPage = () => {
     const matchStartDate =
       !searchTour.startDate ||
       (item.startDate &&
-        new Date(item.startDate) <= new Date(searchTour.startDate));
+        new Date(item.startDate) >= new Date(searchTour.startDate));
     const matchEndDate =
       !searchTour.endDate ||
       (item.endDate && new Date(item.endDate) <= new Date(searchTour.endDate));

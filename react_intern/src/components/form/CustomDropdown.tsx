@@ -134,8 +134,8 @@ export const CustomDropdown = <
         )}
         {isDuration && (
           <div className="flex-1 flex items-center gap-2">
-            {tourDetail?.endDate || hotelData?.endDate} <AiOutlineArrowRight />{" "}
             {tourDetail?.startDate || hotelData?.startDate}
+            <AiOutlineArrowRight /> {tourDetail?.endDate || hotelData?.endDate}
           </div>
         )}
         <div className="absolute right-5 top-1/2 -translate-y-1/2">

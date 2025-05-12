@@ -1,7 +1,7 @@
 import { Logo } from "@/components/header/Logo";
 import { Navbar } from "@/components/header/Navbar";
 import logo from "../assets/logo.jpg";
-import { SearchTour } from "@/components/form/SearchTour";
+import { SearchForm } from "@/components/form/SearchForm";
 import { FooterMain } from "@/components/footer/FooterMain";
 import { Banner } from "@/components/header/Banner";
 import { Featured } from "@/components/common/Featured";
@@ -57,7 +57,7 @@ export const CommonLayout: React.FC<{
 
           {isDisplaySearchTour && (
             <div className=" lg:col-span-2 lg:row-span-5 lg:col-start-4 lg:row-start-2 order-2">
-              <SearchTour isHeader={isHeader} isTour={isTour} />
+              <SearchForm isHeader={isHeader} isTour={isTour} />
             </div>
           )}
 
@@ -76,7 +76,7 @@ export const CommonLayout: React.FC<{
 
       {/* Main Content */}
       <main className="flex-1 relative z-0">
-        <div className="container mx-auto lg:px-38 md:px-10 px-4">
+        <div className="container mx-auto lg:px-35 md:px-10 px-4">
           {children}
         </div>
       </main>
