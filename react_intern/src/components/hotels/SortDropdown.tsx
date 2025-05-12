@@ -3,7 +3,7 @@ export const SortDropdown: React.FC<{
   selectedIndex: number;
   onSelect: (index: number) => void;
 }> = ({ options, selectedIndex, onSelect }) => (
-  <div className="absolute top-8 right-0 z-20">
+  <div className="absolute top-8 left-0 z-20">
     <div className="bg-white shadow-md rounded-md py-1 min-w-[200px]">
       {options.map((item, index) =>
         index !== selectedIndex ? (

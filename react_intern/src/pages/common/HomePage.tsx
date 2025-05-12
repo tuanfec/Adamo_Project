@@ -64,32 +64,38 @@ export const HomePage: React.FC = () => {
       isShow={true}>
       <div className="py-8 ">
         <Content />
-        {attractiveData && (
-          <ListTour
-            data={attractiveData}
-            header="Discover fascinating destinations"
-            slidesPerView={4}
-            spaceBetween={40}
-          />
-        )}
-        {attractiveWithSource && (
-          <ListTour
-            data={attractiveWithSource}
-            header="Attractive tour and interesting experiences"
-            slidesPerView={3}
-            spaceBetween={40}
-            onClick={() => handleViewAll(true)}
-          />
-        )}
-        {traditionalWithSource && (
-          <ListTour
-            data={traditionalWithSource}
-            header="Experience the traditional cultural beauties of Vietnam"
-            slidesPerView={3}
-            spaceBetween={40}
-            onClick={() => handleViewAll(false)}
-          />
-        )}
+        <div data-aos="fade-up" data-aos-duration="1000">
+          {attractiveData && (
+            <ListTour
+              data={attractiveData}
+              header="Discover fascinating destinations"
+              slidesPerView={4}
+              spaceBetween={40}
+            />
+          )}
+        </div>
+        <div data-aos="fade-up" data-aos-duration="1000">
+          {attractiveWithSource && (
+            <ListTour
+              data={attractiveWithSource}
+              header="Attractive tour and interesting experiences"
+              slidesPerView={3}
+              spaceBetween={40}
+              onClick={() => handleViewAll(true)}
+            />
+          )}
+        </div>
+        <div data-aos="fade-up" data-aos-duration="1000">
+          {traditionalWithSource && (
+            <ListTour
+              data={traditionalWithSource}
+              header="Experience the traditional cultural beauties of Vietnam"
+              slidesPerView={3}
+              spaceBetween={40}
+              onClick={() => handleViewAll(false)}
+            />
+          )}
+        </div>
         <EmailSubcription />
       </div>
       <FloatButton.BackTop visibilityHeight={200} />

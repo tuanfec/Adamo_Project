@@ -12,6 +12,7 @@ import { HotelDetail } from "@/pages/hotel/HotelDetail";
 import { PolicyPage } from "@/pages/common/PolicyPage";
 import { ContactPage } from "@/pages/common/ContactPage";
 import { SearchHotel } from "@/pages/hotel/SearchHotel";
+import { NotFoundPage } from "@/pages/common/NotFoundPage";
 export default function HomeRouter() {
   return (
     <Routes>
@@ -30,6 +31,7 @@ export default function HomeRouter() {
       <Route path="/hotels/search" element={<SearchHotel />} />
       <Route path="/hotels/view_detail/:id" element={<HotelDetail />} />
       <Route path="/policy" element={<PolicyPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

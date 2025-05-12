@@ -22,9 +22,9 @@ export const Header: React.FC<{
   const [sortByIndex, setSortByIndex] = useState(0);
 
   return (
-    <div className="flex justify-between items-center relative my-10">
-      <p className="text-4xl font-medium">Hotels</p>
-      <div className="flex items-center gap-8">
+    <div className="flex flex-col lg:flex-row lg:justify-between  lg:items-center relative my-10">
+      <p className="text-4xl mb-6 lg:mb-0 md:mb-6 font-medium">Hotels</p>
+      <div className="flex justify-between items-center gap-8">
         <div
           onClick={() => setIsSort((prev) => !prev)}
           className="flex items-center gap-2 cursor-pointer select-none">

@@ -40,10 +40,6 @@ export const ListTour: React.FC<ListTourProps> = ({
           spaceBetween={spaceBetween}
           slidesPerView={slidesPerView}
           navigation
-          pagination={{
-            clickable: true,
-            el: ".swiper-pagination",
-          }}
           breakpoints={{
             640: {
               slidesPerView: 2,

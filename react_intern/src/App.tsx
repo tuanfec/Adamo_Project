@@ -6,7 +6,13 @@ import { BrowserRouter } from "react-router-dom";
 import AuthRouter from "@router/authRouter";
 import HomeRouter from "@router/homeRouter";
 import { NotificationProvider } from "@components/notifiction/NotificationProvider";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 function App() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
