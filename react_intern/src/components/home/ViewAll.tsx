@@ -8,6 +8,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "../common/Pagination";
 import { Loading } from "../common/Loading";
 import { TourData } from "@/types/tour";
+import { FloatButton } from "antd";
+import { Filter } from "../common/Filter";
 
 interface ViewAllProps {
   tourData: TourData[];
@@ -97,23 +99,13 @@ export const ViewAll: React.FC<ViewAllProps> = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="lg:mb-10 w-full font-medium flex flex-col lg:flex-row md:flex-col">
-        <p className="lg:w-[50%] md:w-[80%] w-full text-4xl">{header}</p>
+        <p className="lg:w-[50%] md:w-[80%] w-full text-4xl dark:text-[#ffffff]">
+          {header}
+        </p>
         <div className="flex flex-row-reverse md:flex-row lg:flex-row justify-end flex-1 relative">
-          {isFilter ? (
-            <button
-              onClick={() => setIsFilter(!isFilter)}
-              className="bg-white flex items-center justify-around px-2 gap-2 text-black h-[38px] w-[85px] lg:mt-10 mt-4 border border-black">
-              Filter <IoMdClose />
-            </button>
-          ) : (
-            <button
-              onClick={() => setIsFilter(!isFilter)}
-              className="bg-black h-[38px] w-[75px] lg:mt-10 mt-4 text-white">
-              Filter
-            </button>
-          )}
+          <Filter isFilter={isFilter} setIsFilter={setIsFilter} />
           {isFilter && (
-            <div className="absolute w-1/2 top-20 lg:right-0 z-10 shadow-lg">
+            <div className="absolute lg:w-1/2 w-full top-20 lg:right-0 z-10 shadow-lg">
               <FilterForm tourData={tourData} />
             </div>
           )}
@@ -149,6 +141,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
           {renderPaginationButtons()}
         </>
       )}
+      <FloatButton.BackTop visibilityHeight={1000} />
     </div>
   );
 };

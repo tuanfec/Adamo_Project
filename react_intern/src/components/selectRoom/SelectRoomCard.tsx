@@ -10,8 +10,10 @@ import { FiImage } from "react-icons/fi";
 import { RoomDetailModel } from "./RoomDetailModel";
 import { Modal } from "antd";
 import { useNotification } from "@components/notifiction/NotificationProvider";
+import { useTheme } from "@/config/theme-provider";
 export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { theme } = useTheme();
   const dispatch = useDispatch();
   const notification = useNotification();
   const selectedRooms = useSelector(
@@ -79,6 +81,7 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
   return (
     <div className="bg-white rounded-lg shadow-md flex flex-col md:flex-row overflow-hidden w-full max-w-3xl hover:scale-105 transition-all duration-300">
       <Modal
+        className={`${theme === "dark" ? "dark" : ""}`}
         width={1000}
         open={isModalOpen}
         onCancel={handleCancel}
@@ -106,33 +109,35 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
       </div>
 
       {/* Content section */}
-      <div className="flex-1 py-2 pl-6 pr-10 flex flex-col gap-1">
+      <div className="flex-1 dark:bg-[#575757] py-2 pl-6 pr-10 flex flex-col gap-1">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-[#2A2A2A]">{data.name}</h2>
+          <h2 className="text-lg font-bold text-[#2A2A2A] dark:text-white">
+            {data.name}
+          </h2>
         </div>
         <div className="flex justify-between mt-2 w-[90%]">
           <div className="flex items-center gap-2">
-            <FaUserFriends className="text-[#4F4F4F] text-xl" />
-            <span className="text-[#4F4F4F] text-md font-medium">
+            <FaUserFriends className="text-[#4F4F4F] dark:text-[#bbbbbb] text-xl" />
+            <span className="text-[#4F4F4F] dark:text-[#bbbbbb] text-md font-medium">
               {data.guests} Guest
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <FaBed className="text-[#4F4F4F] text-xl" />
-            <span className="text-[#4F4F4F] text-md font-medium">
+            <FaBed className="text-[#4F4F4F] dark:text-[#bbbbbb] text-xl" />
+            <span className="text-[#4F4F4F] dark:text-[#bbbbbb] text-md font-medium">
               {data.bed}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <BiShapeSquare className="text-[#4F4F4F] text-xl" />
-            <span className="text-[#4F4F4F] text-md font-medium">
+            <BiShapeSquare className="text-[#4F4F4F] dark:text-[#bbbbbb] text-xl" />
+            <span className="text-[#4F4F4F] dark:text-[#bbbbbb] text-md font-medium">
               {data.area} m2
             </span>
           </div>
         </div>
-        <div className="text-[#5E6D77] text-sm font-normal">
+        <div className="text-[#5E6D77] dark:text-[#bbbbbb] text-sm font-normal">
           {data.amenities.slice(0, 3).join(" • ")}
-          <span className="text-blue-900 font-medium">
+          <span className="text-blue-900 dark:text-[#e4e1e1] font-medium">
             {data.amenities.length > 3 &&
               ` • ${data.amenities.length - 3} more`}
           </span>
@@ -144,7 +149,9 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
                 <button
                   type="button"
                   onClick={handleSelectRoom}
-                  className="px-6 py-2 bg-white text-[#FF7B42] font-semibold rounded border border-[#FF7B42] hover:bg-[#FF7B42] hover:text-white transition cursor-pointer">
+                  className="px-6 py-2 bg-white text-[#FF7B42] font-semibold rounded border 
+                  dark:border-none dark:text-white dark:bg-[#FF7B42] dark:hover:bg-white dark:hover:text-[#FF7B42]
+                   border-[#FF7B42] hover:bg-[#FF7B42] hover:text-white transition cursor-pointer">
                   Select Room
                 </button>
               )}
@@ -154,7 +161,7 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
                 <button
                   type="button"
                   onClick={handleUnSelectedRoom}
-                  className="flex items-center gap-2 px-6 py-2 bg-[#FF7B42] text-white font-semibold rounded border border-[#FF7B42] hover:bg-white hover:text-[#FF7B42] transition cursor-pointer">
+                  className="flex items-center gap-2 px-6 py-2 bg-[#FF7B42] dark:border-none dark:bg-[#f7f7f7] dark:text-[#FF7B42] text-white font-semibold rounded border border-[#FF7B42] hover:bg-white hover:text-[#FF7B42] transition cursor-pointer">
                   <FaCheck /> Selected ({currentRoom.numberSelect})
                 </button>
               )}
@@ -165,7 +172,7 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
             )}
           </div>
           <div className="flex justify-end items-end gap-1">
-            <span className="text-[#EE1D00] text-2xl font-semibold">
+            <span className="text-[#EE1D00] dark:text-[#FF7B42] text-2xl font-semibold">
               ${data.price}
             </span>
             <span className="text-sm text-[#888888] mb-1">/night</span>

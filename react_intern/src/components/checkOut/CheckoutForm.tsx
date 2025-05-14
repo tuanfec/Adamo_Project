@@ -34,19 +34,21 @@ const CheckoutForm = () => {
     navigate("/Thanks");
   };
   return (
-    <div className="min-h-screen bg-white text-[#2A2A2A]">
+    <div className="min-h-screen bg-white text-[#2A2A2A] dark:bg-[#1e1e1e] ">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="mb-8">
-          <h1 className=" text-[36px] font-medium text-[#2A2A2A] mb-4 ">
+          <h1 className=" text-[36px] font-medium text-[#2A2A2A] dark:text-white mb-4 ">
             Booking Submission
           </h1>
-          <div className="border-b border-gray-200 w-2/3 mb-6"></div>
+          <div className="border-b border-gray-200 w-2/3 mb-6 dark:border-gray-600"></div>
           <div className="flex flex-col  space-x-4">
-            <span className=" text-2xl font-medium text-[#2A2A2A]">
+            <span className=" text-2xl font-medium text-[#2A2A2A] dark:text-white">
               Traveler Details
             </span>
-            <p>Information we need to confirm your tour or activity</p>
+            <p className="text-gray-500 dark:text-[#bbbbbb]">
+              Information we need to confirm your tour or activity
+            </p>
           </div>
         </div>
 
@@ -62,7 +64,7 @@ const CheckoutForm = () => {
               handleSubmit={handleSubmit}
               errors={errors}
             />
-            <div className="border-b border-gray-200 w-full mb-6"></div>
+            <div className="border-b border-gray-200 dark:border-gray-600 w-full mb-6"></div>
 
             <PaymentMethod
               register={register}

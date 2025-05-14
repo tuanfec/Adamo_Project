@@ -1,9 +1,7 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { DetailCardForm } from "@/components/form/DetailCardForm";
-import { useTourDetail } from "@/hooks/useTours";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setTotalGuest, setTourDetail } from "@/app/slide/tourDataSlide";
 import { useEffect } from "react";
 import { DetailLayout } from "@/layouts/DetailLayout";
 import { HeaderDetail } from "@/components/tourDetail/TitleTour";
@@ -12,7 +10,6 @@ import { InfomationTour } from "@/components/tourDetail/InfomationTour";
 import { PageState, setStatePage } from "@/app/slide/statePageSlide";
 import { DescriptionTour } from "@/components/tourDetail/DescriptionTour";
 import { RelatedTour } from "@/components/tourDetail/RelatedTour";
-import { AdditionaInfor } from "@/components/tourDetail/AdditionalInfor";
 import { ReviewTour } from "@/components/tourDetail/ReviewTour/Index";
 import { Loading } from "@/components/common/Loading";
 import { useHotelDetail } from "@/hooks/useHotels";
@@ -22,7 +19,6 @@ import { SelectRoom } from "@/components/selectRoom";
 export const HotelDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { source } = useParams();
-  const isAttractive = source === "attractive";
   const { data: hotelDataDetail, isLoading } = useHotelDetail(id ?? "");
   const dispatch = useDispatch();
 

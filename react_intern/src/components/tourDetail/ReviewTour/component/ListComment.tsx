@@ -8,7 +8,6 @@ interface CommentProps {
   isHotel: boolean;
 }
 export const ListComment: React.FC<CommentProps> = ({ data, isHotel }) => {
-  console.log(data);
   const typeRate = {
     9.5: "Wonderful",
     9: "Very Good",
@@ -44,11 +43,15 @@ export const ListComment: React.FC<CommentProps> = ({ data, isHotel }) => {
             </div>
           )}
           <div className="font-medium text-lg">{data?.title}</div>
-          <div className="text-gray-500 text-sm">{data?.createdAt}</div>
+          <div className="text-gray-500 dark:text-[#bbbbbb] text-sm">
+            {data?.createdAt}
+          </div>
         </div>
       </div>
-      <div className="text-gray-500 text-lg my-5">{data?.content}</div>
-      <div className="border-t border-gray-400 mb-10"></div>
+      <div className="text-gray-500 dark:text-[#bbbbbb] text-lg my-5">
+        {data?.content}
+      </div>
+      <div className="border-t border-gray-400 dark:border-gray-600 mb-10"></div>
     </div>
   );
 };

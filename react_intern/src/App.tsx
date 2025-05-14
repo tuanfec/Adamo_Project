@@ -9,6 +9,8 @@ import { NotificationProvider } from "@components/notifiction/NotificationProvid
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { ThemeProvider } from "./config/theme-provider";
+import { DarkModeButton } from "@/components/common/DarkModeButton";
 function App() {
   useEffect(() => {
     AOS.init();
@@ -18,8 +20,11 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <NotificationProvider>
-            <AuthRouter />
-            <HomeRouter />
+            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+              <DarkModeButton />
+              <AuthRouter />
+              <HomeRouter />
+            </ThemeProvider>
           </NotificationProvider>
         </Provider>
       </QueryClientProvider>

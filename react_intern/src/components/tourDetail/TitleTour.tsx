@@ -1,6 +1,5 @@
 import { FaStar } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import { useSelector } from "react-redux";
 import { TourData } from "@/types/tour";
 import { HotelFormData } from "@/types/hotel";
 import { AiFillStar } from "react-icons/ai";
@@ -25,7 +24,7 @@ export const HeaderDetail: React.FC<HeaderDetailProps> = ({
       </div>
       <div className="flex items-center gap-2 mt-2">
         <HiOutlineLocationMarker className="text-2xl text-[#FF7B42]" />
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600 text-sm dark:text-[#bbbbbb]">
           {tourData?.location || hotelData?.location}
         </p>
       </div>
@@ -42,7 +41,7 @@ export const HeaderDetail: React.FC<HeaderDetailProps> = ({
             <span>{hotelData?.reviews?.rating.toFixed(1)}</span>
           </div>
         )}
-        <div className="text-gray-600 text-sm mr-4">
+        <div className="text-gray-600 text-sm mr-4 dark:text-[#bbbbbb]">
           ({tourData?.reviews?.totalReviews || hotelData?.reviews?.totalReviews}{" "}
           reviews)
         </div>

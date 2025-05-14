@@ -43,7 +43,7 @@ const InputForm: React.FC<InputFormProps> = ({
             sm:mt-6
             md:mt-8
             lg:mt-0 lg:mb-0`}>
-        <p className="text-sm leading-relaxed text-neutral-500 sm:text-base sm:leading-7 pb-0 font-medium">
+        <p className="text-sm leading-relaxed text-neutral-500 dark:text-[#bbbbbb] sm:text-base sm:leading-7 pb-0 font-medium">
           {title}
         </p>
         <div className="relative">
@@ -77,12 +77,12 @@ const InputForm: React.FC<InputFormProps> = ({
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
               {showPassword ? (
                 <FaEyeSlash
-                  className="text-gray-500 cursor-pointer"
+                  className="text-gray-500 dark:text-[#bbbbbb] cursor-pointer"
                   onClick={onTogglePassword}
                 />
               ) : (
                 <FaEye
-                  className="text-gray-500 cursor-pointer"
+                  className="text-gray-500 dark:text-[#bbbbbb] cursor-pointer"
                   onClick={onTogglePassword}
                 />
               )}

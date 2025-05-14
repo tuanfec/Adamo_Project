@@ -22,7 +22,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ stats }) => {
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg my-10 p-6 max-w-2xl">
+    <div className="border border-gray-200 dark:border-gray-600 rounded-lg my-10 p-6 max-w-2xl">
       <div className="flex flex-col lg:flex-row md:flex-row items-center lg:gap-12 md:gap-6">
         {/* Left side - Overall rating */}
         <div className="text-center mb-6 lg:mb-0">
@@ -33,7 +33,9 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ stats }) => {
           <div className="flex justify-center mb-2">
             {renderStars(Math.floor(stats.rating))}
           </div>
-          <p className="text-gray-600">Based on {stats.totalReviews} reviews</p>
+          <p className="text-gray-600 dark:text-[#bbbbbb]">
+            Based on {stats.totalReviews} reviews
+          </p>
         </div>
 
         {/* Right side - Rating breakdown */}
@@ -50,7 +52,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ stats }) => {
                   }}
                 />
               </div>
-              <span className="w-20 text-right text-gray-600">
+              <span className="w-20 text-right text-gray-600 dark:text-[#bbbbbb]">
                 {stats.ratingBreakdown[star] || 0} reviews
               </span>
             </div>

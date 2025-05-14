@@ -17,7 +17,7 @@ export const IncludeSection: React.FC<IncludeSectionProps> = ({
         includes?.[0]?.map((item, index) => (
           <div key={index} className="flex items-center gap-2">
             <FaCheck className="text-[#28B554]" />
-            <p>{item.content}</p>
+            <p className="dark:text-[#bbbbbb]">{item.content}</p>
           </div>
         ))}
       <div className="grid grid-cols-2 gap-1">
@@ -25,11 +25,11 @@ export const IncludeSection: React.FC<IncludeSectionProps> = ({
           includesHotel?.[0]?.map((item, index) => (
             <div key={index} className="flex items-center gap-2">
               <FaCheck className="text-[#28B554]" />
-              <p>{item}</p>
+              <p className="dark:text-[#bbbbbb]">{item}</p>
             </div>
           ))}
       </div>
-      <div className="border-b border-gray-400 my-8"></div>
+      <div className="border-b border-gray-400 dark:border-gray-600 my-8"></div>
     </div>
   );
 };

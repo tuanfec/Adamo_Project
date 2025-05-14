@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { IoMdClose } from "react-icons/io";
 import { FilterForm } from "@/components/form/FilterForm";
 import { HotelFormData } from "@/types/hotel";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { setSortBy } from "@/app/slide/hotelDataSlide";
 import { SortDropdown } from "@/components/hotels/SortDropdown";
+import { Filter } from "@/components/common/Filter";
 
 export const Header: React.FC<{
   hotelData: HotelFormData[];
@@ -30,7 +30,7 @@ export const Header: React.FC<{
           className="flex items-center gap-2 cursor-pointer select-none">
           <p className="text-lg font-medium text-[#FF7B42]">SORT BY:</p>
           <div className="flex gap-2 relative items-center">
-            <p className="text-lg font-md text-[#4F4F4F]">
+            <p className="text-lg font-md text-[#4F4F4F] dark:text-[#bbbbbb]">
               {sortBy[sortByIndex]}
             </p>
             <span>{isSort ? <FaAngleUp /> : <FaAngleDown />}</span>
@@ -46,21 +46,10 @@ export const Header: React.FC<{
             )}
           </div>
         </div>
-        {isFilter ? (
-          <button
-            onClick={() => setIsFilter(false)}
-            className="bg-white flex items-center justify-around cursor-pointer px-2 gap-2 text-black h-[38px] w-[85px] border border-black">
-            Filter <IoMdClose />
-          </button>
-        ) : (
-          <button
-            onClick={() => setIsFilter(true)}
-            className="bg-black h-[38px] w-[75px] cursor-pointer text-white">
-            Filter
-          </button>
-        )}
+        <Filter isFilter={isFilter} setIsFilter={setIsFilter} />
+
         {isFilter && (
-          <div className="absolute lg:w-1/3 md:w-1/2 w-full top-20 lg:right-0 md:right-0 z-10 shadow-lg">
+          <div className="absolute lg:w-1/3 md:w-1/2 w-full top-30 lg:right-0 md:right-0 z-10 shadow-lg">
             <FilterForm hotelData={hotelData} />
           </div>
         )}

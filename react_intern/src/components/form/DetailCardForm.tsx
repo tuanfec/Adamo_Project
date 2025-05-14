@@ -166,12 +166,12 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
 
   return (
     <div className="w-full h-full">
-      <div className="w-full bg-[#F4F4F4] backdrop-blur-md ">
+      <div className="w-full bg-[#F4F4F4] dark:bg-[#7a7a7a9d] backdrop-blur-md ">
         <div className="flex flex-col gap-4 py-7 px-7">
           {/* Price & duration */}
           <div className="flex items-center gap-2 ">
-            <p className="text-gray-600 text-sm"> from </p>
-            <span className="font-medium text-gray-600 text-xl mb-1">
+            <p className="text-gray-600 text-sm dark:text-[#bbbbbb]"> from </p>
+            <span className="font-medium text-gray-600 dark:text-white text-xl mb-1">
               ${isHotel ? minPrice : tourDetail?.price}.00
             </span>
           </div>
@@ -179,11 +179,15 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
           {!isHotel && (
             <div className="flex items-center gap-[30%]">
               <div className="flex flex-col">
-                <p className="text-gray-600 text-sm">Duration:</p>
+                <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
+                  Duration:
+                </p>
                 <span className="font-medium">{tourDetail?.duration}</span>
               </div>
               <div className="flex flex-col">
-                <p className="text-gray-600 text-sm">Type:</p>
+                <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
+                  Type:
+                </p>
                 <span className="font-medium">{tourDetail?.type}</span>
               </div>
             </div>
@@ -232,7 +236,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
                 checkRoom &&
                 selectedRoom.map((item: Room) => (
                   <div className="grid grid-cols-5 " key={item.id}>
-                    <span className="col-span-2 font-medium text-lg text-[#2A2A2A]">
+                    <span className="col-span-2 font-medium text-lg text-[#2A2A2A] dark:text-[#bbbbbb]">
                       {item.name}
                     </span>
                     <div className="col-span-2 flex items-center justify-center">
@@ -242,7 +246,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
                         onDecrease={() => handleDecrease(item.id, item.name)}
                       />
                     </div>
-                    <span className="col-span-1 text-end font-medium text-xl text-[#04316A]">
+                    <span className="col-span-1 text-end font-medium text-xl text-[#04316A] dark:text-white">
                       ${item.price}
                     </span>
                   </div>
@@ -265,11 +269,15 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
             )}
             {/* Total price & book button */}
             <div className="flex items-center justify-between my-3 gap-2 mb-10">
-              <p className="text-gray-600 text-xl font-medium">Total: </p>
+              <p className="text-gray-600 text-xl font-medium dark:text-[#bbbbbb]">
+                Total:{" "}
+              </p>
               {isHotel ? (
-                <p className="font-bold text-xl ">${totalPrice || minPrice}</p>
+                <p className="font-bold text-xl dark:text-[#FF7B42]">
+                  ${totalPrice || minPrice}
+                </p>
               ) : (
-                <p className="font-bold text-xl ">
+                <p className="font-bold text-xl dark:text-[#FF7B42]">
                   ${total || tourDetail?.price}
                 </p>
               )}

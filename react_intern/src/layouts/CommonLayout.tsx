@@ -1,11 +1,11 @@
+import { Featured } from "@/components/common/Featured";
+import { FooterMain } from "@/components/footer/FooterMain";
+import { SearchForm } from "@/components/form/SearchForm";
+import { Banner } from "@/components/header/Banner";
 import { Logo } from "@/components/header/Logo";
 import { Navbar } from "@/components/header/Navbar";
-import logo from "../assets/logo.jpg";
-import { SearchForm } from "@/components/form/SearchForm";
-import { FooterMain } from "@/components/footer/FooterMain";
-import { Banner } from "@/components/header/Banner";
-import { Featured } from "@/components/common/Featured";
 import { MapSection } from "@/components/tourDetail/DescriptionTour/components/MapSection";
+import logo from "../assets/logo.jpg";
 export const CommonLayout: React.FC<{
   children: React.ReactNode;
   title: string;
@@ -39,7 +39,7 @@ export const CommonLayout: React.FC<{
         </div>
 
         {/* Mobile-first Grid Layout */}
-        <div className="grid grid-cols-1 lg:bottom-0  lg:px-0 md:px-0  mt-8 lg:grid-cols-5 lg:grid-rows-5 lg:gap-0">
+        <div className="grid grid-cols-1  lg:bottom-0  lg:px-0 md:px-0  mt-8 lg:grid-cols-5 lg:grid-rows-5 lg:gap-0">
           {/* Welcome Section */}
           <div className="lg:col-span-2 lg:row-span-3 lg:ml-30 lg:row-start-2 order-1 pb-6 md:pb-6 md:px-auto lg:pb-0">
             <div className="flex flex-col gap-4 lg:pl-10">
@@ -68,14 +68,14 @@ export const CommonLayout: React.FC<{
               </div>
             ) : (
               <div className="w-full hidden lg:block lg:col-span-3 lg:row-start-6 order-3">
-                <div className=" bg-white min-h-[99px]  md:px-5 md:py-1 lg:px-20 lg:py-6 "></div>
+                <div className=" bg-white dark:bg-[#212121e2] min-h-[99px]  md:px-5 md:py-1 lg:px-20 lg:py-6 "></div>
               </div>
             ))}
         </div>
       </Banner>
 
       {/* Main Content */}
-      <main className="flex-1 relative z-0">
+      <main className="flex-1 relative z-0 dark:bg-[#1e1e1e] dark:text-[#ffffff]">
         <div className="container mx-auto lg:px-35 md:px-10 px-4">
           {children}
         </div>

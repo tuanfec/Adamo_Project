@@ -59,11 +59,13 @@ export const CardTour: React.FC<CardTourProps> = ({
       {location && (
         <div className="flex items-center gap-2 mt-2">
           <HiOutlineLocationMarker className="text-2xl text-[#FF7B42]" />
-          <p className="text-gray-600 text-sm">{location}</p>
+          <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
+            {location}
+          </p>
         </div>
       )}
 
-      <p className="lg:text-xl md:text-lg text-base font-medium mt-1">
+      <p className="lg:text-xl dark:text-[#ffffff] md:text-lg text-base font-medium mt-1">
         {title}
       </p>
 
@@ -71,13 +73,15 @@ export const CardTour: React.FC<CardTourProps> = ({
         {duration && (
           <div className="flex items-center gap-2 ">
             <LuCalendarClock className="text-xl text-[#FF7B42]" />
-            <p className="text-gray-600">{duration}</p>
+            <p className="text-gray-600 dark:text-[#bbbbbb]">{duration}</p>
           </div>
         )}
         {price && (
           <div className="flex items-center gap-2">
-            <p className="text-gray-600 text-sm"> from </p>
-            <span className="font-medium text-xl mb-1">${price}</span>
+            <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">from </p>
+            <span className="font-medium dark:text-[#ffffff] text-xl mb-1">
+              ${price}
+            </span>
           </div>
         )}
       </div>

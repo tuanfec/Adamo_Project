@@ -81,17 +81,17 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
   };
 
   return (
-    <nav className="relative z-10">
+    <nav className="relative z-10 ">
       <button
         onClick={toggleMenu}
-        className={`lg:hidden ${textColor ? textColor : "text-white"}`}
+        className={`lg:hidden ${textColor ? textColor : "text-white"} dark:text-white`}
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}>
         {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
 
       <div
-        className={`hidden ml-35 lg:flex items-center justify-center gap-20 ${
+        className={`hidden ml-35 lg:flex items-center justify-center dark:text-white gap-20 ${
           textColor ? textColor : "text-white"
         }`}>
         {filteredNavItems.map((item) =>
@@ -106,7 +106,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
             <Link
               key={item.path}
               to={item.path}
-              className={`transition-colors duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
+              className={`transition-colors  dark:hover:text-orange-400 duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
                 isActive(item.path) ? "text-orange-400" : ""
               }`}>
               {item.label}

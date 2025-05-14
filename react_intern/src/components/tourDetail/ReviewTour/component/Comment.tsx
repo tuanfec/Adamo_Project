@@ -32,13 +32,13 @@ export const Comment: React.FC<{ isHotel?: boolean }> = ({ isHotel }) => {
           )}
           {isHotel && (
             <textarea
-              className="border w-full border-gray-300 rounded-lg p-5"
+              className="border w-full border-gray-300 dark:border-gray-600 rounded-lg p-5"
               placeholder="Title"
               {...register("title")}
             />
           )}
           <textarea
-            className="border w-full border-gray-300 rounded-lg p-5 min-h-[150px]"
+            className="border w-full border-gray-300 dark:border-gray-600 rounded-lg p-5 min-h-[150px]"
             placeholder="Add a comment"
             {...register("content")}
           />

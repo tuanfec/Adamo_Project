@@ -11,6 +11,8 @@ export const ImageDetail: React.FC<{
   roomData?: Room;
 }> = ({ data, isRoom, roomData }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  console.log(data);
+
   return (
     <div className={`relative`}>
       {/* Main Swiper */}
@@ -23,13 +25,15 @@ export const ImageDetail: React.FC<{
           className="aspect-[1/1] lg:aspect-[1/1] md:aspect-[3/2] rounded-lg ">
           {isRoom ? (
             roomData?.image.map((item: string, index: number) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={item}
-                  alt={roomData?.name}
-                  className="w-full h-full object-cover"
-                />
-              </SwiperSlide>
+              <div className="relative">
+                <SwiperSlide key={index}>
+                  <img
+                    src={item}
+                    alt={roomData?.name}
+                    className="w-full h-full object-cover"
+                  />
+                </SwiperSlide>
+              </div>
             ))
           ) : (
             <>
@@ -42,13 +46,13 @@ export const ImageDetail: React.FC<{
                   />
                 </SwiperSlide>
               ))}
-              <button
-                className={`absolute top-0 right-4 z-10 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
-                <FaBookmark className="lg:text-5xl md:text-4xl text-3xl" />
-              </button>
             </>
           )}
         </Swiper>
+        <button
+          className={`absolute top-0 right-4 z-10 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
+          <FaBookmark className="lg:text-5xl md:text-4xl text-3xl" />
+        </button>
       </div>
 
       {/* Thumbnail Swiper */}

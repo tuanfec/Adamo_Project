@@ -12,7 +12,9 @@ export const InfomationTour: React.FC<{ isTour: boolean }> = ({ isTour }) => {
   const dispatch = useDispatch();
 
   const getTextColor = (page: string) => {
-    return statePage === page ? "text-[#FF7B42]" : "text-gray-600";
+    return statePage === page
+      ? "text-[#FF7B42]"
+      : "text-gray-600 dark:text-white";
   };
 
   return (
@@ -47,7 +49,7 @@ export const InfomationTour: React.FC<{ isTour: boolean }> = ({ isTour }) => {
           )
         </div>
       </div>
-      <div className="border-b border-gray-400 mt-5"></div>
+      <div className="border-b border-gray-400 dark:border-gray-600 mt-5"></div>
     </div>
   );
 };
