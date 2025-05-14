@@ -5,7 +5,7 @@ import { useTourList } from "@/hooks/useTourList";
 import { useSelector } from "react-redux";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@assets/banner_img.jpg";
-export const ViewAllList: React.FC = () => {
+const ViewAllList: React.FC = () => {
   const { source } = useParams();
   const header = useLocation().state?.header;
   const { data, isLoading } = useTourList(source);
@@ -32,3 +32,4 @@ export const ViewAllList: React.FC = () => {
     </CommonLayout>
   );
 };
+export default ViewAllList;

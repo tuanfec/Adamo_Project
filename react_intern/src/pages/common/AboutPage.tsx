@@ -6,7 +6,7 @@ import img5 from "@/assets/img5.png";
 import img6 from "@/assets/img6.png";
 import { FloatButton } from "antd";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
-function AboutPage() {
+const AboutPage = () => {
   return (
     <AboutLayout>
       <Breadcrumb />
@@ -107,6 +107,6 @@ function AboutPage() {
       <FloatButton.BackTop visibilityHeight={200} />
     </AboutLayout>
   );
-}
+};
 
 export default AboutPage;

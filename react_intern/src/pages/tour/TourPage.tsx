@@ -3,7 +3,7 @@ import { ViewAll } from "@/components/home/ViewAll";
 import { useAttractiveTours } from "@/hooks/useTours";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@/assets/banner_img.jpg";
-export const TourPage: React.FC = () => {
+const TourPage: React.FC = () => {
   const { data: tourData, isLoading } = useAttractiveTours();
 
   return (
@@ -26,3 +26,4 @@ export const TourPage: React.FC = () => {
     </CommonLayout>
   );
 };
+export default TourPage;

@@ -16,7 +16,7 @@ import { useHotelDetail } from "@/hooks/useHotels";
 import { setHotelDetail } from "@/app/slide/hotelDataSlide";
 import { SelectRoom } from "@/components/selectRoom";
 
-export const HotelDetail: React.FC = () => {
+const HotelDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { source } = useParams();
   const { data: hotelDataDetail, isLoading } = useHotelDetail(id ?? "");
@@ -74,3 +74,4 @@ export const HotelDetail: React.FC = () => {
     </DetailLayout>
   );
 };
+export default HotelDetail;

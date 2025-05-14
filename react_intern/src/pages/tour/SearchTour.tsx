@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import banner from "@/assets/banner_img.jpg";
 
-export const SearchTour = () => {
+const SearchTour = () => {
   const dispatch = useDispatch();
   const searchTour = useSelector(
     (state: any) => state.tourDataSlide.searchTour
@@ -84,3 +84,4 @@ export const SearchTour = () => {
     </CommonLayout>
   );
 };
+export default SearchTour;

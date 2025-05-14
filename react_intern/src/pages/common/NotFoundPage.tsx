@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
   const navigate = useNavigate();
   return (
     <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
@@ -42,3 +42,4 @@ export const NotFoundPage = () => {
     </div>
   );
 };
+export default NotFoundPage;

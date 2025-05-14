@@ -7,7 +7,7 @@ import banner from "@/assets/hotel_banner.png";
 import { setHotelData } from "@/app/slide/hotelDataSlide";
 import { useHotels } from "@/hooks/useHotels";
 import { ListHotels } from "@/components/hotels/ListHotels";
-export const SearchHotel = () => {
+const SearchHotel = () => {
   const dispatch = useDispatch();
   const searchHotel = useSelector(
     (state: any) => state.hotelDataSlide.searchHotel
@@ -57,3 +57,4 @@ export const SearchHotel = () => {
     </CommonLayout>
   );
 };
+export default SearchHotel;

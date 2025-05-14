@@ -11,7 +11,7 @@ import { FloatButton } from "antd";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@/assets/banner_img.jpg";
 
-export const HomePage: React.FC = () => {
+const HomePage: React.FC = () => {
   const dispatch = useDispatch();
   const { data: attractiveData, isLoading: isLoadingAttractive } =
     useAttractiveTours();
@@ -102,3 +102,4 @@ export const HomePage: React.FC = () => {
     </CommonLayout>
   );
 };
+export default HomePage;

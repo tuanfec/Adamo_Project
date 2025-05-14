@@ -3,7 +3,7 @@ import banner from "@/assets/contact.png";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ContactForm } from "@/components/form/contact/ContactForm";
 import { ImageContent } from "@/components/contact/ImageContent";
-export const ContactPage = () => {
+const ContactPage = () => {
   return (
     <CommonLayout
       title="Contact Us"
@@ -36,3 +36,4 @@ export const ContactPage = () => {
     </CommonLayout>
   );
 };
+export default ContactPage;

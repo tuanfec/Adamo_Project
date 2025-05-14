@@ -1,7 +1,9 @@
 import { Pagination, Navigation, Grid, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { FaBookmark } from "react-icons/fa";
 import { TourData } from "@/types/tour";
 import { HotelFormData, Room } from "@/types/hotel";
@@ -11,7 +13,6 @@ export const ImageDetail: React.FC<{
   roomData?: Room;
 }> = ({ data, isRoom, roomData }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  console.log(data);
 
   return (
     <div className={`relative`}>

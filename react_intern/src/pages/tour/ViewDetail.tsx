@@ -16,7 +16,7 @@ import { AdditionaInfor } from "@/components/tourDetail/AdditionalInfor";
 import { ReviewTour } from "@/components/tourDetail/ReviewTour/Index";
 import { Loading } from "@/components/common/Loading";
 
-export const ViewDetail: React.FC = () => {
+const ViewDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { source } = useParams();
   const isAttractive = source === "attractive";
@@ -74,3 +74,4 @@ export const ViewDetail: React.FC = () => {
     </DetailLayout>
   );
 };
+export default ViewDetail;

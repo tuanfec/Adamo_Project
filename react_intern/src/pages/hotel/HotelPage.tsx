@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Header } from "@/components/hotels/Header";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@/assets/hotel_banner.png";
-export const HotelPage: React.FC = () => {
+const HotelPage: React.FC = () => {
   const { data: hotels, isLoading } = useHotels();
   const dispatch = useDispatch();
   const hotelData = useSelector((state: any) => state.hotelDataSlide.hotelData);
@@ -87,3 +87,4 @@ export const HotelPage: React.FC = () => {
     </CommonLayout>
   );
 };
+export default HotelPage;
