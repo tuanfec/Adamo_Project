@@ -19,7 +19,7 @@ export const AuthLayout: React.FC<FormImageLayoutProps> = ({
     <div className={`w-full min-h-screen ${className}`}>
       <div className="flex flex-col lg:flex-row w-full h-full ">
         {/* Form Section - 4/10 on desktop, full width on mobile */}
-        <div className=" flex-[0_0_40%] w-full p-6 lg:p-8  bg-white">
+        <div className=" flex-[0_0_40%] w-full p-6 lg:p-8  bg-white dark:bg-[#1e1e1e] dark:text-white">
           <div className="w-full">{formComponent}</div>
         </div>
 

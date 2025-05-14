@@ -136,7 +136,9 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="text-lg font-medium text-[#2A2A2A]">Add-ons:</h3>
+      <h3 className="text-lg font-medium text-[#2A2A2A] dark:text-white">
+        Add-ons:
+      </h3>
       <div className="grid grid-cols-5">
         <div className="col-span-2 flex items-center gap-2">
           <input
@@ -145,7 +147,9 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
             checked={!!(addOn?.breakfast?.numberSelect > 0)}
             onChange={(e) => handleCheckboxChange(true, e.target.checked)}
           />
-          <p className=" font-medium text-lg text-[#4F4F4F]">Breakfast</p>
+          <p className=" font-medium text-lg text-[#4F4F4F] dark:text-[#bbbbbb]">
+            Breakfast
+          </p>
         </div>
         <div className="col-span-2 flex items-center justify-center">
           <ButtonCountRoom
@@ -155,7 +159,7 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
             isAddOn={true}
           />
         </div>
-        <p className="text-end font-medium text-xl text-[#04316A] col-span-1">
+        <p className="text-end font-medium text-xl text-[#04316A] dark:text-white">
           ${data?.addOn?.breakfast?.price}
         </p>
       </div>
@@ -168,7 +172,9 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
             checked={!!(addOn?.extraBed?.numberSelect > 0)}
             onChange={(e) => handleCheckboxChange(false, e.target.checked)}
           />
-          <p className=" font-medium text-lg text-[#4F4F4F]">Extra Bed</p>
+          <p className=" font-medium text-lg text-[#4F4F4F] dark:text-[#bbbbbb]">
+            Extra Bed
+          </p>
         </div>
         <div className="col-span-2 flex items-center justify-center">
           <ButtonCountRoom
@@ -178,7 +184,7 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
             isAddOn={true}
           />
         </div>
-        <p className="text-end font-medium text-xl text-[#04316A] col-span-1">
+        <p className="text-end font-medium text-xl text-[#04316A] col-span-1 dark:text-white">
           ${data?.addOn?.extraBed?.price}
         </p>
       </div>

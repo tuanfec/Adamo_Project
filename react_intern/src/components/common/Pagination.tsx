@@ -30,7 +30,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         {currentPage > 1 && (
           <span
             onClick={handlePrevPage}
-            className="bg-gray-200 h-[40px] w-[40.6px] flex items-center justify-center cursor-pointer hover:bg-gray-300">
+            className="bg-gray-200 dark:text-black h-[40px] w-[40.6px] flex items-center justify-center cursor-pointer hover:bg-gray-300">
             <FaArrowLeft />
           </span>
         )}
@@ -50,7 +50,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         {currentPage < totalPages && (
           <span
             onClick={handleNextPage}
-            className="bg-gray-200 h-[40px] w-[40.6px] flex items-center justify-center cursor-pointer hover:bg-gray-300">
+            className="bg-gray-200 dark:text-black h-[40px] w-[40.6px] flex items-center justify-center cursor-pointer hover:bg-gray-300">
             <FaArrowRight />
           </span>
         )}

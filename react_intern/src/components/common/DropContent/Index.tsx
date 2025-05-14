@@ -21,12 +21,14 @@ export const DropContent: React.FC<ContentForm> = ({
     <div
       onClick={onClick}
       className={`flex flex-col gap-2 
-      ${isOpen ? "bg-[#F4F4F4]" : "bg-white"} ${isOpen ? "" : "border border-gray-300"} 
+      ${isOpen ? "bg-[#F4F4F4] dark:bg-[#575656]" : "bg-white dark:bg-[#575656]"} ${isOpen ? "" : "border border-gray-300 dark:border-gray-700"} 
        mb-6 py-3 px-4 rounded-lg`}>
       <div className="flex flex-row items-start justify-between">
         <div className="flex flex-col">
           <Header isOpen={isOpen} title={headerTitle} icon={icon} />
-          <div className="mt-2 mx-6 text-gray-600">{isOpen && content}</div>
+          <div className="mt-2 mx-6 text-gray-600 dark:text-[#bbbbbb]">
+            {isOpen && content}
+          </div>
         </div>
         <div onClick={onClick}>
           {isOpen ? <AiFillCaretUp /> : <AiFillCaretDown />}

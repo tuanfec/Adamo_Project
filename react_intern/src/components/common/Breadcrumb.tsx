@@ -84,7 +84,7 @@ export const Breadcrumb = () => {
               className={`text-sm ${
                 index === items.length - 1
                   ? "text-[#FF7B42]"
-                  : "text-gray-700 hover:text-gray-900"
+                  : "text-gray-700 dark:text-[#bbbbbb] hover:text-gray-900"
               } ${index === items.length - 1 ? "font-medium" : ""}`}>
               {item.label}
             </Link>

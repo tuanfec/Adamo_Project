@@ -39,7 +39,8 @@ export const ReviewTour: React.FC<ReviewTourProps> = ({
     if (!isLogin) {
       notification.warning({
         message: "Please login to comment",
-        onClick: () => navigate("/login"),
+        onClick: () =>
+          navigate("/login", { state: { from: window.location.pathname } }),
       });
     } else {
       setOpenReview(!openReview);
@@ -52,7 +53,7 @@ export const ReviewTour: React.FC<ReviewTourProps> = ({
       ) : (
         <ReviewCard stats={data} />
       )}
-      <div className="border-t border-gray-400 mb-10"></div>
+      <div className="border-t border-gray-400 dark:border-gray-600 mb-10"></div>
       {isHotel ? (
         openReview && isLogin && <CommentComponent isHotel={isHotel} />
       ) : isLogin ? (
@@ -60,11 +61,13 @@ export const ReviewTour: React.FC<ReviewTourProps> = ({
       ) : (
         <>
           <div
-            onClick={() => navigate("/login")}
-            className="bg-gray-300 text-center text-black font-medium cursor-pointer p-2 rounded-lg">
+            onClick={() =>
+              navigate("/login", { state: { from: window.location.pathname } })
+            }
+            className="bg-gray-300 dark:bg-[#575656] text-center text-black font-medium cursor-pointer p-2 rounded-lg">
             Please login to comment
           </div>
-          <div className="border-t border-gray-400 my-10"></div>
+          <div className="border-t border-gray-400 dark:border-gray-600 my-10"></div>
         </>
       )}
 

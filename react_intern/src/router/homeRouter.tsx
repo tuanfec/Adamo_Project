@@ -1,4 +1,3 @@
-import CheckoutForm from "@/components/checkOut/CheckoutForm";
 import AboutPage from "@/pages/common/AboutPage";
 import { HomePage } from "@/pages/common/HomePage";
 import { HotelPage } from "@/pages/hotel/HotelPage";
@@ -13,6 +12,7 @@ import { PolicyPage } from "@/pages/common/PolicyPage";
 import { ContactPage } from "@/pages/common/ContactPage";
 import { SearchHotel } from "@/pages/hotel/SearchHotel";
 import { NotFoundPage } from "@/pages/common/NotFoundPage";
+import { CheckOutPage } from "@/pages/common/CheckOutPage";
 export default function HomeRouter() {
   return (
     <Routes>
@@ -22,8 +22,8 @@ export default function HomeRouter() {
       <Route path="/tours/view_all/:source" element={<ViewAllList />} />
       <Route path="/tours/view_detail/:source/:id" element={<ViewDetail />} />
       <Route path="/tours/search" element={<SearchTour />} />
-      <Route path="/checkout/tour/:id" element={<CheckoutForm />} />
-      <Route path="/checkout/hotel/:id" element={<CheckoutForm />} />
+      <Route path="/checkout/tour/:id" element={<CheckOutPage />} />
+      <Route path="/checkout/hotel/:id" element={<CheckOutPage />} />
       <Route path="/thanks" element={<ThanksPage />} />
       <Route path="/contact" element={<ContactPage />} />
 
@@ -31,7 +31,7 @@ export default function HomeRouter() {
       <Route path="/hotels/search" element={<SearchHotel />} />
       <Route path="/hotels/view_detail/:id" element={<HotelDetail />} />
       <Route path="/policy" element={<PolicyPage />} />
-      <Route path="*" element={<NotFoundPage />} />
+      {/* <Route path="*" element={<NotFoundPage />} /> */}
     </Routes>
   );
 }

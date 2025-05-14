@@ -25,15 +25,15 @@ export const ReviewCardHotel: React.FC<ReviewCardHotelProps> = ({
           {typeRate[stats.rating as keyof typeof typeRate]}
         </div>
         <div className="flex items-center gap-2">
-          <p className="text-gray-600">Base on</p>
-          <span className="font-medium text-[#4F4F4F]">
+          <p className="text-gray-600 dark:text-[#bbbbbb]">Base on</p>
+          <span className="font-medium text-[#4F4F4F] dark:text-[#d8d8d8]">
             {" "}
             {stats.totalReviews} reviews
           </span>
         </div>
         <div
           onClick={onClick}
-          className="text-[#FF7B42] font-medium mt-2 cursor-pointer bg-white border border-[#FF7B42] text-center px-4 py-2">
+          className="text-[#FF7B42] font-medium mt-2 cursor-pointer bg-white border dark:bg-[#575656] dark:border-gray-300 dark:text-[#d8d8d8] border-[#FF7B42] text-center px-4 py-2">
           Write a review
         </div>
       </div>

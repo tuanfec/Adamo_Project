@@ -112,8 +112,8 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
   };
 
   return (
-    <div className="w-full h-full lg:w-[70%]">
-      <div className="w-full bg-gray-300/60 backdrop-blur-md h-full">
+    <div className="w-full h-full lg:w-[70%] ">
+      <div className="w-full bg-gray-300/60 dark:bg-gray-600/30 backdrop-blur-md h-full">
         {isHeader && (
           <FormHeader
             title1="Tours"
@@ -133,18 +133,20 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
 
           {/* Location & Date */}
           <div className="flex flex-col gap-5">
-            <div className="relative bg-white w-full">
+            <div className="relative bg-white dark:bg-[#2121216b] dark:text-[#ffffff] w-full">
               <div className="absolute left-5 top-1/2 -translate-y-1/2">
                 <CiLocationOn className="text-xl text-[#FF7B42]" />
               </div>
               <input
                 type="text"
                 placeholder="Location"
-                className="w-full py-5 pl-12 pr-4 text-sm"
+                className="w-full py-5 pl-12 pr-4 text-sm "
                 list="location-list"
                 {...register("location")}
               />
-              <datalist className="bg-white" id="location-list">
+              <datalist
+                className="bg-white dark:bg-[#2121216b] dark:text-[#ffffff]"
+                id="location-list">
                 {(selectedTab === "tour"
                   ? uniqueLocationTour
                   : uniqueLocationHotel
@@ -154,7 +156,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
               </datalist>
             </div>
 
-            <div className="relative bg-white w-full">
+            <div className="relative bg-white w-full dark:bg-[#2121216b] dark:text-[#bbbbbb]">
               <div className="absolute left-5 top-1/2 -translate-y-1/2">
                 <LuCalendarClock className="text-xl text-[#FF7B42]" />
               </div>

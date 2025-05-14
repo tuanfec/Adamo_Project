@@ -30,7 +30,7 @@ export const ListTour: React.FC<ListTourProps> = ({
         </p>
         <button
           onClick={onClick}
-          className="bg-black lg:mt-10 text-white h-[38px] w-[92px]">
+          className="bg-black dark:bg-[#FF7B42] dark:text-white cursor-pointer lg:mt-10 text-white h-[38px] w-[92px]">
           View All
         </button>
       </div>

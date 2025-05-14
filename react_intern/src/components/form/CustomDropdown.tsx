@@ -101,7 +101,7 @@ export const CustomDropdown = <
   }, [isTotalGuest, setValue, totalGuest]);
 
   return (
-    <div className="relative bg-white w-full">
+    <div className="relative bg-white w-full dark:bg-[#2121216b] dark:text-[#ffffff]">
       <div className="absolute left-5 top-1/2 -translate-y-1/2">{icon}</div>
       <div
         onClick={onToggle}
@@ -110,7 +110,9 @@ export const CustomDropdown = <
         {isTotalGuest ? (
           <span
             className={
-              totalGuest?.adult !== undefined ? "text-black" : "text-gray-500"
+              totalGuest?.adult !== undefined
+                ? "text-black dark:text-[#ffffff]"
+                : "text-gray-500 dark:text-[#bbbbbb]"
             }>
             {totalGuest?.adult !== undefined
               ? `${totalGuest?.adult} Adult, ${totalGuest?.child} Child`
@@ -120,8 +122,8 @@ export const CustomDropdown = <
           <span
             className={
               selectedTypes && selectedTypes.length > 0
-                ? "text-black"
-                : "text-gray-500"
+                ? "text-black dark:text-[#ffffff]"
+                : "text-gray-500 dark:text-[#bbbbbb]"
             }>
             {selectedTypes && selectedTypes.length > 0
               ? Array.isArray(selectedTypes)
@@ -145,7 +147,7 @@ export const CustomDropdown = <
 
       {/* Dropdown chọn loại tour */}
       {type && isOpen && (
-        <div className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-[200px] overflow-y-auto p-4 flex flex-col gap-2">
+        <div className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] dark:border-gray-700 border border-gray-200 rounded-md shadow-lg max-h-[200px] overflow-y-auto p-4 flex flex-col gap-2">
           {type.map((item: string) => (
             <label
               key={item}
@@ -157,14 +159,14 @@ export const CustomDropdown = <
                 className="accent-[#FF7B42]"
                 defaultChecked={selectedTypeConfirmed.includes(item)}
               />
-              <span className="text-gray-700">{item}</span>
+              <span className="text-gray-700 dark:text-[#bbbbbb]">{item}</span>
             </label>
           ))}
           <button
             type="button"
             onClick={onConfirmType}
             className="mt-2 bg-[#FF7B42] w-full font-medium text-white py-2 hover:bg-orange-600 transition-colors rounded-md">
-            Xác nhận
+            Confirm
           </button>
         </div>
       )}
@@ -173,11 +175,13 @@ export const CustomDropdown = <
       {isTotalGuest && isOpen && (
         <form
           onSubmit={handleSubmit(onConfirm)}
-          className="absolute z-20 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-[200px] overflow-y-auto">
+          className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] border border-gray-200 dark:border-gray-700 rounded-md shadow-lg max-h-[200px] overflow-y-auto">
           <div className="flex flex-col py-5 px-5 gap-6">
             <div className="flex flex-row gap-4">
               <div className="flex flex-col">
-                <p className="text-gray-600 text-sm mb-2 font-medium">Adult</p>
+                <p className="text-gray-600 text-sm mb-2 font-medium dark:text-white">
+                  Adult
+                </p>
                 <input
                   type="number"
                   className="w-full p-2 border border-gray-200 rounded-md"
@@ -194,7 +198,9 @@ export const CustomDropdown = <
                 )}
               </div>
               <div className="flex flex-col">
-                <p className="text-gray-600 text-sm mb-2 font-medium">Child</p>
+                <p className="text-gray-600 text-sm mb-2 font-medium dark:text-white">
+                  Child
+                </p>
                 <input
                   type="number"
                   className="w-full p-2 border border-gray-200 rounded-md"

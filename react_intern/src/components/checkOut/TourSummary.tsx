@@ -27,15 +27,15 @@ const TourSummary: React.FC = () => {
 
   return (
     <div className="w-full h-full ">
-      <div className="w-full bg-[#F4F4F4] backdrop-blur-md ">
+      <div className="w-full bg-[#F4F4F4] dark:bg-[#7a7a7a9d] backdrop-blur-md ">
         <div className="flex flex-col gap-4 pt-8 pb-3 px-7">
           <div className="flex flex-col gap-2 ">
-            <h2 className="text-xl font-medium">
-              {tourDetail?.title || hotelData?.name}
+            <h2 className="text-xl font-medium dark:text-white">
+              {tourDetail?.title || hotelData?.title}
             </h2>
             <div className="flex items-center gap-2">
               <CiLocationOn className="text-xl text-[#FF7B42]" />
-              <span className="text-sm text-[#636567]">
+              <span className="text-sm text-[#636567] dark:text-[#bbbbbb]">
                 {tourDetail?.location || hotelData?.location}
               </span>
             </div>
@@ -44,12 +44,20 @@ const TourSummary: React.FC = () => {
           {tourDetail && (
             <div className="flex items-center gap-[30%]">
               <div className="flex flex-col">
-                <p className="text-gray-600 text-sm">Duration:</p>
-                <span className="font-medium">{tourDetail?.duration}</span>
+                <p className="text-gray-600 text-sm dark:text-[#bbbbbb]">
+                  Duration:
+                </p>
+                <span className="font-medium dark:text-white">
+                  {tourDetail?.duration}
+                </span>
               </div>
               <div className="flex flex-col">
-                <p className="text-gray-600 text-sm">Type:</p>
-                <span className="font-medium">{tourDetail?.type}</span>
+                <p className="text-gray-600 text-sm dark:text-[#bbbbbb]">
+                  Type:
+                </p>
+                <span className="font-medium dark:text-white">
+                  {tourDetail?.type}
+                </span>
               </div>
             </div>
           )}
@@ -80,11 +88,11 @@ const TourSummary: React.FC = () => {
 
               <div className="flex relative w-full items-center gap-4">
                 <input
-                  className="bg-white w-2/3 py-4 px-3 text-sm cursor-pointer"
+                  className="bg-white dark:bg-[#7a7a7a9d] dark:text-white w-2/3 py-4 px-3 text-sm cursor-pointer"
                   type="text"
                   placeholder="Promo Code"
                 />
-                <button className="border w-1/3 border-[#FF7B42] text-[#FF7B42]  font-medium text-lg h-[52px] px-4">
+                <button className="border w-1/3 border-[#FF7B42] text-[#FF7B42] dark:text-white dark:border-white font-medium text-lg h-[52px] px-4">
                   Apply
                 </button>
               </div>
@@ -98,14 +106,20 @@ const TourSummary: React.FC = () => {
                         <p className="text-md font-medium text-[#FF7B42]">
                           {item?.numberSelect}x
                         </p>
-                        <span className="font-bold text-md">{item?.name}</span>
+                        <span className="font-bold text-md dark:text-[#bbbbbb]">
+                          {item?.name}
+                        </span>
                       </div>
-                      <span className="font-bold text-lg">${item?.price}</span>
+                      <span className="font-bold text-lg dark:text-white">
+                        ${item?.price}
+                      </span>
                     </div>
                   );
                 })}
                 <div>
-                  <p className="text-lg font-medium text-[#888888]">Add-ons</p>
+                  <p className="text-lg font-medium text-[#888888] dark:text-white">
+                    Add-ons
+                  </p>
                   <div className="flex flex-col gap-2 mt-2">
                     {addOn && (
                       <div>
@@ -115,12 +129,12 @@ const TourSummary: React.FC = () => {
                               <p className="text-md font-medium text-[#FF7B42]">
                                 {addOn?.breakfast.numberSelect}x
                               </p>
-                              <span className="font-bold text-md">
+                              <span className="font-bold text-md dark:text-[#bbbbbb]">
                                 Breakfast:
                               </span>
                             </div>
 
-                            <span className="font-bold text-lg">
+                            <span className="font-bold text-lg dark:text-white">
                               ${addOn?.breakfast.price}
                             </span>
                           </div>
@@ -131,12 +145,12 @@ const TourSummary: React.FC = () => {
                               <p className="text-md font-medium text-[#FF7B42]">
                                 {addOn?.extraBed.numberSelect}x
                               </p>
-                              <span className="font-bold text-md">
+                              <span className="font-bold text-md dark:text-[#bbbbbb]">
                                 Extra Bed:
                               </span>
                             </div>
 
-                            <span className="font-bold text-lg">
+                            <span className="font-bold text-lg dark:text-white">
                               ${addOn?.extraBed.price}
                             </span>
                           </div>

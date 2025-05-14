@@ -18,7 +18,7 @@ export const Logo: React.FC<LogoProps> = ({
         alt="logo"
         width={width}
         height={height}
-        className={`object-contain ${textColor ? "filter brightness-0" : textColor}`}
+        className={`object-contain ${textColor ? "filter brightness-0" : textColor} dark:filter-none`}
       />
     </div>
   );

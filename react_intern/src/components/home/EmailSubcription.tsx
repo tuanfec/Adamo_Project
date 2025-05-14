@@ -15,11 +15,11 @@ export const EmailSubcription: React.FC = () => {
       <div
         data-aos="fade-left"
         className="w-full flex flex-row lg:items-end lg:justify-end justify-center gap-4 ">
-        <div className="flex flex-row border-1 border-black  items-center justify-center gap-4 py-[2%] pl-[15%] lg:pl-7 lg:pr-20">
+        <div className="flex flex-row border-1 border-black dark:border-[#FF7B42]  items-center justify-center gap-4 py-[2%] pl-[15%] lg:pl-7 lg:pr-20">
           <MdOutlineEmail className="lg:text-2xl text-ms text-[#FF7B42]" />
           <input type="text" placeholder="example@gmail.com" />
         </div>
-        <button className="bg-black text-white py-[2%] px-6 rounded-sm">
+        <button className="bg-black dark:bg-[#FF7B42] dark:text-white cursor-pointer text-white py-[2%] px-6 rounded-sm">
           Send
         </button>
       </div>

@@ -1,7 +1,3 @@
-// src/components/NotFound.tsx
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 
 export const NotFoundPage = () => {

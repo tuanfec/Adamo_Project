@@ -26,12 +26,10 @@ export const HotelCard: React.FC<HotelCardProps> = ({ data, onClick }) => {
           </div>
         )}
 
-        {data?.price && data?.location && (
-          <div
-            className={`absolute top-0 right-4 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
-            <FaBookmark className="text-3xl" />
-          </div>
-        )}
+        <div
+          className={`absolute top-0 right-4 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
+          <FaBookmark className="text-3xl" />
+        </div>
 
         <img
           className="h-full w-full object-cover"
@@ -45,7 +43,9 @@ export const HotelCard: React.FC<HotelCardProps> = ({ data, onClick }) => {
         {data?.location && (
           <div className="flex items-center gap-2 mt-2">
             <HiOutlineLocationMarker className="text-2xl text-[#FF7B42]" />
-            <p className="text-gray-600 text-sm">{data?.location}</p>
+            <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
+              {data?.location}
+            </p>
           </div>
         )}
         <p className=" text-lg font-medium">{data?.title}</p>
@@ -55,13 +55,13 @@ export const HotelCard: React.FC<HotelCardProps> = ({ data, onClick }) => {
             <p className=" text-sm font-medium text-white bg-[#FF7B42] w-fit px-2 py-1">
               Rating: {data?.reviews?.rating}
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-[#bbbbbb]">
               ({data?.reviews?.totalReviews} reviews)
             </p>
           </div>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-[#bbbbbb]">
             from
-            <span className="text-xl font-medium ml-1 text-black">
+            <span className="text-xl font-medium ml-1 text-black dark:text-white">
               ${minPrice}
             </span>
             /night

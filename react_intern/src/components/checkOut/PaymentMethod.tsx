@@ -6,6 +6,7 @@ import {
   UseFormHandleSubmit,
   FieldErrors,
 } from "react-hook-form";
+import { GoDotFill } from "react-icons/go";
 
 import { FormValues } from "./CheckoutForm";
 
@@ -24,8 +25,12 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({
 
   return (
     <div onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <p className="text-2xl font-medium text-[#2A2A2A] mb-3">Payment Method</p>
-      <p>Pay securely—we use SSL encryption to keep your data safe</p>
+      <p className="text-2xl font-medium text-[#2A2A2A] dark:text-white mb-3">
+        Payment Method
+      </p>
+      <p className="dark:text-[#bbbbbb]">
+        Pay securely—we use SSL encryption to keep your data safe
+      </p>
       {/* Payment Options */}
       <div className="flex flex-row">
         <div className="flex flex-col  gap-6">
@@ -35,12 +40,14 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({
               {...register("paymentMethod")}
               value="credit_card"
             />
-            <p className="text-base font-medium">Credit Card</p>
+            <p className="text-base font-medium dark:text-[#bbbbbb]">
+              Credit Card
+            </p>
           </div>
 
           <div className="flex flex-row  gap-2">
             <input type="radio" {...register("paymentMethod")} value="paypal" />
-            <p className="text-base font-medium">Paypal</p>
+            <p className="text-base font-medium dark:text-[#bbbbbb]">Paypal</p>
           </div>
         </div>
 
@@ -62,27 +69,27 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({
       )}
 
       {/* Security Info */}
-      <p className="text-[#4F4F4F]  text-sm">
+      <p className="text-[#4F4F4F] dark:text-white text-sm">
         Pay securely—we use SSL encryption to keep your data safe
       </p>
 
       {/* Terms and Conditions */}
-      <div className="space-y-4 text-[#4F4F4F]  text-sm">
+      <div className="space-y-4 text-[#4F4F4F] dark:text-[#bbbbbb] text-sm">
         <div className="flex items-start space-x-2">
-          <div className="w-2 h-2 rounded-full bg-[#4F4F4F] mt-2" />
+          <GoDotFill className="min-w-4 min-h-2" />{" "}
           <p>
             You will be charged the total amount once your order is confirmed.
           </p>
         </div>
         <div className="flex items-start space-x-2">
-          <div className="w-2 h-2 rounded-full bg-[#4F4F4F] mt-2" />
+          <GoDotFill className="min-w-4 min-h-2" />{" "}
           <p>
             If confirmation isn't received instantly, an authorization for the
             total amount will be held until your booking is confirmed.
           </p>
         </div>
         <div className="flex items-start space-x-2">
-          <div className="w-2 h-2 rounded-full bg-[#4F4F4F] mt-2" />
+          <GoDotFill className="min-w-4 min-h-2" />{" "}
           <p>
             You can cancel for free up to 24 hours before the day of the
             experience, local time. By clicking ‘Pay with PayPal,’ you are
@@ -90,7 +97,7 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({
           </p>
         </div>
         <div className="flex items-start space-x-2">
-          <div className="w-2 h-2 rounded-full bg-[#4F4F4F] mt-2" />
+          <GoDotFill className="min-w-4 min-h-2" />{" "}
           <p>
             Customer Terms of Use, Privacy Policy, plus the tour operator’s
             rules & regulations (see the listing for more details).

@@ -13,21 +13,21 @@ export const ButtonCountRoom: React.FC<{
     <div className="flex items-center gap-3">
       <div className="bg-[#E4E4E4] rounded-full size-6 flex items-center justify-center">
         <button onClick={onDecrease}>
-          <p className="text-4xl mb-2 font-thin">-</p>
+          <p className="text-4xl mb-2 font-thin dark:text-black">-</p>
         </button>
       </div>
       {isAddOn ? (
-        <span className="text-lg font-medium text-[#4F4F4F]">
+        <span className="text-lg font-medium text-[#4F4F4F] dark:text-[#bbbbbb]">
           {dataAddOn?.numberSelect}
         </span>
       ) : (
-        <span className="text-lg font-medium text-[#4F4F4F]">
+        <span className="text-lg font-medium text-[#4F4F4F] dark:text-[#bbbbbb]">
           {dataRoom?.numberSelect}
         </span>
       )}
       <div className="bg-[#E4E4E4] rounded-full size-6 flex items-center justify-center">
         <button onClick={onIncrease}>
-          <p className="text-2xl mb-1 font-normal">+</p>
+          <p className="text-2xl mb-1 font-normal dark:text-black">+</p>
         </button>
       </div>
     </div>

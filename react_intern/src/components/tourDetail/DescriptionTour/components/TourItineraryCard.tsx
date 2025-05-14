@@ -26,7 +26,7 @@ export const TourItineraryCard: React.FC<TourItineraryCardProps> = ({
             tourDay?.location?.map((location, index) => (
               <div className="flex flex-row gap-2 py-4" key={index}>
                 <div>
-                  <CiLocationOn className="text-2xl text-[#04316A]" />
+                  <CiLocationOn className="text-2xl text-[#04316A] dark:text-[#bbbbbb]" />
                 </div>
                 <div className="flex flex-col">
                   {location.locationName && (
@@ -40,7 +40,7 @@ export const TourItineraryCard: React.FC<TourItineraryCardProps> = ({
                           })
                         );
                       }}
-                      className={`text-md font-medium mb-2 ${selectedLocation.locationName === location.locationName ? "text-[#FF7B42]" : "text-[#04316A]"}`}>
+                      className={`text-md font-medium mb-2 cursor-pointer ${selectedLocation.locationName === location.locationName ? "text-[#FF7B42] dark:text-[#f48b5e]" : "text-[#04316A] dark:text-[#f3f1f1]"}`}>
                       {location.locationName}
                     </p>
                   )}
@@ -49,7 +49,7 @@ export const TourItineraryCard: React.FC<TourItineraryCardProps> = ({
                     <div key={idx}>
                       {duration.durationTime && (
                         <div className="flex flex-row gap-2 mt-4">
-                          <span className="text-gray-600 font-medium">
+                          <span className="text-gray-600 dark:text-[#d6d6d6] font-medium">
                             Duration:
                           </span>
                           {duration.durationTime}

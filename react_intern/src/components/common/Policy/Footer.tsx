@@ -5,11 +5,11 @@ export const Footer: React.FC<{ data: Policy }> = ({ data }) => {
   return (
     <div className="flex flex-col gap-6 w-full my-8">
       {data.endPolicy.map((item, index) => (
-        <div className="text-[#1E1E1ECC]" key={index}>
+        <div className="text-[#1E1E1ECC] dark:text-[#bbbbbb]" key={index}>
           {item}
         </div>
       ))}
-      <p className="text-[#1E1E1ECC]">
+      <p className="text-[#1E1E1ECC] dark:text-[#bbbbbb]">
         If you have questions about this Privacy Policy, Ojimah’s practices or
         your transactions at Ojimah’s page
         <Link

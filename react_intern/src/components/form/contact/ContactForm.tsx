@@ -34,7 +34,7 @@ export const ContactForm = () => {
       <div className="flex flex-col gap-2">
         <input
           placeholder="Your Name"
-          className="bg-[#F5F5F5] rounded-md p-4"
+          className="bg-[#F5F5F5] rounded-md p-4 dark:bg-[#7a7a7a9d]"
           type="text"
           {...register("name")}
         />
@@ -45,7 +45,7 @@ export const ContactForm = () => {
       <div className="flex flex-col gap-2">
         <input
           placeholder="Your Email"
-          className="bg-[#F5F5F5] rounded-md p-4"
+          className="bg-[#F5F5F5] rounded-md p-4 dark:bg-[#7a7a7a9d]"
           type="email"
           {...register("email")}
         />
@@ -56,7 +56,7 @@ export const ContactForm = () => {
       <div className="flex flex-col gap-2">
         <input
           placeholder="Your Phone"
-          className="bg-[#F5F5F5] rounded-md p-4"
+          className="bg-[#F5F5F5] rounded-md p-4 dark:bg-[#7a7a7a9d]"
           type="number"
           {...register("phone")}
         />
@@ -67,7 +67,7 @@ export const ContactForm = () => {
       <div className="flex flex-col gap-2">
         <textarea
           placeholder="Message"
-          className="bg-[#F5F5F5] rounded-md p-4 min-h-[100px]"
+          className="bg-[#F5F5F5] rounded-md p-4 min-h-[100px] dark:bg-[#7a7a7a9d]"
           {...register("message")}
         />
         <div className="text-red-500">
