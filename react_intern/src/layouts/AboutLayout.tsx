@@ -8,7 +8,7 @@ export const AboutLayout: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen ">
       <Banner image={banner} height="400px">
         <div className="flex items-center justify-evenly">
           <Logo src={logo} width={89} height={86} />
@@ -18,8 +18,10 @@ export const AboutLayout: React.FC<{
           About us
         </div>
       </Banner>
-      <main className="container mx-auto lg:px-35 px-4 dark:bg-[#1e1e1e] dark:text-[#ffffff]">
-        {children}
+      <main className="flex-1 relative z-0 dark:bg-[#1e1e1e] dark:text-[#ffffff]">
+        <div className="container mx-auto lg:px-35 md:px-10 px-4">
+          {children}
+        </div>
       </main>
       <FooterMain />
     </div>

@@ -7,7 +7,7 @@ import { setHotelData } from "@/app/slide/hotelDataSlide";
 import { useEffect } from "react";
 import { Header } from "@/components/hotels/Header";
 import { CommonLayout } from "@/layouts/CommonLayout";
-import banner from "@/assets/hotel_banner.png";
+import banner from "@/assets/hotel_banner.jpg";
 const HotelPage: React.FC = () => {
   const { data: hotels, isLoading } = useHotels();
   const dispatch = useDispatch();

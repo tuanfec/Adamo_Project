@@ -2,11 +2,13 @@ import { useTheme } from "@/config/theme-provider";
 import { FloatButton } from "antd";
 import FloatButtonGroup from "antd/es/float-button/FloatButtonGroup";
 import { MoonOutlined, SettingOutlined, SunOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { HiMiniLanguage } from "react-icons/hi2";
 
 export const DarkModeButton = () => {
   const { setTheme } = useTheme();
-  const [mode, setMode] = useState<boolean>(false);
+  const { theme } = useTheme();
+  const { i18n } = useTranslation();
   return (
     <FloatButtonGroup
       shape="circle"
@@ -18,19 +20,31 @@ export const DarkModeButton = () => {
         icon={<SunOutlined />}
         onClick={() => {
           setTheme("light");
-          setMode(true);
         }}
         tooltip="Light mode"
-        type={mode ? "primary" : "default"}
+        type={theme === "light" ? "primary" : "default"}
       />
       <FloatButton
         icon={<MoonOutlined />}
         onClick={() => {
           setTheme("dark");
-          setMode(false);
         }}
         tooltip="Dark mode"
-        type={mode ? "default" : "primary"}
+        type={theme === "dark" ? "primary" : "default"}
+      />
+      <FloatButton
+        icon={<HiMiniLanguage />}
+        onClick={() => {
+          i18n.changeLanguage("vi");
+        }}
+        tooltip="VN"
+      />
+      <FloatButton
+        icon={<HiMiniLanguage />}
+        onClick={() => {
+          i18n.changeLanguage("en");
+        }}
+        tooltip="EN"
       />
     </FloatButtonGroup>
   );

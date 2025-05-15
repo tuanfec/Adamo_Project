@@ -1,5 +1,5 @@
 import { CommonLayout } from "@/layouts/CommonLayout";
-import banner from "@/assets/contact.png";
+import banner from "@/assets/contact.jpg";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ContactForm } from "@/components/form/contact/ContactForm";
 import { ImageContent } from "@/components/contact/ImageContent";
