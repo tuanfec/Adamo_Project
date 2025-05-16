@@ -3,11 +3,13 @@ import { Loading } from "@/components/common/Loading";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import banner from "@/assets/hotel_banner.png";
+import banner from "@/assets/hotel_banner.jpg";
 import { setHotelData } from "@/app/slide/hotelDataSlide";
 import { useHotels } from "@/hooks/useHotels";
 import { ListHotels } from "@/components/hotels/ListHotels";
+import { useTranslation } from "react-i18next";
 const SearchHotel = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const searchHotel = useSelector(
     (state: any) => state.hotelDataSlide.searchHotel
@@ -42,8 +44,8 @@ const SearchHotel = () => {
 
   return (
     <CommonLayout
-      title="From cozy country homes to funky city apartments"
-      content="Find deals on hotels, homes, and much more..."
+      title={t("banner.hotelPage.title")}
+      content={t("banner.hotelPage.content")}
       isDisplaySearchTour={true}
       isDisplayFeatured={false}
       img={banner}

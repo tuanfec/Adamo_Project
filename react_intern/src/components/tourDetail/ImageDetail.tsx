@@ -17,7 +17,7 @@ export const ImageDetail: React.FC<{
   return (
     <div className={`relative`}>
       {/* Main Swiper */}
-      <div className={`relative `}>
+      <div className={`relative mb-6`}>
         <Swiper
           modules={[Navigation, Pagination, Thumbs]}
           spaceBetween={10}

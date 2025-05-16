@@ -5,7 +5,9 @@ import { useTourList } from "@/hooks/useTourList";
 import { useSelector } from "react-redux";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@assets/banner_img.jpg";
+import { useTranslation } from "react-i18next";
 const ViewAllList: React.FC = () => {
+  const { t } = useTranslation();
   const { source } = useParams();
   const header = useLocation().state?.header;
   const { data, isLoading } = useTourList(source);
@@ -13,8 +15,8 @@ const ViewAllList: React.FC = () => {
 
   return (
     <CommonLayout
-      title="Attractive tour and interesting experiences"
-      content="Search hundreds of tours and more"
+      title={t("banner.tourPage.title")}
+      content={t("banner.tourPage.content")}
       isDisplaySearchTour={true}
       isDisplayFeatured={false}
       img={banner}

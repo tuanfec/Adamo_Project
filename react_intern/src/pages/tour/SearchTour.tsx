@@ -7,9 +7,11 @@ import { CommonLayout } from "@/layouts/CommonLayout";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import banner from "@/assets/banner_img.jpg";
+import { useTranslation } from "react-i18next";
 
 const SearchTour = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const searchTour = useSelector(
     (state: any) => state.tourDataSlide.searchTour
   );
@@ -69,8 +71,8 @@ const SearchTour = () => {
 
   return (
     <CommonLayout
-      title="Attractive tour and interesting experiences"
-      content="Search hundreds of tours and more"
+      title={t("banner.tourPage.title")}
+      content={t("banner.tourPage.content")}
       isDisplaySearchTour={true}
       isDisplayFeatured={false}
       img={banner}
@@ -79,7 +81,11 @@ const SearchTour = () => {
       isShow={true}>
       <div className="py-8 ">
         <Breadcrumb />
-        <ViewAll tourData={dataFilter} isLoading={false} header={"Search"} />
+        <ViewAll
+          tourData={dataFilter}
+          isLoading={false}
+          header={t("banner.tourPage.header")}
+        />
       </div>
     </CommonLayout>
   );

@@ -4,9 +4,13 @@ import logo from "../assets/logo.jpg";
 import { Banner } from "@/components/header/Banner";
 import { FooterMain } from "@/components/footer/FooterMain";
 import banner from "@/assets/banner_img.jpg";
+import { useTranslation } from "react-i18next";
+
 export const AboutLayout: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col min-h-screen ">
       <Banner image={banner} height="400px">
@@ -15,7 +19,7 @@ export const AboutLayout: React.FC<{
           <Navbar />
         </div>
         <div className="flex items-center justify-center my-18 text-5xl font-medium text-white">
-          About us
+          {t("aboutPage.title")}
         </div>
       </Banner>
       <main className="flex-1 relative z-0 dark:bg-[#1e1e1e] dark:text-[#ffffff]">

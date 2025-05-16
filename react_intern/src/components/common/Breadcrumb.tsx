@@ -1,6 +1,6 @@
-import React from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HiChevronRight } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 
 interface BreadcrumbItem {
   label: string;
@@ -10,7 +10,7 @@ interface BreadcrumbItem {
 export const Breadcrumb = () => {
   const location = useLocation();
   const paths = location.pathname.split("/").filter(Boolean);
-
+  const { t } = useTranslation();
   // Xác định các loại view
   const isTourViewAll = paths[0] === "tours" && paths[1] === "view_all";
   const isTourDetailView = paths[0] === "tours" && paths[1] === "view_detail";
@@ -20,54 +20,54 @@ export const Breadcrumb = () => {
   const items: BreadcrumbItem[] = [{ label: "Home", path: "/" }];
 
   if (paths[0] === "tours") {
-    items.push({ label: "Tours", path: "/tours" });
+    items.push({ label: t("Breadcrumb.Tours"), path: "/tours" });
     if (isTourViewAll) {
       items.push({
-        label: "View All",
+        label: t("Breadcrumb.viewAll"),
         path: `/tours/view_all/${paths[2] || ""}`,
       });
     }
     if (isTourDetailView) {
       items.push({
-        label: "View All",
+        label: t("Breadcrumb.viewAll"),
         path: `/tours/view_all/${paths[2] || ""}`,
       });
       items.push({
-        label: "Tour Detail",
+        label: t("Breadcrumb.tourDetail"),
         path: location.pathname,
       });
     }
     if (isTourSearch) {
       items.push({
-        label: "Search",
+        label: t("Breadcrumb.Search"),
         path: "/tours/search",
       });
     }
   }
 
   if (paths[0] === "hotels") {
-    items.push({ label: "Hotels", path: "/hotels" });
+    items.push({ label: t("Breadcrumb.Hotels"), path: "/hotels" });
     if (isHotelDetailView) {
       items.push({
-        label: "Hotel Detail",
+        label: t("Breadcrumb.hotelDetail"),
         path: location.pathname,
       });
     }
     if (isHotelSearch) {
       items.push({
-        label: "Search",
+        label: t("Breadcrumb.Search"),
         path: "/hotels/search",
       });
     }
   }
   if (paths[0] === "contact") {
-    items.push({ label: "Contact", path: "/contact" });
+    items.push({ label: t("Breadcrumb.Contact"), path: "/contact" });
   }
   if (paths[0] === "about") {
-    items.push({ label: "About", path: "/about" });
+    items.push({ label: t("Breadcrumb.About"), path: "/about" });
   }
   if (paths[0] === "policy") {
-    items.push({ label: "Policy", path: "/policy" });
+    items.push({ label: t("Breadcrumb.Policy"), path: "/policy" });
   }
 
   // Có thể bổ sung thêm cho các route khác nếu cần

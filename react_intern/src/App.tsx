@@ -21,7 +21,7 @@ function App() {
         <Provider store={store}>
           <NotificationProvider>
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-              {/* <DarkModeButton /> */}
+              <DarkModeButton />
               <AuthRouter />
               <HomeRouter />
             </ThemeProvider>

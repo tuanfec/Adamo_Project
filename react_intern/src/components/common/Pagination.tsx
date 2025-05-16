@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { FaArrowRight } from "react-icons/fa";
 
 import { FaArrowLeft } from "react-icons/fa";
@@ -19,11 +20,12 @@ export const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   isShow,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="flex justify-between items-center w-full gap-2 my-4">
       {isShow && (
         <div className="text-gray-500 md:ml-[45%] lg:ml-[45%]">
-          Showing {currentPage}/{totalPages}
+          {t("pagination.showing")} {currentPage}/{totalPages}
         </div>
       )}
       <div className="flex items-center gap-2">

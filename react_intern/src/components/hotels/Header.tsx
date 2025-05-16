@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FilterForm } from "@/components/form/FilterForm";
 import { HotelFormData } from "@/types/hotel";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
@@ -6,24 +6,28 @@ import { useDispatch } from "react-redux";
 import { setSortBy } from "@/app/slide/hotelDataSlide";
 import { SortDropdown } from "@/components/hotels/SortDropdown";
 import { Filter } from "@/components/common/Filter";
+import { useTranslation } from "react-i18next";
 
 export const Header: React.FC<{
   hotelData: HotelFormData[];
 }> = ({ hotelData }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [isFilter, setIsFilter] = useState(false);
   const [isSort, setIsSort] = useState(false);
-  const [sortBy] = useState([
-    "Price high to low",
-    "Price low to high",
-    "Rating",
-    "Star",
-  ]);
-  const [sortByIndex, setSortByIndex] = useState(0);
+  const sortBy = [
+    t("Sort.Type.lowH"),
+    t("Sort.Type.highL"),
+    t("Sort.Type.rate"),
+    t("Sort.Type.star"),
+  ];
 
+  const [sortByIndex, setSortByIndex] = useState(0);
   return (
     <div className="flex flex-col lg:flex-row lg:justify-between  lg:items-center relative my-10">
-      <p className="text-4xl mb-6 lg:mb-0 md:mb-6 font-medium">Hotels</p>
+      <p className="text-4xl mb-6 lg:mb-0 md:mb-6 font-medium">
+        {t("navbar.hotels")}
+      </p>
       <div className="flex justify-between items-center gap-8">
         <div
           onClick={() => setIsSort((prev) => !prev)}

@@ -8,6 +8,7 @@ import { TourData } from "@/types/tour";
 import { ImageAndVideoSection } from "./components/ImageAndVideoSection";
 import { HotelFormData } from "@/types/hotel";
 import { Role } from "@/components/hotels/Role";
+import { useTranslation } from "react-i18next";
 interface DescriptionTourProps {
   dataTour?: TourData;
   dataHotel?: HotelFormData;
@@ -17,6 +18,7 @@ export const DescriptionTour: React.FC<DescriptionTourProps> = ({
   dataTour,
   dataHotel,
 }) => {
+  const { t } = useTranslation();
   const location = useSelector((state: any) => state.tourDataSlide.location);
   return (
     <div>
@@ -33,7 +35,9 @@ export const DescriptionTour: React.FC<DescriptionTourProps> = ({
         <>
           <DepartureSection departure={dataTour?.departure ?? []} />
           <div>
-            <div className="text-xl font-medium my-6">Tour Itinerary</div>
+            <div className="text-xl font-medium my-6">
+              {t("Infomation.TourItinerary")}
+            </div>
             {dataTour?.tourItinerary.map((itinerary, itineraryIndex) => (
               <div key={itineraryIndex}>
                 <TourItineraryCard

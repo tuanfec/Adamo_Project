@@ -10,13 +10,19 @@ import { useNavigate } from "react-router-dom";
 import { FloatButton } from "antd";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@/assets/banner_img.jpg";
+import { useTranslation } from "react-i18next";
+import { useHotels } from "@/hooks/useHotels";
+import { setHotelData } from "@/app/slide/hotelDataSlide";
 
 const HomePage: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { data: attractiveData, isLoading: isLoadingAttractive } =
     useAttractiveTours();
   const { data: traditionalData, isLoading: isLoadingTraditional } =
     useTraditionalTours();
+  const { data: hotelData } = useHotels();
+
   const navigate = useNavigate();
 
   // Add source to each tour item
@@ -32,7 +38,8 @@ const HomePage: React.FC = () => {
   const allTourData = [...(attractiveData || []), ...(traditionalData || [])];
   useEffect(() => {
     dispatch(setAllTour(allTourData));
-  }, [attractiveData, traditionalData, dispatch]);
+    dispatch(setHotelData(hotelData));
+  }, [attractiveData, traditionalData, hotelData, dispatch]);
 
   if (isLoadingAttractive || isLoadingTraditional) {
     return <Loading />;
@@ -54,8 +61,8 @@ const HomePage: React.FC = () => {
   };
   return (
     <CommonLayout
-      title="Perfect place for your stories"
-      content="Welcome to NgaoduVietnam"
+      title={t("banner.homePage.title")}
+      content={t("banner.homePage.content")}
       isDisplaySearchTour={true}
       isDisplayFeatured={true}
       img={banner}
@@ -68,7 +75,7 @@ const HomePage: React.FC = () => {
           {attractiveData && (
             <ListTour
               data={attractiveData}
-              header="Discover fascinating destinations"
+              header={t("homePage.listTour_1")}
               slidesPerView={4}
               spaceBetween={40}
             />
@@ -78,7 +85,7 @@ const HomePage: React.FC = () => {
           {attractiveWithSource && (
             <ListTour
               data={attractiveWithSource}
-              header="Attractive tour and interesting experiences"
+              header={t("homePage.listTour_2")}
               slidesPerView={3}
               spaceBetween={40}
               onClick={() => handleViewAll(true)}
@@ -89,7 +96,7 @@ const HomePage: React.FC = () => {
           {traditionalWithSource && (
             <ListTour
               data={traditionalWithSource}
-              header="Experience the traditional cultural beauties of Vietnam"
+              header={t("homePage.listTour_3")}
               slidesPerView={3}
               spaceBetween={40}
               onClick={() => handleViewAll(false)}
@@ -98,7 +105,7 @@ const HomePage: React.FC = () => {
         </div>
         <EmailSubcription />
       </div>
-      {/* <FloatButton.BackTop visibilityHeight={200} /> */}
+      <FloatButton.BackTop visibilityHeight={200} />
     </CommonLayout>
   );
 };

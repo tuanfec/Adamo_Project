@@ -4,12 +4,13 @@ import {
   UseFormHandleSubmit,
   FieldErrors,
 } from "react-hook-form";
-import type { FormValues } from "../checkOut/CheckoutForm";
+import type { CheckoutFormValues } from "@/types/zod";
+import { useTranslation } from "react-i18next";
 
 interface TravelerFormProps {
-  register: UseFormRegister<FormValues>;
-  handleSubmit: UseFormHandleSubmit<FormValues>;
-  errors: FieldErrors<FormValues>;
+  register: UseFormRegister<CheckoutFormValues>;
+  handleSubmit: UseFormHandleSubmit<CheckoutFormValues>;
+  errors: FieldErrors<CheckoutFormValues>;
 }
 
 const TravelerForm: React.FC<TravelerFormProps> = ({
@@ -17,23 +18,24 @@ const TravelerForm: React.FC<TravelerFormProps> = ({
   handleSubmit,
   errors,
 }) => {
-  const onSubmit = (data: FormValues) => {};
+  const onSubmit = (data: CheckoutFormValues) => {};
+  const { t } = useTranslation();
   return (
     <div onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       {/* Lead Traveler Section */}
       <div>
         <h2 className=" text-xl font-medium text-[#2A2A2A] dark:text-white mb-4">
-          Lead Traveler (Adult)
+          {t("checkOut.LeadTraveler")} ({t("checkOut.Adult")})
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-base font-semibold text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-              First Name*
+              {t("checkOut.firstName")}*
             </label>
             <input
               {...register("firstName")}
               type="text"
-              placeholder="First Name"
+              placeholder={t("checkOut.firstName")}
               className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
             />
             {errors.firstName && (
@@ -42,12 +44,12 @@ const TravelerForm: React.FC<TravelerFormProps> = ({
           </div>
           <div>
             <label className="block text-base font-semibold text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-              Last Name*
+              {t("checkOut.lastName")}*
             </label>
             <input
               {...register("lastName")}
               type="text"
-              placeholder="Last Name"
+              placeholder={t("checkOut.lastName")}
               className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
             />
             {errors.lastName && (
@@ -70,12 +72,12 @@ const TravelerForm: React.FC<TravelerFormProps> = ({
           </div>
           <div>
             <label className="block text-base font-semibold text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-              Phone Number*
+              {t("checkOut.phoneNumber")}*
             </label>
             <input
               {...register("phone")}
               type="number"
-              placeholder="Your Phone"
+              placeholder={t("checkOut.phoneNumber")}
               className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
             />
             {errors.phone && (
@@ -88,62 +90,62 @@ const TravelerForm: React.FC<TravelerFormProps> = ({
       {/* Address Section */}
       <div>
         <h2 className=" text-xl font-medium text-[#2A2A2A] mb-4 dark:text-white">
-          Address
+          {t("checkOut.address")}
         </h2>
         <div className="grid grid-cols-1 gap-4">
           <div>
             <label className="block  text-base font-medium text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-              Your Address
+              {t("checkOut.address")}
             </label>
             <input
               {...register("address")}
               type="text"
-              placeholder="Your Address"
+              placeholder={t("checkOut.address")}
               className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block  text-base font-medium text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-                City
+                {t("checkOut.city")}
               </label>
               <input
                 {...register("city")}
                 type="text"
-                placeholder="Your City"
+                placeholder={t("checkOut.city")}
                 className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
               />
             </div>
             <div>
               <label className="block  text-base font-medium text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-                State/Province/Region
+                {t("checkOut.State")}
               </label>
               <input
                 {...register("state")}
                 type="text"
-                placeholder="Your State/Province/Region"
+                placeholder={t("checkOut.State")}
                 className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
               />
             </div>
             <div>
               <label className="block  text-base font-medium text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-                Zip Code/Postal Code
+                {t("checkOut.ZipCode")}
               </label>
               <input
                 {...register("zipCode")}
                 type="text"
-                placeholder="Zip Code/Postal Code"
+                placeholder={t("checkOut.ZipCode")}
                 className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
               />
             </div>
             <div>
               <label className="block  text-base font-medium text-[#2A2A2A] dark:text-[#bbbbbb] mb-2">
-                Country
+                {t("checkOut.Country")}
               </label>
               <input
                 {...register("country")}
                 type="text"
-                placeholder="Your Country"
+                placeholder={t("checkOut.Country")}
                 className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
               />
             </div>
@@ -154,11 +156,11 @@ const TravelerForm: React.FC<TravelerFormProps> = ({
       {/* Special Requirement Section */}
       <div>
         <h2 className=" text-xl font-medium text-[#2A2A2A] dark:text-[#bbbbbb] mb-4">
-          Special Requirement
+          {t("checkOut.SpecialRequirement")}
         </h2>
         <textarea
           {...register("specialRequirement")}
-          placeholder="Special Requirement"
+          placeholder={t("checkOut.SpecialRequirement")}
           rows={4}
           className="w-full p-3 border border-[#E5E5E5] rounded text-[#888888] dark:border-gray-600"
         />

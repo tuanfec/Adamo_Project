@@ -2,7 +2,6 @@ import React from "react";
 import { ActionButton } from "./ActionButton";
 import { FaFacebook } from "react-icons/fa";
 import InputForm from "./InputForm";
-import { setStatePage } from "@app/slide/statePageSlide";
 import { useDispatch } from "react-redux";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -13,20 +12,7 @@ import { loginWithFacebook } from "@/services/authService";
 import { setIsLoggedIn, setUser } from "@/app/slide/userSlide";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "@/components/notifiction/NotificationProvider";
-const schema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character"
-    ),
-});
-
-type FormData = z.infer<typeof schema>;
+import { useTranslation } from "react-i18next";
 
 interface RegisterResponse {
   success: boolean;
@@ -39,6 +25,23 @@ export const RegisterFrom: React.FC = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const schema = z.object({
+    firstName: z.string().min(1, t("checkOut.zod.firstName")),
+    lastName: z.string().min(1, t("checkOut.zod.lastName")),
+    email: z.string().email(t("checkOut.zod.email")),
+    password: z
+      .string()
+      .min(8, t("SignInPage.zod.password.min"))
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        t("SignInPage.zod.password.regax")
+      ),
+  });
+
+  type FormData = z.infer<typeof schema>;
+
   const {
     register,
     handleSubmit,
@@ -54,12 +57,12 @@ export const RegisterFrom: React.FC = () => {
         navigate("/login");
         notification.success({
           title: "Success",
-          message: "Registration successful!",
+          message: t("notification.RegisterSuccess"),
         });
       } else {
         notification.error({
           title: "Error",
-          message: data.error || "Registration failed",
+          message: data.error || t("notification.RegisterFailed"),
         });
       }
     },
@@ -108,10 +111,10 @@ export const RegisterFrom: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col lg:mt-20 lg:ml-30 lg:mr-16 gap-6 [320px]:gap-4 sm:gap-6 md:gap-8">
       <h1 className="text-2xl font-medium leading-tight text-zinc-900 dark:text-white [320px]:text-xl [375px]:text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:w-full">
-        Register
+        {t("RegisterPage.title")}
       </h1>
       <p className="text-sm leading-relaxed text-neutral-700 dark:text-[#bbbbbb] [320px]:text-xs [375px]:text-sm sm:text-base sm:leading-7 md:text-lg">
-        Welcome to NgaoduVietnam
+        {t("SignInPage.content")}
       </p>
 
       {errorMessage && (
@@ -122,14 +125,14 @@ export const RegisterFrom: React.FC = () => {
 
       <div className="flex flex-row gap-4">
         <InputForm
-          title="First Name"
+          title={t("RegisterPage.FirstName")}
           type="text"
           name="firstName"
           register={register}
           error={errors.firstName?.message}
         />
         <InputForm
-          title="Last Name"
+          title={t("RegisterPage.LastName")}
           type="text"
           name="lastName"
           register={register}
@@ -138,7 +141,7 @@ export const RegisterFrom: React.FC = () => {
       </div>
 
       <InputForm
-        title="Email Address"
+        title={t("RegisterPage.EmailAddress")}
         type="email"
         name="email"
         register={register}
@@ -146,7 +149,7 @@ export const RegisterFrom: React.FC = () => {
       />
 
       <InputForm
-        title="Password"
+        title={t("RegisterPage.Password")}
         type={showPassword ? "text" : "password"}
         name="password"
         register={register}
@@ -160,7 +163,7 @@ export const RegisterFrom: React.FC = () => {
           type="submit"
           disabled={registerMutation.isPending}
           className="w-full py-3 px-4 rounded-lg bg-[#FF7B42] text-white font-medium transition-all duration-200 text-sm [320px]:text-xs [320px]:py-2 [375px]:text-sm [375px]:py-2.5 sm:text-base sm:py-3 md:text-lg md:py-4 lg:text-base lg:py-3">
-          {registerMutation.isPending ? "Loading..." : "Sign up"}
+          {registerMutation.isPending ? "Loading..." : t("RegisterPage.Signup")}
         </ActionButton>
 
         <ActionButton
@@ -169,17 +172,17 @@ export const RegisterFrom: React.FC = () => {
           className="w-full py-3 px-4 rounded-lg border-2 border-[#4E86DB] text-white bg-[#4E86DB] font-medium transition-all duration-200 text-sm [320px]:text-xs [320px]:py-2 [375px]:text-sm [375px]:py-2.5 sm:text-base sm:py-3 md:text-lg md:py-4 lg:text-base lg:py-3">
           <div className="flex items-center gap-2 justify-center">
             <FaFacebook />
-            Sign up with Facebook
+            {t("RegisterPage.SignupFacebook")}
           </div>
         </ActionButton>
       </div>
 
       <div className="flex gap-2 items-center justify-start">
-        <p>Member already?</p>
+        <p>{t("RegisterPage.Member")}</p>
         <p
           onClick={() => navigatePage()}
           className="font-bold text-md text-[#FF7B42] cursor-pointer">
-          Sign in
+          {t("RegisterPage.Signin")}
         </p>
       </div>
     </form>

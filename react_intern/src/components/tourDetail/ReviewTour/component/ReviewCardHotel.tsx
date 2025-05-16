@@ -1,4 +1,5 @@
 import { ReviewStats } from "@/types/tour";
+import { useTranslation } from "react-i18next";
 
 interface ReviewCardHotelProps {
   stats: ReviewStats;
@@ -9,11 +10,12 @@ export const ReviewCardHotel: React.FC<ReviewCardHotelProps> = ({
   stats,
   onClick,
 }) => {
+  const { t } = useTranslation();
   const typeRate = {
-    9.5: "Wonderful",
-    9: "Very Good",
-    8: "Good",
-    7: "Pleasant",
+    9.5: t("ReviewCard.Wonderful"),
+    9: t("ReviewCard.VeryGood"),
+    8: t("ReviewCard.Good"),
+    7: t("ReviewCard.Pleasant"),
   };
   return (
     <div className="flex gap-5 items-center">
@@ -25,16 +27,18 @@ export const ReviewCardHotel: React.FC<ReviewCardHotelProps> = ({
           {typeRate[stats.rating as keyof typeof typeRate]}
         </div>
         <div className="flex items-center gap-2">
-          <p className="text-gray-600 dark:text-[#bbbbbb]">Base on</p>
+          <p className="text-gray-600 dark:text-[#bbbbbb]">
+            {t("ReviewCard.Baseon")}
+          </p>
           <span className="font-medium text-[#4F4F4F] dark:text-[#d8d8d8]">
             {" "}
-            {stats.totalReviews} reviews
+            {stats.totalReviews} {t("ReviewCard.reviews")}
           </span>
         </div>
         <div
           onClick={onClick}
           className="text-[#FF7B42] font-medium mt-2 cursor-pointer bg-white border dark:bg-[#575656] dark:border-gray-300 dark:text-[#d8d8d8] border-[#FF7B42] text-center px-4 py-2">
-          Write a review
+          {t("ReviewCard.Writereview")}{" "}
         </div>
       </div>
     </div>

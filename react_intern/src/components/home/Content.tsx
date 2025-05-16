@@ -1,7 +1,9 @@
 import { BiSolidQuoteAltLeft } from "react-icons/bi";
 import image1 from "@/assets/img1.jpg";
 import image2 from "@/assets/img2.jpg";
+import { useTranslation } from "react-i18next";
 export const Content: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="flex lg:flex-row lg:min-h-[623px] flex-col my-10">
       <div className="flex flex-col w-full relative min-h-[350px] mb-10">
@@ -23,25 +25,16 @@ export const Content: React.FC = () => {
         data-aos-duration="1000"
         className="flex flex-col gap-14 lg:w-[80%] ">
         <div className="text-4xl md:text-3xl font-medium ">
-          With <span className="text-[#FF7B42] ">NgaoduVietnam</span>, immerses
-          you in majestic space and unique cultural features
+          {t("aboutPage.content_1.title_1")}{" "}
+          <span className="text-[#FF7B42] ">NgaoduVietnam</span>
+          {t("aboutPage.content_1.title_2")}{" "}
         </div>
         <div className="flex flex-row gap-4 ">
           <BiSolidQuoteAltLeft className="text-8xl pb-[10%] text-[#FF7B42] " />
           <div className="dark:text-[#f4f3f3]">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus
-              viverra nuQlla eget sed odio. Vulputate risus faucibus sem non,
-              feugiat nec consequat, montes. Elementum scelerisque phasellus
-              donec lectus ullamcorper faucibus. Malesuada et adipiscing
-              molestie egestas leo ut.
-            </p>
+            <p>{t("aboutPage.content.description_1")}</p>
             <br />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus
-              viverra nuQlla eget sed odio. Vulputate risus faucibus sem non,
-              feugiat nec consequat, montes.
-            </p>
+            <p>{t("aboutPage.content.description_2")}</p>
           </div>
         </div>
       </div>

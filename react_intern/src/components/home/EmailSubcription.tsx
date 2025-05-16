@@ -1,14 +1,19 @@
+import { useTranslation } from "react-i18next";
 import { MdOutlineEmail } from "react-icons/md";
 
 export const EmailSubcription: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="flex lg:flex-row md:flex-row flex-col items-center justify-center lg:mx-0 md:mx-10 ">
       <div
         data-aos="fade-right"
         className="inline-block w-full lg:text-4xl text-xl font-medium mb-2">
         <p className="lg:w-[65%] md:w-[60%] w-full ml-2 lg:ml-0 md:ml-0">
-          Leave us an email, to get
-          <span className="text-[#FF7B42]"> the latest deals</span>
+          {t("homePage.email.content")}
+          <span className="text-[#FF7B42]">
+            {" "}
+            {t("homePage.email.content_2")}
+          </span>
         </p>
       </div>
 
@@ -20,7 +25,7 @@ export const EmailSubcription: React.FC = () => {
           <input type="text" placeholder="example@gmail.com" />
         </div>
         <button className="bg-black dark:bg-[#FF7B42] dark:text-white cursor-pointer text-white py-[2%] px-6 rounded-sm">
-          Send
+          {t("homePage.email.button")}
         </button>
       </div>
     </div>

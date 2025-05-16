@@ -1,4 +1,5 @@
 import { Include } from "@/types/tour";
+import { useTranslation } from "react-i18next";
 import { FaCheck } from "react-icons/fa6";
 
 interface IncludeSectionProps {
@@ -10,9 +11,11 @@ export const IncludeSection: React.FC<IncludeSectionProps> = ({
   includes,
   includesHotel,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <div className="text-xl font-medium my-5">What's Included</div>
+      <div className="text-xl font-medium my-5">{t("Infomation.Included")}</div>
       {includes &&
         includes?.[0]?.map((item, index) => (
           <div key={index} className="flex items-center gap-2">

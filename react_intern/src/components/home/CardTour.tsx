@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { FaStar, FaBookmark } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { LuCalendarClock } from "react-icons/lu";
@@ -29,6 +30,7 @@ export const CardTour: React.FC<CardTourProps> = ({
   onClick,
   isHover,
 }) => {
+  const { t } = useTranslation();
   return (
     <div
       className={`flex flex-col w-full ${isHover ? "hover:scale-105 transition-all duration-300" : ""}`}
@@ -78,7 +80,9 @@ export const CardTour: React.FC<CardTourProps> = ({
         )}
         {price && (
           <div className="flex items-center gap-2">
-            <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">from </p>
+            <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
+              {t("CardTour.from")}{" "}
+            </p>
             <span className="font-medium dark:text-[#ffffff] text-xl mb-1">
               ${price}
             </span>

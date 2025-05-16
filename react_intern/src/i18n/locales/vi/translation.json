@@ -1,10 +1,373 @@
 {
-  "home": "Trang chủ",
-  "about": "Giới thiệu",
-  "contact": "Liên hệ",
-  "tour": "Du lịch",
-  "hotels": "Khách sạn",
-  "login": "Đăng nhập",
-  "register": "Đăng ký",
-  "logout": "Đang xuất"
+  "navbar": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "tour": "Du lịch",
+    "hotels": "Khách sạn",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất"
+  },
+  "footer": {
+    "partner": "Hợp tác với chúng tôi",
+    "terms": "Điều khoản & Điều kiện",
+    "privacyPolicy": "Chính sách bảo mật",
+    "guestPolicy": "Chính sách khách hàng"
+  },
+  "banner": {
+    "homePage": {
+      "title": "Nơi hoàn hảo cho những câu chuyện của bạn",
+      "content": "Chào mừng tới NgaoduVietnam"
+    },
+    "hotelPage": {
+      "title": "Từ những ngôi nhà ấm cúng ở nông thôn đến những căn hộ thành phố sành điệu",
+      "content": "Tìm kiếm ưu đãi về khách sạn, nhà ở và nhiều hơn nữa..."
+    },
+    "tourPage": {
+      "title": "Gói du lịch hấp dẫn và trải nghiệm thú vị",
+      "content": "Tìm kiếm hàng trăm gói du lịch và nhiều hơn nữa",
+      "header": "Tìm kiếm"
+    },
+    "contactPage": {
+      "title": "Liên hệ với chúng tôi"
+    }
+  },
+  "aboutPage": {
+    "title": "Về chúng tôi",
+    "content": {
+      "description_1": "NgaoduVietnam không chỉ dẫn lối bạn đến những địa danh nổi tiếng, mà còn mở ra hành trình tìm về những giá trị nguyên bản – nơi con người hòa mình cùng thiên nhiên, nơi từng nếp nhà, con phố kể câu chuyện riêng đầy cảm xúc. Chúng tôi tin rằng, mỗi chuyến đi không chỉ là di chuyển, mà là cơ hội để sống chậm, cảm nhận sâu và kết nối chân thành.",
+      "description_2": "Mỗi chuyến đi cùng NgaoduVietnam là một thước phim sống động về văn hóa, con người và cảnh sắc quê hương. Từ những phiên chợ vùng cao rực rỡ sắc màu đến những bãi biển hoang sơ trong vắt, chúng tôi đồng hành cùng bạn để tạo nên những trải nghiệm không thể quên – chân thực, giàu cảm xúc và đầy cảm hứng."
+    },
+    "content_1": {
+      "title_1": "Với ",
+      "title_2": ", đưa bạn vào không gian hùng vĩ và những nét văn hóa độc đáo",
+      "description_1": "Khám phá những miền đất tuyệt đẹp, nơi thiên nhiên tràn đầy sức sống và con người mang đậm bản sắc truyền thống. Từng bước chân là một hành trình cảm nhận vẻ đẹp bất tận của núi rừng, biển cả, và những làng quê yên bình.",
+      "description_2": "Với lòng đam mê trải nghiệm và mong muốn kết nối cộng đồng, NgaoduVietnam mang đến cho bạn không chỉ là điểm đến, mà còn là những câu chuyện văn hóa, ẩm thực, và lối sống bản địa. Hãy cùng chúng tôi cảm nhận sự kỳ diệu của đất nước Việt Nam qua từng cung đường khám phá."
+    },
+    "content_2": {
+      "title": "Trải nghiệm vẻ đẹp văn hóa truyền thống của Việt Nam",
+      "description_1": "Từ những ngôi chùa cổ kính vang vọng dấu ấn lịch sử cho đến làng quê yên bình nơi nghề thủ công được lưu truyền qua nhiều thế hệ, nét đẹp văn hóa Việt Nam hiện hữu trong từng góc nhỏ đời sống. Hãy cùng chúng tôi cảm nhận nhịp sống bình dị – nơi đèn lồng rực rỡ trong chợ đêm Hội An, múa rối nước lung linh giữa mặt ao làng, và âm thanh dân ca vang vọng giữa núi rừng bao la.",
+      "description_2": "Ẩn sau những cảnh đẹp nên thơ là tâm hồn của dân tộc Việt – nhân hậu, kiên cường và giàu bản sắc. Dù là dùng bữa cùng gia đình địa phương, hòa mình vào không khí lễ hội truyền thống hay tự tay học một nghề thủ công cổ truyền, bạn sẽ không chỉ mang về những kỷ niệm, mà còn lưu giữ một phần linh hồn văn hóa – nơi luôn chào đón bạn như người thân trở về.",
+      "description_3": "Văn hóa Việt không nằm yên trong viện bảo tàng – nó sống động trong những khu chợ tấp nập, lễ hội linh thiêng và cả trong nếp sinh hoạt thường ngày của người dân. Cùng NgaoduVietnam, bạn sẽ lắng nghe những câu chuyện được ghi dấu nơi chùa chiền cổ kính, tận mắt chứng kiến các phong tục lâu đời vẫn hiện diện, và cảm nhận sự gìn giữ đầy trân trọng của người Việt đối với truyền thống. Đây không chỉ là du lịch, mà là hành trình gắn kết với một nền văn hóa đang sống và thở cùng thời gian."
+    }
+  },
+  "homePage": {
+    "email": {
+      "content": "Để lại email cho chúng tôi để nhận",
+      "content_2": "ưu đãi mới nhất",
+      "button": "Gửi"
+    },
+    "listTour_1": "Khám phá những điểm đến hấp dẫn",
+    "listTour_2": "Gói du lịch hấp dẫn và trải nghiệm thú vị",
+    "listTour_3": "Trải nghiệm vẻ đẹp văn hóa truyền thống của Việt Nam"
+  },
+  "featured": {
+    "title": "Điểm nổi bật",
+    "description": "gói du lịch",
+    "description_2": "điểm đến",
+    "description_3": "các loại gói du lịch"
+  },
+  "formSearch": {
+    "title": {
+      "title_1": "Du lịch",
+      "title_2": "Khách sạn"
+    },
+    "content": {
+      "title_1": "Khám phá vẻ đẹp Việt Nam",
+      "title_2": "Tìm khách sạn cho chuyến đi tiếp theo"
+    },
+    "input": {
+      "placeholder_1": "Địa điểm",
+      "placeholder_2": "Thể loại du lịch",
+      "placeholder_3": "Số hành khách",
+      "Adult": "Người lớn",
+      "Child": "Trẻ em"
+    },
+    "zod": {
+      "adult": {
+        "required": "Người lớn là bắt buộc",
+        "min": "Người lớn phải từ 1 trở lên"
+      },
+      "child": {
+        "required": "Trẻ em là bắt buộc",
+        "min": "Trẻ em phải từ 0 trở lên"
+      },
+      "location": {
+        "required": "Địa điểm là bắt buộc"
+      },
+      "typeTour": {
+        "required": "Thể loại du lịch là bắt buộc"
+      },
+      "startDate": {
+        "required": "Ngày bắt đầu là bắt buộc"
+      },
+      "endDate": {
+        "required": "Ngày kết thúc là bắt buộc"
+      }
+    },
+    "button": "Tìm kiếm"
+  },
+  "filter": {
+    "title": "Bộ lọc",
+    "header": {
+      "filter_by": "LỌC THEO",
+      "reset": "ĐẶT LẠI"
+    },
+    "Budget": "Ngân sách",
+    "Duration": "Thời gian",
+    "Type": "Thể loại du lịch",
+    "HotelStar": "Sao khách sạn",
+    "Score": {
+      "title": "Điểm đánh giá",
+      "content": {
+        "1": "Tuyệt Vời : 9.5+",
+        "2": "Rất Tốt : 9+",
+        "3": "Tốt : 8+",
+        "4": "Tạm ổn : 7+"
+      }
+    }
+  },
+  "Sort": {
+    "title": "SĂP XẾP THEO:",
+    "Type": {
+      "lowH": "Giá tăng dần",
+      "highL": "Giá giảm dần",
+      "rate": "Đánh giá",
+      "star": "Sao"
+    }
+  },
+  "Breadcrumb": {
+    "viewAll": "Xem Tất Cả",
+    "tourDetail": "Chi Tiết Gói",
+    "Search": "Tìm Kiếm",
+    "hotelDetail": "Chi Tiết Khách Sạn",
+    "Contact": "Liên Hệ",
+    "About": "Về Chúng Tôi",
+    "Policy": "Chính Sách",
+    "Tours": "Gói Du Lịch",
+    "Hotels": "Khách Sạn"
+  },
+  "CardTour": {
+    "from": "từ"
+  },
+  "Infomation": {
+    "SelectRoom": "Chọn Phòng",
+    "Descriptions": "Mô Tả",
+    "AdditionalInfor": "Thông Tin Thêm",
+    "Reviews": "Đánh Giá",
+    "Overview": "Tổng Quan",
+    "Included": "Những gì bao gồm",
+    "Departure": "Khởi Hành & Trở Về",
+    "DeparturePoint": "Điểm Khởi Hành",
+    "DepartureTime": "Thời Gian Khởi Hành",
+    "TourItinerary": "Lịch Trình Du Lịch",
+    "img": "360° Hình ảnh và Video Toàn Cảnh",
+    "CheckIn": "Giờ Nhận Phòng",
+    "CheckOut": "Giờ Trả Phòng",
+    "Rules": "Quy Định",
+    "checkLogin": "Hãy đăng nhập để bình luận"
+  },
+  "errro": {
+    "guest": "Hãy nhập số lượng khách đăng ký"
+  },
+  "Form": {
+    "Total": "Tổng",
+    "Booknow": "Đặt ngay"
+  },
+  "pagination": {
+    "showing": "Hiển thị"
+  },
+  "HotelCard": {
+    "Rating": "Điểm đánh giá",
+    "Reviews": "Đánh giá",
+    "from": "từ",
+    "night": "đêm"
+  },
+  "RelatedTour": {
+    "title": "Gói du lịch liên quan",
+    "recommended": "Gợi ý cho bạn"
+  },
+  "contactForm": {
+    "title": "Chúng tôi rất vui khi nghe từ bạn",
+    "description": "Gửi cho chúng tôi một tin nhắn và chúng tôi sẽ trả lời sớm nhất có thể",
+    "button": "Gửi tin nhắn",
+    "input": {
+      "name": "Tên của bạn",
+      "email": "Email của bạn",
+      "phone": "Số điện thoại của bạn",
+      "message": "Tin nhắn của bạn"
+    },
+    "zod": {
+      "name": {
+        "required": "Tên là bắt buộc",
+        "min": "Tên phải có ít nhất 1 ký tự"
+      },
+      "email": {
+        "required": "Email là bắt buộc",
+        "email": "Email không hợp lệ"
+      },
+      "phone": {
+        "required": "Số điện thoại là bắt buộc",
+        "min": "Số điện thoại phải có ít nhất 1 ký tự",
+        "max": "Số điện thoại phải có tối đa 10 ký tự"
+      }
+    }
+  },
+  "contact": {
+    "office": "Văn phòng của chúng tôi",
+    "address": "Địa chỉ",
+    "phone": "Số điện thoại",
+    "email": "Email"
+  },
+  "selectRoom": {
+    "guests": "Khách",
+    "selectRoom": "Chọn phòng",
+    "outOfRoom": "Hết phòng",
+    "night": "đêm",
+    "more": "khác",
+    "roomFacilities": "Các tiện ích của phòng",
+    "selected": "Đã chọn"
+  },
+  "addOnSection": {
+    "addOns": "Các dịch vụ bổ sung",
+    "breakfast": "Bữa sáng",
+    "extraBed": "Giường thêm"
+  },
+  "checkOut": {
+    "bookingSubmission": "Gửi đơn đặt phòng",
+    "information": "Thông tin chúng tôi cần xác nhận để xác định chuyến đi của bạn",
+    "travelerDetails": "Thông tin hành khách",
+    "completeBooking": "Hoàn tất đặt phòng",
+    "duration": "Thời gian",
+    "type": "Loại",
+    "numberOfGuests": "Số lượng khách",
+    "promoCode": "Mã khuyến mãi",
+    "apply": "Áp dụng",
+    "total": "Tổng",
+    "paymentMethod": "Phương thức thanh toán",
+    "paymentMethodDescription": "Thanh toán an toàn—chúng tôi sử dụng SSL encryption để bảo vệ dữ liệu của bạn",
+    "creditCard": "Thẻ tín dụng",
+    "paypal": "Paypal",
+    "pleaseSelectAPaymentMethod": "Hãy chọn phương thức thanh toán",
+    "securityInfo": "Thông tin bảo mật",
+    "description": "Bạn sẽ được thanh toán tổng số tiền sau khi đơn đặt phòng được xác nhận.",
+    "description2": "Nếu không nhận được xác nhận ngay lập tức, một số tiền của bạn sẽ được giữ cho đến khi đơn đặt phòng được xác nhận.",
+    "description3": "Bạn có thể hủy bỏ miễn phí cho đến 24 giờ trước ngày của trải nghiệm, giờ địa phương. Bằng cách nhấp vào ‘Thanh toán với Paypal’, bạn đồng ý đã đọc và chấp nhận các điều khoản và điều kiện của Ojimah",
+    "description4": "Khách hàng Điều khoản sử dụng, Chính sách bảo mật, cộng với các quy tắc và điều khoản của tour operator (xem danh sách cho thêm chi tiết).",
+    "LeadTraveler": "Trưởng đoàn",
+    "Adult": "Người lớn",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "phoneNumber": "Số điện thoại",
+    "address": "Địa chỉ",
+    "city": "Thành phố",
+    "State": "Tiểu bang/Tỉnh/Khu vực",
+    "ZipCode": "Mã bưu chính",
+    "Country": "Quốc gia",
+    "SpecialRequirement": "Yêu cầu đặc biệt",
+    "zod": {
+      "paymentMethod": "Phương thức thanh toán là bắt buộc",
+      "firstName": "Tên là bắt buộc",
+      "lastName": "Họ là bắt buộc",
+      "email": "Địa chỉ email không hợp lệ",
+      "phone": "Số điện thoại là bắt buộc"
+    }
+  },
+  "FogotPage": {
+    "title": "Quên mật khẩu",
+    "content": "Nhập địa chỉ email được liên kết với tài khoản. Chúng tôi sẽ gửi email alink để đặt lại mật khẩu của bạn.",
+    "email": "Địa chỉ Email",
+    "SendButton": "Gửi yêu cầu",
+    "Backtosignin": "Trở lại đăng nhập",
+    "zodEmail": "Địa chỉ email không hợp lệ"
+  },
+  "SignInPage": {
+    "title": "Đăng nhập",
+    "content": "Chào mừng tới NgaoduVietnam",
+    "email": "Địa chỉ Email",
+    "Password": "Mật khẩu",
+    "Forgotpassword": "Quên mật khẩu?",
+    "Signin": "Đăng nhập",
+    "SignFacebook": "Đăng nhập bằng Facebook",
+    "DontAccount": "Không có tài khoản?",
+    "Signup": "Đăng ký",
+    "zod": {
+      "password": {
+        "min": "Mật khẩu phải có ít nhất 8 ký tự",
+        "regax": "Mật khẩu phải chứa ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt"
+      }
+    }
+  },
+  "NewPassPage": {
+    "title": "Mật khẩu mới",
+    "content": "Tạo mật khẩu mới của bạn",
+    "NewPassword": "Mật khẩu mới của bạn",
+    "ConfirmPassword": "Xác nhận khẩu mới của bạn"
+  },
+  "RegisterPage": {
+    "title": "Đăng ký",
+    "FirstName": "Tên",
+    "LastName": "Họ",
+    "EmailAddress": "Địa chỉ Email",
+    "Password": "Mật khẩu",
+    "Signup": "Đăng ký",
+    "SignupFacebook": "Đăng ký bằng Facebook",
+    "Member": "Đã là thành viên?",
+    "Signin": "Đăng nhập"
+  },
+  "notification": {
+    "forgotPassword": "Email đặt lại mật khẩu đã được gửi thành công!",
+    "RegisterSuccess": "Đăng ký thành công",
+    "RegisterFailed": "Đăng ký thất bại",
+    "LoginSuccess": "Đăng nhập thành công!",
+    "LoginFailed": "Đăng nhập thất bại",
+    "DetailCardForm": {
+      "RoomIncrease": "Tăng số phòng",
+      "RoomIncreaseDes": "Bạn đã tăng số phòng lựa chọn",
+      "to": "thành",
+      "RoomDecrease": "Giảm số phòng",
+      "RoomDecreaseDes": "Bạn đã giảm số phòng lựa chọn",
+      "RoomeRemove": "Bạn đã xóa lựa chọn phòng",
+      "WarnningSelectRoom": "Vui lòng chọn phòng! Nhấp vào đây để chọn phòng",
+      "WarnningGuest": "Tổng số khách là",
+      "WarnningGuest_1": "đã vượt quá sức chứa của phòng",
+      "WarnningGuest_2": "Vui lòng chọn thêm phòng hoặc giảm số lượng khách.",
+      "WarnningGuestTitle": "Sức chứa khách vượt quá"
+    },
+    "SearchPage": "Tìm kiếm thành công",
+    "Add_on": {
+      "Add-onIncrease": "Tăng tiện ích bổ sung",
+      "increaseDes": "Bạn đã tăng tiện ích bổ sung",
+      "Breakfast": "Bữa sáng",
+      "ExtraBed": "Giường phụ",
+      "Add-onDecrease": "Giảm tiện ích bổ sung",
+      "decreaseDes": "Bạn đã giảm tiện ích bổ sung",
+      "Add-onRemove": "Xóa tiện ích bổ sung",
+      "removeDes": "Bạn đã xóa tiện ích bổ sung",
+      "Add-onAdd": "Tiện ích bổ sung thêm",
+      "addDes": "Bạn đã thêm tiện ích bổ sung"
+    },
+    "Logout": "Đăng xuất thành công",
+    "SelectRoom": {
+      "RoomSelected": "Phòng đã chọn",
+      "RoomSelectedDes": "Bạn đã chọn phòng",
+      "RoomUnselected": "Đã bỏ chọn phòng",
+      "RoomUnselectedDes": "Bạn đã bỏ chọn phòng"
+    },
+    "Login": "Vui lòng đăng nhập để bình luận"
+  },
+  "ReviewCard": {
+    "Wonderful": "Tuyệt Vời",
+    "VeryGood": "Rất tốt",
+    "Good": "Tốt",
+    "Pleasant": "Tạm ổn",
+    "Baseon": "Dựa trên",
+    "reviews": "đánh giá",
+    "Writereview": "Viết đánh giá",
+    "Rating": "Điểm đánh giá",
+    "Comment": "Bình luận",
+    "Addcomment": "Viết bình luận",
+    "Title": "Chủ đề"
+  }
 }

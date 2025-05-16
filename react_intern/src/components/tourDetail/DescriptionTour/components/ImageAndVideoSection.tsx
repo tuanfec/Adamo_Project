@@ -1,4 +1,5 @@
 import { ImageAndVideo } from "@/types/tour";
+import { useTranslation } from "react-i18next";
 
 interface ImageAndVideoSectionProps {
   data: ImageAndVideo;
@@ -6,11 +7,11 @@ interface ImageAndVideoSectionProps {
 export const ImageAndVideoSection: React.FC<ImageAndVideoSectionProps> = ({
   data,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="mt-10">
-      <div className="text-xl font-medium my-5">
-        360° Panoramic Images and Videos
-      </div>
+      <div className="text-xl font-medium my-5">{t("Infomation.img")}</div>
       <div className="w-full h-[400px] mb-10">
         <iframe
           src={data?.map360ImageLink}

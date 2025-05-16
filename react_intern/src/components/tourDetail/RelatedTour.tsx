@@ -7,6 +7,7 @@ import { useHotels } from "@/hooks/useHotels";
 import { HotelFormData } from "@/types/hotel";
 import { HotelCard } from "../home/HotelCard";
 import { Loading } from "../common/Loading";
+import { useTranslation } from "react-i18next";
 interface RelatedTourProps {
   source: string;
   currentTourId?: string;
@@ -18,6 +19,7 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
   currentTourId,
   isHotel,
 }) => {
+  const { t } = useTranslation();
   const { data: tourData, isLoading } = useTourList(source);
   const navigate = useNavigate();
   const { data: hotelData } = useHotels();
@@ -78,9 +80,11 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
   return (
     <div>
       {isHotel ? (
-        <p className="text-2xl font-medium my-8">Recommended for you</p>
+        <p className="text-2xl font-medium my-8">
+          {t("RelatedTour.recommended")}
+        </p>
       ) : (
-        <p className="text-2xl font-medium my-8">Related Tours</p>
+        <p className="text-2xl font-medium my-8">{t("RelatedTour.title")}</p>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
         {isHotel

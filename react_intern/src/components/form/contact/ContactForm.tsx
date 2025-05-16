@@ -1,16 +1,24 @@
 import { useNotification } from "@/components/notifiction/NotificationProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import z from "zod";
 
-const contactSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  phone: z.string().min(1).max(10),
-  message: z.string().min(1),
-});
-type ContactFormType = z.infer<typeof contactSchema>;
 export const ContactForm = () => {
+  const { t } = useTranslation();
+
+  const contactSchema = z.object({
+    name: z.string().min(1, { message: t("contactForm.zod.name.required") }),
+    email: z.string().email({ message: t("contactForm.zod.email.required") }),
+    phone: z
+      .string()
+      .min(1, { message: t("contactForm.zod.phone.min") })
+      .max(10, {
+        message: t("contactForm.zod.phone.max"),
+      }),
+    message: z.string().optional(),
+  });
+
   const {
     register,
     handleSubmit,
@@ -18,6 +26,7 @@ export const ContactForm = () => {
   } = useForm<ContactFormType>({
     resolver: zodResolver(contactSchema),
   });
+
   const notify = useNotification();
   const onSubmit = (data: ContactFormType) => {
     console.log(data);
@@ -25,15 +34,14 @@ export const ContactForm = () => {
       message: "Message sent successfully",
     });
   };
+  type ContactFormType = z.infer<typeof contactSchema>;
   return (
     <form className="flex flex-col gap-4 " onSubmit={handleSubmit(onSubmit)}>
-      <p className="text-3xl font-bold">We'd love to hear from you</p>
-      <p className="text-md  my-4 ">
-        Send us a message and we'll respond as soon as possible
-      </p>
+      <p className="text-3xl font-bold">{t("contactForm.title")}</p>
+      <p className="text-md  my-4 ">{t("contactForm.description")}</p>
       <div className="flex flex-col gap-2">
         <input
-          placeholder="Your Name"
+          placeholder={t("contactForm.input.name")}
           className="bg-[#F5F5F5] rounded-md p-4 dark:bg-[#7a7a7a9d]"
           type="text"
           {...register("name")}
@@ -44,7 +52,7 @@ export const ContactForm = () => {
       </div>
       <div className="flex flex-col gap-2">
         <input
-          placeholder="Your Email"
+          placeholder={t("contactForm.input.email")}
           className="bg-[#F5F5F5] rounded-md p-4 dark:bg-[#7a7a7a9d]"
           type="email"
           {...register("email")}
@@ -55,7 +63,7 @@ export const ContactForm = () => {
       </div>
       <div className="flex flex-col gap-2">
         <input
-          placeholder="Your Phone"
+          placeholder={t("contactForm.input.phone")}
           className="bg-[#F5F5F5] rounded-md p-4 dark:bg-[#7a7a7a9d]"
           type="number"
           {...register("phone")}
@@ -66,7 +74,7 @@ export const ContactForm = () => {
       </div>
       <div className="flex flex-col gap-2">
         <textarea
-          placeholder="Message"
+          placeholder={t("contactForm.input.message")}
           className="bg-[#F5F5F5] rounded-md p-4 min-h-[100px] dark:bg-[#7a7a7a9d]"
           {...register("message")}
         />
@@ -78,7 +86,7 @@ export const ContactForm = () => {
       <button
         className="font-medium cursor-pointer bg-[#FF7B42] text-white py-3 px-4 w-1/2"
         type="submit">
-        Send Message
+        {t("contactForm.button")}
       </button>
     </form>
   );

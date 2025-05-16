@@ -7,6 +7,7 @@ import { Pagination } from "@/components/common/Pagination";
 import { useState } from "react";
 import { ReviewCardHotel } from "./component/ReviewCardHotel";
 import { useNotification } from "@/components/notifiction/NotificationProvider";
+import { useTranslation } from "react-i18next";
 interface ReviewTourProps {
   data: ReviewStats;
   comments: Comment[];
@@ -25,7 +26,8 @@ export const ReviewTour: React.FC<ReviewTourProps> = ({
   const itemsPerPage = 2;
   const totalPages = Math.ceil(comments?.length / itemsPerPage);
   const notification = useNotification();
-  console.log(comments);
+  const { t } = useTranslation();
+
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1);
   };
@@ -38,7 +40,7 @@ export const ReviewTour: React.FC<ReviewTourProps> = ({
   const handleOpenReview = () => {
     if (!isLogin) {
       notification.warning({
-        message: "Please login to comment",
+        message: t("notification.Login"),
         onClick: () =>
           navigate("/login", { state: { from: window.location.pathname } }),
       });
@@ -65,7 +67,7 @@ export const ReviewTour: React.FC<ReviewTourProps> = ({
               navigate("/login", { state: { from: window.location.pathname } })
             }
             className="bg-gray-300 dark:bg-[#575656] text-center text-black font-medium cursor-pointer p-2 rounded-lg">
-            Please login to comment
+            {t("Infomation.checkLogin")}
           </div>
           <div className="border-t border-gray-400 dark:border-gray-600 my-10"></div>
         </>

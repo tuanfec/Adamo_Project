@@ -3,10 +3,12 @@ import banner from "@/assets/contact.jpg";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ContactForm } from "@/components/form/contact/ContactForm";
 import { ImageContent } from "@/components/contact/ImageContent";
+import { useTranslation } from "react-i18next";
 const ContactPage = () => {
+  const { t } = useTranslation();
   return (
     <CommonLayout
-      title="Contact Us"
+      title={t("banner.contactPage.title")}
       content=""
       isDisplaySearchTour={false}
       isDisplayFeatured={false}

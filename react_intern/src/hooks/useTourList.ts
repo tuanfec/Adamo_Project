@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getAttractiveTours, getTraditionalCultureTours } from "@/api/homeAPI";
 
-export const useTourList = (header: string | undefined) => {
+export const useTourList = (header?: string | undefined) => {
   const [data, setData] = useState<any[]>([]);
   const reduxData = useSelector((state: any) => state.tourDataSlide.tourData);
   const reduxHeader = useSelector((state: any) => state.tourDataSlide.header);

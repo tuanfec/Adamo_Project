@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import { FiUsers } from "react-icons/fi";
 import { CiLocationOn } from "react-icons/ci";
 import { AddOn, Room } from "@/types/hotel";
-
+import { useTranslation } from "react-i18next";
 const zodSchema = z.object({
   adult: z.number().min(1, "Adult is required"),
   child: z.number().min(0, "Child is required"),
@@ -15,6 +15,7 @@ const zodSchema = z.object({
 type FormValues = z.infer<typeof zodSchema>;
 
 const TourSummary: React.FC = () => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -22,8 +23,6 @@ const TourSummary: React.FC = () => {
   } = useForm<FormValues>({ resolver: zodResolver(zodSchema) });
   const { tourDetail, total, totalGuest } = useLocation().state;
   const { selectedRoom, addOn, hotelData, totalPrice } = useLocation().state;
-  console.log("selectedRoom", selectedRoom);
-  console.log("addOn", totalPrice);
 
   return (
     <div className="w-full h-full ">
@@ -45,7 +44,7 @@ const TourSummary: React.FC = () => {
             <div className="flex items-center gap-[30%]">
               <div className="flex flex-col">
                 <p className="text-gray-600 text-sm dark:text-[#bbbbbb]">
-                  Duration:
+                  {t("checkOut.duration")}
                 </p>
                 <span className="font-medium dark:text-white">
                   {tourDetail?.duration}
@@ -53,7 +52,7 @@ const TourSummary: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <p className="text-gray-600 text-sm dark:text-[#bbbbbb]">
-                  Type:
+                  {t("checkOut.type")}
                 </p>
                 <span className="font-medium dark:text-white">
                   {tourDetail?.type}
@@ -78,7 +77,7 @@ const TourSummary: React.FC = () => {
               <CustomDropdown<FormValues>
                 isTotalGuest={true}
                 totalGuest={totalGuest}
-                placeholder="Number of guests"
+                placeholder={t("checkOut.numberOfGuests")}
                 icon={<FiUsers className="text-xl text-[#FF7B42]" />}
                 isSelect={false}
                 register={register}
@@ -90,10 +89,10 @@ const TourSummary: React.FC = () => {
                 <input
                   className="bg-white dark:bg-[#7a7a7a9d] dark:text-white w-2/3 py-4 px-3 text-sm cursor-pointer"
                   type="text"
-                  placeholder="Promo Code"
+                  placeholder={t("checkOut.promoCode")}
                 />
                 <button className="border w-1/3 border-[#FF7B42] text-[#FF7B42] dark:text-white dark:border-white font-medium text-lg h-[52px] px-4">
-                  Apply
+                  {t("checkOut.apply")}
                 </button>
               </div>
             </div>
@@ -118,7 +117,7 @@ const TourSummary: React.FC = () => {
                 })}
                 <div>
                   <p className="text-lg font-medium text-[#888888] dark:text-white">
-                    Add-ons
+                    {t("addOnSection.addOns")}
                   </p>
                   <div className="flex flex-col gap-2 mt-2">
                     {addOn && (
@@ -130,7 +129,7 @@ const TourSummary: React.FC = () => {
                                 {addOn?.breakfast.numberSelect}x
                               </p>
                               <span className="font-bold text-md dark:text-[#bbbbbb]">
-                                Breakfast:
+                                {t("addOnSection.breakfast")}
                               </span>
                             </div>
 
@@ -146,7 +145,7 @@ const TourSummary: React.FC = () => {
                                 {addOn?.extraBed.numberSelect}x
                               </p>
                               <span className="font-bold text-md dark:text-[#bbbbbb]">
-                                Extra Bed:
+                                {t("addOnSection.extraBed")}
                               </span>
                             </div>
 
@@ -165,7 +164,7 @@ const TourSummary: React.FC = () => {
         </div>
       </div>
       <div className="flex bg-black items-center justify-between lg:py-8 py-6 text-white px-7 mb-10">
-        <p className="text-xl font-normal">Total: </p>{" "}
+        <p className="text-xl font-normal">{t("checkOut.total")}: </p>{" "}
         {tourDetail ? (
           <p className="font-bold text-xl ">${total || tourDetail?.price}</p>
         ) : (

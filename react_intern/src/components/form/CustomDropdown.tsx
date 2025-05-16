@@ -11,6 +11,7 @@ import {
   UseFormSetValue,
 } from "react-hook-form";
 import { HotelFormData } from "@/types/hotel";
+import { useTranslation } from "react-i18next";
 interface CustomDropdownProps<
   T extends { adult: any; child: any; type?: string[] },
 > {
@@ -61,7 +62,7 @@ export const CustomDropdown = <
   setValue,
 }: CustomDropdownProps<T>) => {
   const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   // State để lưu lựa chọn đã xác nhận cho type
   const [selectedTypeConfirmed, setSelectedTypeConfirmed] = React.useState<
     string[]
@@ -115,7 +116,7 @@ export const CustomDropdown = <
                 : "text-gray-500 dark:text-[#bbbbbb]"
             }>
             {totalGuest?.adult !== undefined
-              ? `${totalGuest?.adult} Adult, ${totalGuest?.child} Child`
+              ? `${totalGuest?.adult} ${t("formSearch.input.Adult")}, ${totalGuest?.child} ${t("formSearch.input.Child")}`
               : placeholder}
           </span>
         ) : type ? (
@@ -180,7 +181,7 @@ export const CustomDropdown = <
             <div className="flex flex-row gap-4">
               <div className="flex flex-col">
                 <p className="text-gray-600 text-sm mb-2 font-medium dark:text-white">
-                  Adult
+                  {t("formSearch.input.Adult")}
                 </p>
                 <input
                   type="number"
@@ -199,7 +200,7 @@ export const CustomDropdown = <
               </div>
               <div className="flex flex-col">
                 <p className="text-gray-600 text-sm mb-2 font-medium dark:text-white">
-                  Child
+                  {t("formSearch.input.Child")}
                 </p>
                 <input
                   type="number"

@@ -14,25 +14,11 @@ import { setSearchTour } from "@/app/slide/tourDataSlide";
 import { setSearchHotel } from "@/app/slide/hotelDataSlide";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "../notifiction/NotificationProvider";
+import { useTranslation } from "react-i18next";
 interface SearchTourProps {
   isHeader: boolean;
   isTour: boolean;
 }
-
-const zodSchema = z
-  .object({
-    location: z.string().min(1, "Location is required"),
-    startDate: z.string().min(1, "Start date is required"),
-    endDate: z.string().min(1, "End date is required"),
-    adult: z.number().min(1, "Adult is required"),
-    child: z.number().min(0, "Child is required"),
-    type: z.array(z.string()).optional(),
-  })
-  .refine((data) => new Date(data.endDate) > new Date(data.startDate), {
-    message: "Start date must be before end date",
-    path: ["endDate"],
-  });
-type FormValues = z.infer<typeof zodSchema>;
 
 // Helper to get unique values from array
 const getUnique = (arr: any[]) => [...new Set(arr)];
@@ -43,10 +29,25 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
   const [isOpenTotalGuest, setIsOpenTotalGuest] = useState(false);
   const [selectedTab, setSelectedTab] = useState<"tour" | "hotel">("tour");
   const notification = useNotification();
+  const { t } = useTranslation();
   useEffect(() => {
     setSelectedTab(isTour ? "tour" : "hotel");
   }, [isTour]);
 
+  const zodSchema = z
+    .object({
+      location: z.string().min(1, t("formSearch.zod.location.required")),
+      startDate: z.string().min(1, t("formSearch.zod.startDate.required")),
+      endDate: z.string().min(1, t("formSearch.zod.endDate.required")),
+      adult: z.number().min(1, t("formSearch.zod.adult.min")),
+      child: z.number().min(0, t("formSearch.zod.child.min")),
+      type: z.array(z.string()).optional(),
+    })
+    .refine((data) => new Date(data.endDate) > new Date(data.startDate), {
+      message: t("formSearch.zod.endDate.required"),
+      path: ["endDate"],
+    });
+  type FormValues = z.infer<typeof zodSchema>;
   // Redux selectors
   const allTour = useSelector((state: any) => state.tourDataSlide.allTour);
   const searchTour = useSelector(
@@ -106,7 +107,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
       navigate("/hotels/search");
     }
     notification.success({
-      message: "Search successful",
+      message: t("notification.SearchPage"),
       type: "success",
     });
   };
@@ -116,8 +117,8 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
       <div className="w-full bg-gray-300/60 dark:bg-gray-600/30 backdrop-blur-md h-full">
         {isHeader && (
           <FormHeader
-            title1="Tours"
-            title2="Hotels"
+            title1={t("formSearch.title.title_1")}
+            title2={t("formSearch.title.title_2")}
             selectedTab={selectedTab}
             onSelectTab={setSelectedTab}
           />
@@ -126,8 +127,8 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
           <FormTitle
             title={
               selectedTab === "tour"
-                ? "Discover beautiful Vietnam"
-                : "Find hotels for your next trip"
+                ? t("formSearch.content.title_1")
+                : t("formSearch.content.title_2")
             }
           />
 
@@ -139,7 +140,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
               </div>
               <input
                 type="text"
-                placeholder="Location"
+                placeholder={t("formSearch.input.placeholder_1")}
                 className="w-full py-5 pl-12 pr-4 text-sm "
                 list="location-list"
                 {...register("location")}
@@ -154,6 +155,9 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
                   <option value={loc} key={loc} />
                 ))}
               </datalist>
+              <p className="text-red-500 text-sm absolute bottom-0 left-5">
+                {errors.location?.message}
+              </p>
             </div>
 
             <div className="relative bg-white w-full dark:bg-[#2121216b] dark:text-[#bbbbbb]">
@@ -196,7 +200,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
                 type={uniqueTourTypes as string[]}
                 isOpen={isOpenTour}
                 onToggle={() => setIsOpenTour(!isOpenTour)}
-                placeholder="Type of tour"
+                placeholder={t("formSearch.input.placeholder_2")}
                 isSelect
                 icon={<IoFlagOutline className="text-xl text-[#FF7B42]" />}
                 register={register}
@@ -210,7 +214,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
               isOpen={isOpenTotalGuest}
               isTotalGuest
               onToggle={() => setIsOpenTotalGuest(!isOpenTotalGuest)}
-              placeholder="Number of guests"
+              placeholder={t("formSearch.input.placeholder_3")}
               icon={<FiUsers className="text-xl text-[#FF7B42]" />}
               isSelect
               register={register}
@@ -223,7 +227,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
             type="submit"
             onClick={handleSubmit(handleSearch)}
             className="bg-[#FF7B42] font-medium text-white py-5 hover:bg-orange-600 transition-colors rounded-md">
-            Search
+            {t("formSearch.button")}
           </button>
         </div>
       </div>

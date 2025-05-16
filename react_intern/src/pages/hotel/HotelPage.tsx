@@ -1,6 +1,5 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { useHotels } from "@/hooks/useHotels";
-import { Loading } from "@/components/common/Loading";
 import { ListHotels } from "@/components/hotels/ListHotels";
 import { useDispatch, useSelector } from "react-redux";
 import { setHotelData } from "@/app/slide/hotelDataSlide";
@@ -8,9 +7,13 @@ import { useEffect } from "react";
 import { Header } from "@/components/hotels/Header";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@/assets/hotel_banner.jpg";
+import { useTranslation } from "react-i18next";
 const HotelPage: React.FC = () => {
-  const { data: hotels, isLoading } = useHotels();
+  const { t } = useTranslation();
+  const { data: hotels } = useHotels();
   const dispatch = useDispatch();
+
+  //select Redux data
   const hotelData = useSelector((state: any) => state.hotelDataSlide.hotelData);
   const sortBy = useSelector((state: any) => state.hotelDataSlide.sortBy);
   const filterData = useSelector((state: any) => state.hotelDataSlide.filter);
@@ -19,32 +22,30 @@ const HotelPage: React.FC = () => {
     dispatch(setHotelData(hotels));
   }, [hotels, dispatch]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
+  //funcion sort hotel
   const sortedHotels = (hotels || []).slice().sort((a: any, b: any) => {
-    if (sortBy === "Price high to low") {
+    if (sortBy === t("Sort.Type.highL")) {
       const minA = Math.min(...a.rooms.map((room: any) => room.price));
       const minB = Math.min(...b.rooms.map((room: any) => room.price));
       return minB - minA;
     }
-    if (sortBy === "Price low to high") {
+    if (sortBy === t("Sort.Type.lowH")) {
       const minA = Math.min(...a.rooms.map((room: any) => room.price));
       const minB = Math.min(...b.rooms.map((room: any) => room.price));
       return minA - minB;
     }
-    if (sortBy === "Rating" || sortBy === "Star") {
-      if (sortBy === "Rating") {
+    if (sortBy === t("Sort.Type.rate") || sortBy === t("Sort.Type.star")) {
+      if (sortBy === t("Sort.Type.rate")) {
         return b.reviews.rating - a.reviews.rating;
       }
-      if (sortBy === "Star") {
+      if (sortBy === t("Sort.Type.star")) {
         return b.hotelStar - a.hotelStar;
       }
     }
     return 0;
   });
 
+  // filter in sortData
   const filteredHotels = sortedHotels.filter((hotel: any) => {
     const matchBudget = hotel.rooms.some(
       (room: any) =>
@@ -61,8 +62,8 @@ const HotelPage: React.FC = () => {
 
   return (
     <CommonLayout
-      title="From cozy country homes to funky city apartments"
-      content="Find deals on hotels, homes, and much more..."
+      title={t("banner.hotelPage.title")}
+      content={t("banner.hotelPage.content")}
       isDisplaySearchTour={true}
       isDisplayFeatured={false}
       img={banner}

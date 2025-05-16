@@ -3,12 +3,14 @@ import { BiShapeSquare } from "react-icons/bi";
 import { ImageDetail } from "../tourDetail/ImageDetail";
 import { Room } from "@/types/hotel";
 import { FaBed } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 export const RoomDetailModel: React.FC<{
   data: Room;
   selectedRoom: (room: Room) => void;
   handleCancel: () => void;
   isSelected: boolean;
 }> = ({ data, selectedRoom, handleCancel, isSelected }) => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col lg:flex-row gap-4 p-5 ">
       <div className="w-full md:h-1/2 lg:w-1/2">
@@ -25,7 +27,7 @@ export const RoomDetailModel: React.FC<{
                 <span className="text-xl text-[#d8412d]  font-bold">
                   ${data.price}
                 </span>
-                / night
+                / {t("selectRoom.night")}
               </p>
             </div>
             {isSelected ? (
@@ -35,7 +37,7 @@ export const RoomDetailModel: React.FC<{
                   selectedRoom(data);
                   handleCancel();
                 }}>
-                Selected
+                {t("selectRoom.selected")}
               </button>
             ) : (
               <button
@@ -44,7 +46,7 @@ export const RoomDetailModel: React.FC<{
                   selectedRoom(data);
                   handleCancel();
                 }}>
-                Select Room
+                {t("selectRoom.selectRoom")}
               </button>
             )}
           </div>
@@ -56,7 +58,7 @@ export const RoomDetailModel: React.FC<{
           <div className="flex items-center gap-2">
             <FaUserFriends className="text-[#4F4F4F] dark:text-[#e8e7e7] text-xl" />
             <span className="text-[#0069E4] dark:text-[#bbbbbb] text-md font-medium">
-              {data.guests} Guest
+              {data.guests} {t("selectRoom.guests")}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -82,7 +84,7 @@ export const RoomDetailModel: React.FC<{
 
         <div className="flex flex-col gap-2">
           <p className="text-[#000000] dark:text-white font-medium text-md">
-            Room Facilities:
+            {t("selectRoom.roomFacilities")}
           </p>
           <div className="grid grid-cols-2 gap-2">
             {data.amenities.map((item) => (

@@ -14,6 +14,7 @@ import AddOnSection from "./hotel/AddOnSection";
 import { setSelectedRoom } from "@/app/slide/hotelDataSlide";
 import { setStatePage, PageState } from "@/app/slide/statePageSlide";
 import { useNotification } from "../notifiction/NotificationProvider";
+import { useTranslation } from "react-i18next";
 
 // Form validation schema
 const zodSchema = z.object({
@@ -37,6 +38,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   const { id } = useParams();
   const notification = useNotification();
   const [isOpenTotalGuest, setIsOpenTotalGuest] = useState(false);
+  const { t } = useTranslation();
 
   // Redux selectors
   const tourDetail = useSelector(
@@ -94,8 +96,8 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
     );
     dispatch(setSelectedRoom(newSelectedRooms));
     notification.success({
-      message: "Room increase",
-      description: `You have increase the room '${name}' to ${newSelectedRooms.find((room: Room) => room.id === id)?.numberSelect}`,
+      message: t("notification.DetailCardForm.RoomIncrease"),
+      description: `${t("notification.DetailCardForm.RoomIncreaseDes")} '${name}' ${t("notification.DetailCardForm.to")} ${newSelectedRooms.find((room: Room) => room.id === id)?.numberSelect}`,
       duration: 3,
       placement: "topRight",
     });
@@ -116,15 +118,15 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
     dispatch(setSelectedRoom(newSelectedRooms));
     if (newSelectedRooms.length > 0) {
       notification.success({
-        message: "Room decrease",
-        description: `You have decrease the room '${name}' to ${newSelectedRooms.find((room: Room) => room.id === id)?.numberSelect}`,
+        message: t("notification.DetailCardForm.RoomDecrease"),
+        description: `${t("notification.DetailCardForm.RoomDecreaseDes")} '${name}' ${t("notification.DetailCardForm.to")} ${newSelectedRooms.find((room: Room) => room.id === id)?.numberSelect}`,
         duration: 3,
         placement: "topRight",
       });
     } else {
       notification.success({
-        message: "Room decrease",
-        description: `You have remove the room '${name}'`,
+        message: t("notification.DetailCardForm.RoomDecrease"),
+        description: `${t("notification.DetailCardForm.RoomeRemove")} '${name}'`,
         duration: 3,
         placement: "topRight",
       });
@@ -134,7 +136,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   const handleBookNow = () => {
     if (selectedRoom.length === 0 && isHotel) {
       notification.warning({
-        message: "Please select a room! Click here to select room",
+        message: t("notification.DetailCardForm.WarnningSelectRoom"),
         placement: "topRight",
         onClick: () => {
           dispatch(setStatePage(PageState.SELECT_ROOM));
@@ -146,8 +148,8 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
     }
     if (totalGuestCapacity > totalRoomCapacity && isHotel) {
       notification.warning({
-        message: "Guest Capacity Exceeded",
-        description: `The total number of guests (${totalGuestCapacity}) exceeds the room capacity (${totalRoomCapacity}). Please select additional rooms or reduce number of guests.`,
+        message: t("notification.DetailCardForm.WarnningGuestTitle"),
+        description: `${t("notification.DetailCardForm.WarnningGuest")} (${totalGuestCapacity}) ${t("notification.DetailCardForm.RoomeRemove_1")} (${totalRoomCapacity}). ${t("notification.DetailCardForm.RoomeRemove_2")}`,
         duration: 5,
         placement: "topRight",
       });
@@ -170,9 +172,11 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
         <div className="flex flex-col gap-4 py-7 px-7">
           {/* Price & duration */}
           <div className="flex items-center gap-2 ">
-            <p className="text-gray-600 text-sm dark:text-[#bbbbbb]"> from </p>
+            <p className="text-gray-600 text-sm dark:text-[#bbbbbb]">
+              {t("CardTour.from")}
+            </p>
             <span className="font-medium text-gray-600 dark:text-white text-xl mb-1">
-              ${isHotel ? minPrice : tourDetail?.price}.00
+              ${isHotel ? minPrice : tourDetail?.price}
             </span>
           </div>
           <div className="border-b border-gray-400"></div>
@@ -180,13 +184,13 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
             <div className="flex items-center gap-[30%]">
               <div className="flex flex-col">
                 <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
-                  Duration:
+                  {t("filter.Duration")}:
                 </p>
                 <span className="font-medium">{tourDetail?.duration}</span>
               </div>
               <div className="flex flex-col">
                 <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
-                  Type:
+                  {t("filter.Type")}:
                 </p>
                 <span className="font-medium">{tourDetail?.type}</span>
               </div>
@@ -221,7 +225,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
                 totalGuest={totalGuest}
                 isTotalGuest={true}
                 onToggle={() => setIsOpenTotalGuest(!isOpenTotalGuest)}
-                placeholder="Number of guests"
+                placeholder={t("formSearch.input.placeholder_3")}
                 icon={<FiUsers className="text-xl text-[#FF7B42]" />}
                 isSelect={true}
                 register={register}
@@ -263,14 +267,12 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
                 )}
             </div>
             {errors.adult && (
-              <p className="text-red-500 text-sm">
-                Please enter the number of guests
-              </p>
+              <p className="text-red-500 text-sm">{t("errro.guest")}</p>
             )}
             {/* Total price & book button */}
             <div className="flex items-center justify-between my-3 gap-2 mb-10">
               <p className="text-gray-600 text-xl font-medium dark:text-[#bbbbbb]">
-                Total:{" "}
+                {t("Form.Total")}
               </p>
               {isHotel ? (
                 <p className="font-bold text-xl dark:text-[#FF7B42]">
@@ -285,7 +287,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
             <button
               onClick={handleSubmit(handleBookNow)}
               className="bg-[#FF7B42] font-medium text-white py-5 hover:bg-orange-600 transition-colors rounded-md">
-              Book now
+              {t("Form.Booknow")}
             </button>
           </div>
         </div>

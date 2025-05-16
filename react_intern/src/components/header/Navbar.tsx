@@ -45,7 +45,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
       navigate("/");
       notification.success({
         title: "Success",
-        message: "Logout successful!",
+        message: t("notification.Logout"),
       });
     } catch (error) {
       console.error("Logout failed:", error);
@@ -53,18 +53,18 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
   };
 
   const navItems: NavItem[] = [
-    { label: "home", path: "/" },
-    { label: "about", path: "/about" },
-    { label: "tour", path: "/tours" },
-    { label: "hotels", path: "/hotels" },
-    { label: "contact", path: "/contact" },
+    { label: "navbar.home", path: "/" },
+    { label: "navbar.about", path: "/about" },
+    { label: "navbar.tour", path: "/tours" },
+    { label: "navbar.hotels", path: "/hotels" },
+    { label: "navbar.contact", path: "/contact" },
     {
-      label: "Login",
+      label: "navbar.login",
       path: "/Login",
       isLoggedIn: false,
     },
     {
-      label: "Logout",
+      label: "navbar.logout",
       path: "/",
       isLoggedIn: true,
       onClick: handleLogout,
@@ -104,7 +104,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
               key={item.label}
               onClick={item.onClick}
               className={`transition-colors duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1`}>
-              {item.label}
+              {t(item.label)}
             </button>
           ) : (
             <Link
