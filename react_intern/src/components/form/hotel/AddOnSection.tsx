@@ -3,7 +3,9 @@ import { ButtonCountRoom } from "./ButtonCountRoom";
 import { setAddOn } from "@/app/slide/hotelDataSlide";
 import { useDispatch, useSelector } from "react-redux";
 import { useNotification } from "@components/notifiction/NotificationProvider";
+import { useTranslation } from "react-i18next";
 function AddOnSection({ data }: { data?: HotelFormData }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const addOn = useSelector((state: any) => state.hotelDataSlide.addOn);
   const notification = useNotification();
@@ -30,8 +32,8 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
       );
     }
     notification.success({
-      message: "Add-on increase",
-      description: `You have increase the add-on ${isBreakfast ? "Breakfast" : "Extra Bed"}`,
+      message: t("notification.Add_on.Add-onIncrease"),
+      description: `${t("notification.Add_on.increaseDes")}: ${isBreakfast ? t("notification.Add_on.Breakfast") : t("notification.Add_on.ExtraBed")}`,
       duration: 3,
       placement: "topRight",
     });
@@ -66,8 +68,8 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
       addOn?.extraBed?.numberSelect !== 0
     ) {
       notification.success({
-        message: "Add-on decrease",
-        description: `You have decrease the add-on ${isBreakfast ? "Breakfast" : "Extra Bed"}`,
+        message: t("notification.Add_on.Add-onDecrease"),
+        description: `${t("notification.Add_on.decreaseDes")}: ${isBreakfast ? t("notification.Add_on.Breakfast") : t("notification.Add_on.ExtraBed")}`,
         duration: 3,
         placement: "topRight",
       });
@@ -98,8 +100,8 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
         );
       }
       notification.success({
-        message: "Add-on remove",
-        description: `You have remove the add-on ${isBreakfast ? "Breakfast" : "Extra Bed"}`,
+        message: t("notification.Add_on.Add-onRemove"),
+        description: `${t("notification.Add_on.removeDes")}: ${isBreakfast ? t("notification.Add_on.Breakfast") : t("notification.Add_on.ExtraBed")}`,
         duration: 3,
         placement: "topRight",
       });
@@ -126,8 +128,8 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
         );
       }
       notification.success({
-        message: "Add-on add",
-        description: `You have add the add-on ${isBreakfast ? "Breakfast" : "Extra Bed"}`,
+        message: t("notification.Add_on.Add-onAdd"),
+        description: `${t("notification.Add_on.addDes")}: ${isBreakfast ? t("notification.Add_on.Breakfast") : t("notification.Add_on.ExtraBed")}`,
         duration: 3,
         placement: "topRight",
       });
@@ -137,7 +139,7 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
   return (
     <div className="flex flex-col gap-2">
       <h3 className="text-lg font-medium text-[#2A2A2A] dark:text-white">
-        Add-ons:
+        {t("addOnSection.addOns")}
       </h3>
       <div className="grid grid-cols-5">
         <div className="col-span-2 flex items-center gap-2">
@@ -148,7 +150,7 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
             onChange={(e) => handleCheckboxChange(true, e.target.checked)}
           />
           <p className=" font-medium text-lg text-[#4F4F4F] dark:text-[#bbbbbb]">
-            Breakfast
+            {t("addOnSection.breakfast")}
           </p>
         </div>
         <div className="col-span-2 flex items-center justify-center">
@@ -173,7 +175,7 @@ function AddOnSection({ data }: { data?: HotelFormData }) {
             onChange={(e) => handleCheckboxChange(false, e.target.checked)}
           />
           <p className=" font-medium text-lg text-[#4F4F4F] dark:text-[#bbbbbb]">
-            Extra Bed
+            {t("addOnSection.extraBed")}
           </p>
         </div>
         <div className="col-span-2 flex items-center justify-center">

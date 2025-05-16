@@ -11,7 +11,9 @@ import { RoomDetailModel } from "./RoomDetailModel";
 import { Modal } from "antd";
 import { useNotification } from "@components/notifiction/NotificationProvider";
 import { useTheme } from "@/config/theme-provider";
+import { useTranslation } from "react-i18next";
 export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { theme } = useTheme();
   const dispatch = useDispatch();
@@ -36,8 +38,8 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
     }
     dispatch(setSelectedRoom(newSelectedRooms));
     notification.success({
-      message: "Room selected",
-      description: `You have selected the room ${data.name}`,
+      message: t("notification.SelectRoom.RoomSelected"),
+      description: `${t("notification.SelectRoom.RoomSelectedDes")} ${data.name}`,
       duration: 3,
       placement: "topRight",
     });
@@ -60,8 +62,8 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
     }
     dispatch(setSelectedRoom(newSelectedRooms));
     notification.success({
-      message: "Room unselected",
-      description: `You have unselected the room ${data.name}`,
+      message: t("notification.SelectRoom.RoomUnselected"),
+      description: `${t("notification.SelectRoom.RoomUnselectedDes")} ${data.name}`,
       duration: 3,
       placement: "topRight",
     });
@@ -119,7 +121,7 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
           <div className="flex items-center gap-2">
             <FaUserFriends className="text-[#4F4F4F] dark:text-[#bbbbbb] text-xl" />
             <span className="text-[#4F4F4F] dark:text-[#bbbbbb] text-md font-medium">
-              {data.guests} Guest
+              {data.guests} {t("selectRoom.guests")}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -139,7 +141,7 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
           {data.amenities.slice(0, 3).join(" • ")}
           <span className="text-blue-900 dark:text-[#e4e1e1] font-medium">
             {data.amenities.length > 3 &&
-              ` • ${data.amenities.length - 3} more`}
+              ` • ${data.amenities.length - 3} ${t("selectRoom.more")}`}
           </span>
         </div>
         <div className="flex justify-between mt-4">
@@ -152,7 +154,7 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
                   className="px-6 py-2 bg-white text-[#FF7B42] font-semibold rounded border 
                   dark:border-none dark:text-white dark:bg-[#FF7B42] dark:hover:bg-white dark:hover:text-[#FF7B42]
                    border-[#FF7B42] hover:bg-[#FF7B42] hover:text-white transition cursor-pointer">
-                  Select Room
+                  {t("selectRoom.selectRoom")}
                 </button>
               )}
             {data.quantity > 0 &&
@@ -167,7 +169,7 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
               )}
             {data.quantity === 0 && (
               <button className="px-6 py-2 bg-[#223143] text-white font-semibold rounded border border-[#223143] cursor-not-allowed">
-                Out of room
+                {t("selectRoom.outOfRoom")}
               </button>
             )}
           </div>
@@ -175,7 +177,9 @@ export const SelectRoomCard: React.FC<{ data: Room }> = ({ data }) => {
             <span className="text-[#EE1D00] dark:text-[#FF7B42] text-2xl font-semibold">
               ${data.price}
             </span>
-            <span className="text-sm text-[#888888] mb-1">/night</span>
+            <span className="text-sm text-[#888888] mb-1">
+              / {t("selectRoom.night")}
+            </span>
           </div>
         </div>
       </div>

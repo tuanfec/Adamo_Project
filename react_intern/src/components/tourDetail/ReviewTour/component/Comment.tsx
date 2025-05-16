@@ -2,6 +2,7 @@ import { AvatarCard } from "./AvatarCard";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 const zodSchema = z.object({
   rating: z.number().min(1, { message: "Rating is required" }),
   title: z.string().min(1, { message: "Title is required" }),
@@ -10,6 +11,7 @@ const zodSchema = z.object({
 
 type FormValues = z.infer<typeof zodSchema>;
 export const Comment: React.FC<{ isHotel?: boolean }> = ({ isHotel }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -26,24 +28,24 @@ export const Comment: React.FC<{ isHotel?: boolean }> = ({ isHotel }) => {
         <div className="flex flex-col w-full gap-2 items-end">
           {isHotel && (
             <div className="flex flex-row gap-2">
-              <span>Rating</span>
+              <span> {t("ReviewCard.Rating")}</span>
               <div className="flex flex-row gap-2"></div>
             </div>
           )}
           {isHotel && (
             <textarea
               className="border w-full border-gray-300 dark:border-gray-600 rounded-lg p-5"
-              placeholder="Title"
+              placeholder={t("ReviewCard.Title")}
               {...register("title")}
             />
           )}
           <textarea
             className="border w-full border-gray-300 dark:border-gray-600 rounded-lg p-5 min-h-[150px]"
-            placeholder="Add a comment"
+            placeholder={t("ReviewCard.Addcomment")}
             {...register("content")}
           />
           <button className="bg-[#FF7B42] font-medium text-white w-1/4 p-2">
-            Comment
+            {t("ReviewCard.Comment")}
           </button>
         </div>
       </div>

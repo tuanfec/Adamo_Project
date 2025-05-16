@@ -2,6 +2,7 @@ import { HotelFormData } from "@/types/hotel";
 import { AiFillStar } from "react-icons/ai";
 import { FaBookmark } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 
 interface HotelCardProps {
   data: HotelFormData;
@@ -9,6 +10,7 @@ interface HotelCardProps {
 }
 
 export const HotelCard: React.FC<HotelCardProps> = ({ data, onClick }) => {
+  const { t } = useTranslation();
   const renderStars = (hotelStar: number) => {
     return [...Array(hotelStar)].map((_, index) => (
       <AiFillStar key={index} className="text-xl lg:text-xl text-[#FFAD32]" />
@@ -53,18 +55,18 @@ export const HotelCard: React.FC<HotelCardProps> = ({ data, onClick }) => {
         <div className="flex items-center justify-between mt-2 ">
           <div className="flex items-center gap-1">
             <p className=" text-sm font-medium text-white bg-[#FF7B42] w-fit px-2 py-1">
-              Rating: {data?.reviews?.rating}
+              {t("HotelCard.Rating")}: {data?.reviews?.rating}
             </p>
             <p className="text-sm text-gray-500 dark:text-[#bbbbbb]">
-              ({data?.reviews?.totalReviews} reviews)
+              ({data?.reviews?.totalReviews} {t("HotelCard.Reviews")})
             </p>
           </div>
           <p className="text-sm text-gray-500 dark:text-[#bbbbbb]">
-            from
+            {t("HotelCard.from")}
             <span className="text-xl font-medium ml-1 text-black dark:text-white">
               ${minPrice}
             </span>
-            /night
+            / {t("HotelCard.night")}
           </p>
         </div>
       </div>

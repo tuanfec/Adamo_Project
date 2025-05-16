@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { PageState, setStatePage } from "@/app/slide/statePageSlide";
+import { useTranslation } from "react-i18next";
 
 export const InfomationTour: React.FC<{ isTour: boolean }> = ({ isTour }) => {
+  const { t } = useTranslation();
   const tourDetail = useSelector(
     (state: any) => state.tourDataSlide.tourDetail
   );
@@ -19,30 +21,30 @@ export const InfomationTour: React.FC<{ isTour: boolean }> = ({ isTour }) => {
 
   return (
     <div>
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex items-center my-5 justify-between gap-2">
         {!isTour && (
           <div
             onClick={() => dispatch(setStatePage(PageState.SELECT_ROOM))}
             className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.SELECT_ROOM)}`}>
-            Select room{" "}
+            {t("Infomation.SelectRoom")}
           </div>
         )}
         <div
           onClick={() => dispatch(setStatePage(PageState.DESCRIPTION))}
           className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.DESCRIPTION)}`}>
-          Descriptions
+          {t("Infomation.Descriptions")}
         </div>
         {isTour && (
           <div
             onClick={() => dispatch(setStatePage(PageState.ADDITIONAL_INFOR))}
             className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.ADDITIONAL_INFOR)}`}>
-            Additional Infor
+            {t("Infomation.AdditionalInfor")}
           </div>
         )}
         <div
           onClick={() => dispatch(setStatePage(PageState.REVIEWS))}
           className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.REVIEWS)}`}>
-          Reviews (
+          {t("Infomation.Reviews")}(
           {isTour
             ? tourDetail?.reviews?.totalReviews
             : hotelDetail?.reviews?.totalReviews}

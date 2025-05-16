@@ -2,11 +2,16 @@ import { useTheme } from "@/config/theme-provider";
 import { FloatButton } from "antd";
 import FloatButtonGroup from "antd/es/float-button/FloatButtonGroup";
 import { MoonOutlined, SettingOutlined, SunOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { RiEnglishInput } from "react-icons/ri";
+import { LiaVine } from "react-icons/lia";
 
 export const DarkModeButton = () => {
   const { setTheme } = useTheme();
-  const [mode, setMode] = useState<boolean>(false);
+  const { theme } = useTheme();
+  const { i18n } = useTranslation();
+  console.log(i18n.language);
+
   return (
     <FloatButtonGroup
       shape="circle"
@@ -14,24 +19,40 @@ export const DarkModeButton = () => {
       icon={<SettingOutlined />}
       tooltip="Theme"
       style={{ insetBlockEnd: "100px" }}>
-      <FloatButton
-        icon={<SunOutlined />}
-        onClick={() => {
-          setTheme("light");
-          setMode(true);
-        }}
-        tooltip="Light mode"
-        type={mode ? "primary" : "default"}
-      />
-      <FloatButton
-        icon={<MoonOutlined />}
-        onClick={() => {
-          setTheme("dark");
-          setMode(false);
-        }}
-        tooltip="Dark mode"
-        type={mode ? "default" : "primary"}
-      />
+      {theme === "light" ? (
+        <FloatButton
+          icon={<MoonOutlined />}
+          onClick={() => {
+            setTheme("dark");
+          }}
+          tooltip="Dark mode"
+        />
+      ) : (
+        <FloatButton
+          icon={<SunOutlined />}
+          onClick={() => {
+            setTheme("light");
+          }}
+          tooltip="Light mode"
+        />
+      )}
+      {i18n.language === "en" ? (
+        <FloatButton
+          icon={<LiaVine />}
+          onClick={() => {
+            i18n.changeLanguage("vi");
+          }}
+          tooltip="VN"
+        />
+      ) : (
+        <FloatButton
+          icon={<RiEnglishInput />}
+          onClick={() => {
+            i18n.changeLanguage("en");
+          }}
+          tooltip="EN"
+        />
+      )}
     </FloatButtonGroup>
   );
 };

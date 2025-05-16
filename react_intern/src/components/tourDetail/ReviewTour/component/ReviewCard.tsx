@@ -1,4 +1,5 @@
 import { ReviewStats } from "@/types/tour";
+import { useTranslation } from "react-i18next";
 import { AiFillStar } from "react-icons/ai";
 
 interface ReviewCardProps {
@@ -6,6 +7,8 @@ interface ReviewCardProps {
 }
 
 export const ReviewCard: React.FC<ReviewCardProps> = ({ stats }) => {
+  const { t } = useTranslation();
+
   const renderStars = (rating: number) => {
     return [...Array(5)].map((_, index) => (
       <AiFillStar

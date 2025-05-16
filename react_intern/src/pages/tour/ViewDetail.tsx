@@ -1,9 +1,9 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { DetailCardForm } from "@/components/form/DetailCardForm";
 import { useTourDetail } from "@/hooks/useTours";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setTotalGuest, setTourDetail } from "@/app/slide/tourDataSlide";
+import { setTourDetail } from "@/app/slide/tourDataSlide";
 import { useEffect } from "react";
 import { DetailLayout } from "@/layouts/DetailLayout";
 import { HeaderDetail } from "@/components/tourDetail/TitleTour";

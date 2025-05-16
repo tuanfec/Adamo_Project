@@ -7,6 +7,7 @@ import { setFilter as setHotelFilter } from "@/app/slide/hotelDataSlide";
 import { TourData } from "@/types/tour";
 import { HotelFormData } from "@/types/hotel";
 import { AiFillStar } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 interface FilterFormProps {
   tourData?: TourData[];
@@ -22,6 +23,7 @@ export const FilterForm: React.FC<FilterFormProps> = ({
   const dispatch = useDispatch();
   const durationFiltered = [...new Set(tourData?.map((item) => item.duration))];
   const typeTourFiltered = [...new Set(tourData?.map((item) => item.type))];
+  const { t } = useTranslation();
 
   // Tính min/max price
   let minPrice = 0;
@@ -40,10 +42,10 @@ export const FilterForm: React.FC<FilterFormProps> = ({
   }
 
   const scoreFiltered = [
-    { label: "Wonderful : 9.5+", value: 9.5 },
-    { label: "Very Good : 9+", value: 9 },
-    { label: "Good : 8+", value: 8 },
-    { label: "Pleasant : 7+", value: 7 },
+    { label: "filter.Score.content.1", value: 9.5 },
+    { label: "filter.Score.content.2", value: 9 },
+    { label: "filter.Score.content.3", value: 8 },
+    { label: "filter.Score.content.4", value: 7 },
   ];
 
   // Local state for form values
@@ -187,20 +189,24 @@ export const FilterForm: React.FC<FilterFormProps> = ({
   };
 
   return (
-    <div className="bg-white flex flex-col gap-4 p-4">
+    <div className="bg-white flex flex-col gap-4 p-4 dark:bg-[#282828]">
       {/* header section */}
       <div className="flex flex-row justify-between items-center">
-        <div className="text-[#03387D] font-bold text-md">FILTER BY</div>
+        <div className="text-[#03387D] dark:text-white font-bold text-md">
+          {t("filter.header.filter_by")}
+        </div>
         <button
           onClick={resetFilter}
           className="text-[#C4C4C4] font-medium text-md hover:text-gray-600">
-          CLEAR
+          {t("filter.header.reset")}
         </button>
       </div>
 
       {/* budget section */}
       <div className="space-y-4">
-        <p className="font-medium text-md">Budget</p>
+        <p className="font-medium text-md dark:text-white">
+          {t("filter.Budget")}
+        </p>
         <div className="px-2">
           <Range
             range
@@ -209,62 +215,70 @@ export const FilterForm: React.FC<FilterFormProps> = ({
             value={budget}
             onChange={handleBudgetChange}
             railStyle={{ backgroundColor: "#E5E7EB" }}
-            trackStyle={[{ backgroundColor: "#FF8682" }]}
+            trackStyle={[{ backgroundColor: "#FF7B42" }]}
             handleStyle={[
               {
                 backgroundColor: "white",
-                borderColor: "#FF8682",
+                borderColor: "#FF7B42",
                 opacity: 1,
               },
               {
                 backgroundColor: "white",
-                borderColor: "#FF8682",
+                borderColor: "#FF7B42",
                 opacity: 1,
               },
             ]}
           />
-          <div className="flex justify-between mt-2 text-sm text-gray-600">
+          <div className="flex justify-between mt-2 text-sm text-gray-600 dark:text-[#bbbbbb]">
             <span>${budget[0] || minPrice}</span>
             <span>${budget[1] || maxPrice}</span>
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-200 "></div>
+      <div className="border-t border-gray-200 dark:border-gray-600"></div>
 
       {tourData && (
         <>
           {/* duration section */}
           <div className="space-y-4">
-            <p className="font-medium text-md">Duration</p>
+            <p className="font-medium text-md dark:text-white">
+              {t("filter.Duration")}
+            </p>
             <div className="flex flex-col gap-2">
               {durationFiltered.map((item) => (
                 <label key={item} className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    className="accent-[#FF8682]"
+                    className="accent-[#FF7B42]"
                     checked={duration.includes(item || "")}
                     onChange={() => handleDurationChange(item || "")}
                   />
-                  <span className="text-sm text-gray-600">{item}</span>
+                  <span className="text-sm text-gray-600 dark:text-[#bbbbbb]">
+                    {item}
+                  </span>
                 </label>
               ))}
             </div>
           </div>
-          <div className="border-t border-gray-200 "></div>
+          <div className="border-t border-gray-200 dark:border-gray-600"></div>
 
           {/* Type Tour Section */}
           <div className="space-y-4">
-            <p className="font-medium text-md">Type of Tours</p>
+            <p className="font-medium text-md dark:text-white">
+              {t("filter.Type")}
+            </p>
             <div className="flex flex-col gap-2">
               {typeTourFiltered.map((item) => (
                 <label key={item} className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    className="accent-[#FF8682]"
+                    className="accent-[#FF7B42]"
                     checked={typeTour.includes(item || "")}
                     onChange={() => handleTypeTourChange(item || "")}
                   />
-                  <span className="text-sm text-gray-600">{item}</span>
+                  <span className="text-sm text-gray-600 dark:text-[#bbbbbb]">
+                    {item}
+                  </span>
                 </label>
               ))}
             </div>
@@ -275,13 +289,15 @@ export const FilterForm: React.FC<FilterFormProps> = ({
         <>
           {/* duration section */}
           <div className="space-y-4">
-            <p className="font-medium text-md">Hotel star</p>
+            <p className="font-medium text-md dark:text-white">
+              {t("filter.HotelStar")}
+            </p>
             <div className="flex flex-col gap-2">
               {hotelStarFiltered.map((item) => (
                 <label key={item} className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    className="accent-[#FF8682]"
+                    className="accent-[#FF7B42]"
                     checked={hotelStar.includes(item.toString())}
                     onChange={() => handleHotelStarChange(item.toString())}
                   />
@@ -292,21 +308,25 @@ export const FilterForm: React.FC<FilterFormProps> = ({
               ))}
             </div>
           </div>
-          <div className="border-t border-gray-200 "></div>
+          <div className="border-t border-gray-200 dark:border-gray-600"></div>
           {/* score section */}
           <div className="space-y-4">
-            <p className="font-medium text-md">Score</p>
+            <p className="font-medium text-md dark:text-white">
+              {t("filter.Score.title")}
+            </p>
             <div className="flex flex-col gap-2">
               {scoreFiltered.map((item) => (
                 <label key={item.value} className="flex items-center gap-2">
                   <input
                     type="radio"
                     name="score-radio"
-                    className="accent-[#FF8682]"
+                    className="accent-[#FF7B42]"
                     checked={score[0] === item.value}
                     onChange={() => handleScoreChange(item.value)}
                   />
-                  <span className="text-sm text-gray-600">{item.label}</span>
+                  <span className="text-sm text-gray-600 dark:text-[#bbbbbb]">
+                    {t(item.label)}
+                  </span>
                 </label>
               ))}
             </div>

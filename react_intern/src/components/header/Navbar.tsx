@@ -3,6 +3,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutUser } from "@/services/authService";
 import { useNotification } from "@/components/notifiction/NotificationProvider";
+import { useTranslation } from "react-i18next";
+
 interface NavItem {
   label: string;
   path: string;
@@ -16,6 +18,8 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const notification = useNotification();
+  const { t } = useTranslation();
+
   useEffect(() => {
     // Check login status from localStorage
     const checkLoginStatus = () => {
@@ -41,7 +45,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
       navigate("/");
       notification.success({
         title: "Success",
-        message: "Logout successful!",
+        message: t("notification.Logout"),
       });
     } catch (error) {
       console.error("Logout failed:", error);
@@ -49,18 +53,18 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
   };
 
   const navItems: NavItem[] = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Tours", path: "/tours" },
-    { label: "Hotels", path: "/hotels" },
-    { label: "Contact", path: "/contact" },
+    { label: "navbar.home", path: "/" },
+    { label: "navbar.about", path: "/about" },
+    { label: "navbar.tour", path: "/tours" },
+    { label: "navbar.hotels", path: "/hotels" },
+    { label: "navbar.contact", path: "/contact" },
     {
-      label: "Login",
+      label: "navbar.login",
       path: "/Login",
       isLoggedIn: false,
     },
     {
-      label: "Logout",
+      label: "navbar.logout",
       path: "/",
       isLoggedIn: true,
       onClick: handleLogout,
@@ -100,7 +104,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
               key={item.label}
               onClick={item.onClick}
               className={`transition-colors duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1`}>
-              {item.label}
+              {t(item.label)}
             </button>
           ) : (
             <Link
@@ -109,7 +113,8 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
               className={`transition-colors  dark:hover:text-orange-400 duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
                 isActive(item.path) ? "text-orange-400" : ""
               }`}>
-              {item.label}
+              {t(item.label)}
+              {/* {item.label} */}
             </Link>
           )
         )}
@@ -117,7 +122,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
 
       {isOpen && (
         <div
-          className="lg:hidden absolute right-1 text-right flex flex-col gap-2 mt-2 text-white cursor-pointer bg-black/50 p-4 rounded"
+          className="lg:hidden min-w-[150px] absolute right-1 text-right flex flex-col gap-2 mt-2 text-white cursor-pointer bg-black/50 p-4 rounded"
           role="menu"
           aria-orientation="vertical">
           {filteredNavItems.map((item) =>
@@ -130,7 +135,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
                 }}
                 className="hover:text-orange-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1"
                 role="menuitem">
-                {item.label}
+                {t(item.label)}
               </button>
             ) : (
               <Link
@@ -141,7 +146,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
                 }`}
                 onClick={() => setIsOpen(false)}
                 role="menuitem">
-                {item.label}
+                {t(item.label)}
               </Link>
             )
           )}

@@ -10,3 +10,4 @@ declare module "@services/*";
 declare module "@config/*";
 declare module "@types/*";
 declare module "@hooks/*";
+declare module "@i18n/*";

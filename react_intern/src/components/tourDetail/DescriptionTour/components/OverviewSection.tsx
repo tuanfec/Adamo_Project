@@ -1,4 +1,5 @@
 import { Overview, ListOverview } from "@/types/tour";
+import { useTranslation } from "react-i18next";
 
 interface OverviewSectionProps {
   overviewTour?: [Overview, { listOverview: ListOverview[] }];
@@ -9,9 +10,11 @@ export const OverviewSection: React.FC<OverviewSectionProps> = ({
   overviewTour,
   overviewHotel,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <div className="text-xl font-medium my-6">Overview</div>
+      <div className="text-xl font-medium my-6">{t("Infomation.Overview")}</div>
       {overviewTour && (
         <p className="mb-6 text-gray-700 dark:text-[#bbbbbb]">
           {overviewTour?.[0]?.content}

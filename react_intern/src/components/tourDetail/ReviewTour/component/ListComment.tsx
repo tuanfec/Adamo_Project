@@ -2,17 +2,19 @@ import { Comment } from "@/types/tour";
 import { AiFillStar } from "react-icons/ai";
 import { AvatarCard } from "./AvatarCard";
 import { GoDotFill } from "react-icons/go";
+import { useTranslation } from "react-i18next";
 
 interface CommentProps {
   data: Comment;
   isHotel: boolean;
 }
 export const ListComment: React.FC<CommentProps> = ({ data, isHotel }) => {
+  const { t } = useTranslation();
   const typeRate = {
-    9.5: "Wonderful",
-    9: "Very Good",
-    8: "Good",
-    7: "Pleasant",
+    9.5: t("ReviewCard.Wonderful"),
+    9: t("ReviewCard.VeryGood"),
+    8: t("ReviewCard.Good"),
+    7: t("ReviewCard.Pleasant"),
   };
   const renderStars = (rating: number) => {
     return [...Array(5)].map((_, index) => (
@@ -33,7 +35,7 @@ export const ListComment: React.FC<CommentProps> = ({ data, isHotel }) => {
         <div className="flex flex-col gap-1">
           {isHotel ? (
             <div className=" text-[#FF7B42] text-lg font-medium">
-              Rating: {data.rating}
+              {t("ReviewCard.Rating")}: {data.rating}
               <GoDotFill className="inline-block text-sm mx-2" />
               {typeRate[data.rating as keyof typeof typeRate]}
             </div>
