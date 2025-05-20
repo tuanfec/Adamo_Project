@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./ListTour.css";
 import { TourData } from "@/types/tour";
+import { useNavigate } from "react-router-dom";
 
 interface ListTourProps {
   data: TourData[];
@@ -13,6 +14,7 @@ interface ListTourProps {
   slidesPerView?: number;
   spaceBetween?: number;
   onClick?: () => void;
+  source?: string;
 }
 
 export const ListTour: React.FC<ListTourProps> = ({
@@ -21,7 +23,14 @@ export const ListTour: React.FC<ListTourProps> = ({
   slidesPerView,
   spaceBetween,
   onClick,
+  source,
 }) => {
+  const navigate = useNavigate();
+  const viewDetail = (id: string, source: string) => {
+    navigate(`/tours/view_detail/${source}/${id}`, {
+      state: { previousHeader: header, id },
+    });
+  };
   return (
     <div className="flex flex-col gap-4 my-10">
       <div className="flex justify-between items-center">
@@ -55,6 +64,7 @@ export const ListTour: React.FC<ListTourProps> = ({
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <CardTour
+                onClick={() => viewDetail(item.id, source || "attractive")}
                 image={item.image?.[0]}
                 title={item.title}
                 description={item.description}
@@ -64,6 +74,7 @@ export const ListTour: React.FC<ListTourProps> = ({
                 duration={item.duration}
                 price={item.price}
                 isSave={item.isSave}
+                isHover={true}
               />
             </SwiperSlide>
           ))}

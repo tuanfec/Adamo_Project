@@ -7,6 +7,7 @@ export const useTourList = (header?: string | undefined) => {
   const [data, setData] = useState<any[]>([]);
   const reduxData = useSelector((state: any) => state.tourDataSlide.tourData);
   const reduxHeader = useSelector((state: any) => state.tourDataSlide.header);
+
   // Function to determine which API to call based on header
   const getToursByHeader = async (headerText: string) => {
     switch (headerText) {

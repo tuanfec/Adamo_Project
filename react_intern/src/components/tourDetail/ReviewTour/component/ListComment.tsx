@@ -30,7 +30,7 @@ export const ListComment: React.FC<CommentProps> = ({ data, isHotel }) => {
     <div className="flex flex-col">
       <div className="flex w-full flex-row gap-4">
         <div className="w-1/8 h-1/8">
-          <AvatarCard />
+          <AvatarCard user={data.user} isUserCommnet={false} />
         </div>
         <div className="flex flex-col gap-1">
           {isHotel ? (
@@ -46,7 +46,7 @@ export const ListComment: React.FC<CommentProps> = ({ data, isHotel }) => {
           )}
           <div className="font-medium text-lg">{data?.title}</div>
           <div className="text-gray-500 dark:text-[#bbbbbb] text-sm">
-            {data?.createdAt}
+            {data?.createdAt.split("T")[0]}
           </div>
         </div>
       </div>

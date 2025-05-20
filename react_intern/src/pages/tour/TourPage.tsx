@@ -11,8 +11,11 @@ const TourPage: React.FC = () => {
   const dispath = useDispatch();
   const { data: tourData, isLoading } = useAttractiveTours();
   const { t } = useTranslation();
+  console.log(tourData);
 
   useEffect(() => {
+    console.log(1);
+
     dispath(setTourData(tourData));
   }, [tourData]);
 

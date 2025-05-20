@@ -21,4 +21,10 @@ export default defineConfig({
       "@hooks": "/src/hooks",
     },
   },
+  server: {
+    watch: {
+      ignored: ["**/db.json"],
+    },
+    allowedHosts: ["2b4e-113-190-252-111.ngrok-free.app"],
+  },
 });

@@ -1,6 +1,6 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { DetailCardForm } from "@/components/form/DetailCardForm";
-import { useTourDetail } from "@/hooks/useTours";
+import { useChangeSaveTour, useTourDetail } from "@/hooks/useTours";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setTourDetail } from "@/app/slide/tourDataSlide";
@@ -15,16 +15,15 @@ import { RelatedTour } from "@/components/tourDetail/RelatedTour";
 import { AdditionaInfor } from "@/components/tourDetail/AdditionalInfor";
 import { ReviewTour } from "@/components/tourDetail/ReviewTour/Index";
 import { Loading } from "@/components/common/Loading";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ViewDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { source } = useParams();
   const isAttractive = source === "attractive";
-  const { data: tourDataDetail, isLoading } = useTourDetail(
-    id ?? "",
-    isAttractive
-  );
+  const { data: tourDataDetail } = useTourDetail(id ?? "", isAttractive);
   const dispatch = useDispatch();
+  console.log("tourDataDetail", tourDataDetail);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,9 +36,27 @@ const ViewDetail: React.FC = () => {
   }, [id, tourDataDetail, dispatch]);
 
   const statePage = useSelector((state: any) => state.statePageSlide.state);
-  if (isLoading) {
-    return <Loading />;
-  }
+
+  const changeSave = useChangeSaveTour();
+  const fetchDataDetail = useTourDetail(id ?? "", isAttractive);
+  const handleChangeSaveTour = (id: string) => {
+    changeSave.mutate(
+      {
+        id,
+        isSave: !tourDataDetail?.isSave,
+        isAttractive: isAttractive,
+      },
+      {
+        onSuccess: () => {
+          fetchDataDetail.refetch();
+        },
+        onError: (error) => {
+          console.error("Error updating save status:", error);
+        },
+      }
+    );
+  };
+
   return (
     <DetailLayout>
       <div className="py-8">
@@ -49,7 +66,10 @@ const ViewDetail: React.FC = () => {
         <HeaderDetail tourData={tourDataDetail} />
         <div className="flex flex-col lg:flex-row gap-[6%]">
           <div className="w-full lg:w-[60%]">
-            <ImageDetail data={tourDataDetail} />
+            <ImageDetail
+              onSubmit={handleChangeSaveTour}
+              data={tourDataDetail}
+            />
             <InfomationTour isTour={true} />
             {statePage === PageState.DESCRIPTION && (
               <DescriptionTour dataTour={tourDataDetail?.tourDescription} />
@@ -59,9 +79,9 @@ const ViewDetail: React.FC = () => {
             )}
             {statePage === PageState.REVIEWS && (
               <ReviewTour
-                comments={tourDataDetail?.comments}
                 data={tourDataDetail?.reviews}
                 isHotel={false}
+                id={id ?? ""}
               />
             )}
           </div>

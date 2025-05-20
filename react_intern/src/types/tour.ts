@@ -141,3 +141,23 @@ export interface Comment {
     avatar: string;
   };
 }
+
+export interface User {
+  id: string;
+  name: string;
+  avatar: string;
+}
+export type PostComment = {
+  postData: {
+    title: string;
+    content: string;
+    keyId: string;
+    user: User | null;
+  };
+  id: string;
+};
+export type ChangeSave = {
+  isSave: boolean;
+  id: string;
+  isAttractive?: boolean;
+};

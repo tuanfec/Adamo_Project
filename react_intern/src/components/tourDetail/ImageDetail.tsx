@@ -7,13 +7,16 @@ import "swiper/css/pagination";
 import { FaBookmark } from "react-icons/fa";
 import { TourData } from "@/types/tour";
 import { HotelFormData, Room } from "@/types/hotel";
+import { Tooltip } from "antd";
+import { useTranslation } from "react-i18next";
 export const ImageDetail: React.FC<{
   data?: TourData | HotelFormData;
   isRoom?: boolean;
   roomData?: Room;
-}> = ({ data, isRoom, roomData }) => {
+  onSubmit?: (id: string) => void;
+}> = ({ data, isRoom, roomData, onSubmit }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-
+  const { t } = useTranslation();
   return (
     <div className={`relative`}>
       {/* Main Swiper */}
@@ -51,8 +54,15 @@ export const ImageDetail: React.FC<{
           )}
         </Swiper>
         <button
-          className={`absolute top-0 right-4 z-10 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
-          <FaBookmark className="lg:text-5xl md:text-4xl text-3xl" />
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onSubmit && data?.id) onSubmit(data?.id);
+          }}
+          className={`absolute top-0 right-4 cursor-pointer z-10 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
+          <Tooltip
+            title={data?.isSave ? t("CardTour.saved") : t("CardTour.save")}>
+            <FaBookmark className="text-6xl" />
+          </Tooltip>{" "}
         </button>
       </div>
 

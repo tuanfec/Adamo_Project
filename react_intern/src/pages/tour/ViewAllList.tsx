@@ -2,16 +2,23 @@ import { ViewAll } from "@/components/home/ViewAll";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { useLocation, useParams } from "react-router-dom";
 import { useTourList } from "@/hooks/useTourList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@assets/banner_img.jpg";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { setTourData } from "@/app/slide/tourDataSlide";
 const ViewAllList: React.FC = () => {
   const { t } = useTranslation();
   const { source } = useParams();
   const header = useLocation().state?.header;
   const { data, isLoading } = useTourList(source);
   const tourData = useSelector((state: any) => state.tourDataSlide.tourData);
+  const distpath = useDispatch();
+
+  useEffect(() => {
+    distpath(setTourData(data));
+  }, [data]);
 
   return (
     <CommonLayout

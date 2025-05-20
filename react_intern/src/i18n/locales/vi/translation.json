@@ -149,7 +149,9 @@
     "Hotels": "Khách Sạn"
   },
   "CardTour": {
-    "from": "từ"
+    "from": "từ",
+    "saved": "Ấn vào để hủy lưu",
+    "save": "Ấn vào để lưu"
   },
   "Infomation": {
     "SelectRoom": "Chọn Phòng",
@@ -355,7 +357,8 @@
       "RoomUnselected": "Đã bỏ chọn phòng",
       "RoomUnselectedDes": "Bạn đã bỏ chọn phòng"
     },
-    "Login": "Vui lòng đăng nhập để bình luận"
+    "Login": "Vui lòng đăng nhập để bình luận",
+    "postCommentSuccess": "Đăng bình luận thành công"
   },
   "ReviewCard": {
     "Wonderful": "Tuyệt Vời",
@@ -369,5 +372,16 @@
     "Comment": "Bình luận",
     "Addcomment": "Viết bình luận",
     "Title": "Chủ đề"
-  }
+  },
+  "comment": {
+    "rating": "Đánh giá",
+    "title": "Tiêu đề là bắt buộc",
+    "content": "Nội dung là bắt buộc"
+  },
+  "Wonderful": "Tuyệt Vời 9,5+",
+  "VeryGood": "Rất tốt 9+",
+  "Good": "Tốt 8+",
+  "Pleasant": "Tạm ổn 7+",
+  "NotFound": "Không có gói du lịch nào khớp với bộ lọc của bạn",
+  "experiences": "trải nghiệm"
 }
