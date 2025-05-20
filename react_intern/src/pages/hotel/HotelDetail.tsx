@@ -11,15 +11,15 @@ import { PageState, setStatePage } from "@/app/slide/statePageSlide";
 import { DescriptionTour } from "@/components/tourDetail/DescriptionTour";
 import { RelatedTour } from "@/components/tourDetail/RelatedTour";
 import { ReviewTour } from "@/components/tourDetail/ReviewTour/Index";
-import { Loading } from "@/components/common/Loading";
 import { useHotelDetail } from "@/hooks/useHotels";
 import { setHotelDetail } from "@/app/slide/hotelDataSlide";
 import { SelectRoom } from "@/components/selectRoom";
+import { useChangeSaveHotel } from "@/hooks/useTours";
 
 const HotelDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { source } = useParams();
-  const { data: hotelDataDetail, isLoading } = useHotelDetail(id ?? "");
+  const { data: hotelDataDetail } = useHotelDetail(id ?? "");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,9 +33,25 @@ const HotelDetail: React.FC = () => {
   }, [id, hotelDataDetail, dispatch]);
 
   const statePage = useSelector((state: any) => state.statePageSlide.state);
-  if (isLoading) {
-    return <Loading />;
-  }
+
+  const changeSave = useChangeSaveHotel();
+  const fetchDataDetail = useHotelDetail(id ?? "");
+  const handleChangeSaveHotel = (id: string) => {
+    changeSave.mutate(
+      {
+        id,
+        isSave: !hotelDataDetail?.isSave,
+      },
+      {
+        onSuccess: () => {
+          fetchDataDetail.refetch();
+        },
+        onError: (error) => {
+          console.error("Error updating save status:", error);
+        },
+      }
+    );
+  };
   return (
     <DetailLayout>
       <div className="py-8">
@@ -45,7 +61,10 @@ const HotelDetail: React.FC = () => {
         <HeaderDetail hotelData={hotelDataDetail} />
         <div className="flex flex-col lg:flex-row gap-[6%]">
           <div className="w-full lg:w-[60%]">
-            <ImageDetail data={hotelDataDetail} />
+            <ImageDetail
+              onSubmit={handleChangeSaveHotel}
+              data={hotelDataDetail}
+            />
             <InfomationTour isTour={false} />
             {statePage === PageState.DESCRIPTION && (
               <DescriptionTour dataHotel={hotelDataDetail} />
@@ -55,9 +74,9 @@ const HotelDetail: React.FC = () => {
             )}
             {statePage === PageState.REVIEWS && (
               <ReviewTour
-                comments={hotelDataDetail?.comments}
                 data={hotelDataDetail?.reviews}
                 isHotel={true}
+                id={id ?? ""}
               />
             )}
           </div>

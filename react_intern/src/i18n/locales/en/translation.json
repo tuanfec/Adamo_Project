@@ -149,7 +149,9 @@
     "Hotels": "Hotels"
   },
   "CardTour": {
-    "from": "from"
+    "from": "from",
+    "saved": "Click to cancel save",
+    "save": "Click to save"
   },
   "Infomation": {
     "SelectRoom": "Select Room",
@@ -355,7 +357,8 @@
       "RoomUnselected": "Room unselected",
       "RoomUnselectedDes": "You have unselected the room"
     },
-    "Login": "Please login to comment"
+    "Login": "Please login to comment",
+    "postCommentSuccess": "Comment posted successfully"
   },
   "ReviewCard": {
     "Wonderful": "Wonderful",
@@ -369,5 +372,16 @@
     "Comment": "Comment",
     "Addcomment": "Add a comment",
     "Title": "Title"
-  }
+  },
+  "comment": {
+    "rating": "Rating is required",
+    "title": "Title is required",
+    "content": "Content is required"
+  },
+  "Wonderful": "Wonderful",
+  "VeryGood": "Very Good",
+  "Good": "Good",
+  "Pleasant": "Pleasant",
+  "NotFound": "No tours found matching your filters",
+  "experiences": "experiences"
 }

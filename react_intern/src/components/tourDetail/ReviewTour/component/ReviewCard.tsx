@@ -37,14 +37,15 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ stats }) => {
             {renderStars(Math.floor(stats.rating))}
           </div>
           <p className="text-gray-600 dark:text-[#bbbbbb]">
-            Based on {stats.totalReviews} reviews
+            {t("ReviewCard.Baseon")} {stats.totalReviews}{" "}
+            {t("ReviewCard.reviews")}
           </p>
         </div>
 
         {/* Right side - Rating breakdown */}
         <div className="flex-1 w-full min-w-0">
           {[5, 4, 3, 2, 1].map((star) => (
-            <div key={star} className="flex items-center gap-2 mb-2">
+            <div key={star} className="flex items-center gap-4 mb-2">
               <span className="w-3">{star}</span>
               <AiFillStar className="text-yellow-400" />
               <div className="flex-1 h-2 bg-gray-200 rounded-full w-full min-w-0">
@@ -55,8 +56,8 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ stats }) => {
                   }}
                 />
               </div>
-              <span className="w-20 text-right text-gray-600 dark:text-[#bbbbbb]">
-                {stats.ratingBreakdown[star] || 0} reviews
+              <span className="w-fit text-right text-gray-600 dark:text-[#bbbbbb]">
+                {stats.ratingBreakdown[star] || 0} {t("ReviewCard.reviews")}
               </span>
             </div>
           ))}

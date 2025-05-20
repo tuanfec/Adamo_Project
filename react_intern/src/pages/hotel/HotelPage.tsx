@@ -17,6 +17,7 @@ const HotelPage: React.FC = () => {
   const hotelData = useSelector((state: any) => state.hotelDataSlide.hotelData);
   const sortBy = useSelector((state: any) => state.hotelDataSlide.sortBy);
   const filterData = useSelector((state: any) => state.hotelDataSlide.filter);
+  console.log(hotels);
 
   useEffect(() => {
     dispatch(setHotelData(hotels));

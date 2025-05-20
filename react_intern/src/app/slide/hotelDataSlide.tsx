@@ -24,6 +24,7 @@ interface HotelDataSlideState {
     startDate: string;
     endDate: string;
   };
+  isSave: boolean;
 }
 
 const initialState: HotelDataSlideState = {
@@ -70,6 +71,7 @@ const initialState: HotelDataSlideState = {
     startDate: "",
     endDate: "",
   },
+  isSave: false,
 };
 
 const HotelDataSlide = createSlice({
@@ -98,6 +100,9 @@ const HotelDataSlide = createSlice({
     setSearchHotel: (state, action) => {
       state.searchHotel = action.payload;
     },
+    setIsSave: (state, action) => {
+      state.isSave = action.payload;
+    },
   },
 });
 
@@ -109,5 +114,6 @@ export const {
   setSelectedRoom,
   setAddOn,
   setSearchHotel,
+  setIsSave,
 } = HotelDataSlide.actions;
 export default HotelDataSlide.reducer;

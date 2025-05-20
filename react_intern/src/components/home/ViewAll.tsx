@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CardTour } from "./CardTour";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FilterForm } from "../form/FilterForm";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
@@ -10,6 +10,11 @@ import { Loading } from "../common/Loading";
 import { TourData } from "@/types/tour";
 import { FloatButton } from "antd";
 import { Filter } from "../common/Filter";
+import { useTranslation } from "react-i18next";
+import { useChangeSaveTour } from "@/hooks/useTours";
+import { useQueryClient } from "@tanstack/react-query";
+import { set } from "react-hook-form";
+import { setIsSave } from "@/app/slide/tourDataSlide";
 
 interface ViewAllProps {
   tourData: TourData[];
@@ -18,21 +23,18 @@ interface ViewAllProps {
   from?: string;
 }
 
-export const ViewAll: React.FC<ViewAllProps> = ({
-  tourData,
-  isLoading,
-  header,
-  from,
-}) => {
+export const ViewAll: React.FC<ViewAllProps> = ({ tourData, header, from }) => {
   const filter = useSelector((state: any) => state.tourDataSlide.filter);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [isFilter, setIsFilter] = useState(false);
   const [itemsPerPage] = useState(21);
   const { source } = useParams();
+  const dispatch = useDispatch();
   const sourceView = source || from;
   // Check if filter has been applied (after clicking Apply Filter)
   const isFilterApplied = filter?.isApplied;
+  const { t } = useTranslation();
 
   const displayData =
     isFilterApplied && tourData
@@ -66,10 +68,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
     }
   }, [filter, isFilterApplied]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
+  // Function to handle the previous page button click
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1);
   };
@@ -96,6 +95,34 @@ export const ViewAll: React.FC<ViewAllProps> = ({
       />
     );
   };
+
+  const changeSave = useChangeSaveTour();
+  const useQueyClient = useQueryClient();
+  const handleChangeSaveTour = (id: string) => {
+    dispatch(setIsSave(true));
+    changeSave.mutate(
+      {
+        id,
+        isSave: !tourData.find((item) => item.id === id)?.isSave,
+        isAttractive: sourceView === "attractive",
+      },
+      {
+        onSuccess: () => {
+          useQueyClient.invalidateQueries({
+            queryKey: ["tours"],
+          });
+          useQueyClient.invalidateQueries({
+            queryKey: ["attractiveTours"],
+          });
+          dispatch(setIsSave(false));
+        },
+        onError: (error) => {
+          console.error("Error updating save status:", error);
+        },
+      }
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="lg:mb-10 w-full font-medium flex flex-col lg:flex-row md:flex-col">
@@ -114,9 +141,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
 
       {isFilterApplied && displayData.length === 0 ? (
         <div className="flex justify-center items-center py-20">
-          <p className="text-2xl text-gray-500">
-            No tours found matching your filters
-          </p>
+          <p className="text-2xl text-gray-500">{t("NotFound")}</p>
         </div>
       ) : (
         <>
@@ -135,6 +160,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
                 price={item.price}
                 isSave={item.isSave}
                 isHover={true}
+                handleChangeSaveTour={() => handleChangeSaveTour(item.id || "")}
               />
             ))}
           </div>

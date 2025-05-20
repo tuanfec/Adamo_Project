@@ -4,6 +4,10 @@ import { Pagination } from "../common/Pagination";
 import { useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useChangeSaveHotel } from "@/hooks/useTours";
+import { useQueryClient } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
+import { setIsSave } from "@/app/slide/hotelDataSlide";
 export const ListHotels: React.FC<{
   hotels: HotelFormData[];
   isFilterApplied: boolean;
@@ -14,6 +18,7 @@ export const ListHotels: React.FC<{
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = hotels.slice(indexOfFirstItem, indexOfLastItem);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handlePrevPage = () => {
     setCurrentPage(currentPage - 1);
@@ -36,6 +41,27 @@ export const ListHotels: React.FC<{
   const handleViewDetail = (id: string) => {
     navigate(`/hotels/view_detail/${id}`);
   };
+
+  const changeSave = useChangeSaveHotel();
+  const useQueyClient = useQueryClient();
+  const handleChangeSaveHotel = (id: string) => {
+    dispatch(setIsSave(true));
+    changeSave.mutate(
+      {
+        id,
+        isSave: !hotels?.find((hotel) => hotel.id === id)?.isSave,
+      },
+      {
+        onSuccess: () => {
+          dispatch(setIsSave(false));
+          useQueyClient.invalidateQueries({ queryKey: ["hotels"] });
+        },
+        onError: (error) => {
+          console.error("Error updating save status:", error);
+        },
+      }
+    );
+  };
   return (
     <>
       {hotels.length !== 0 ? (
@@ -45,6 +71,7 @@ export const ListHotels: React.FC<{
               key={hotel.id}
               data={hotel}
               onClick={() => handleViewDetail(hotel.id)}
+              handleChangeSaveHotel={() => handleChangeSaveHotel(hotel.id)}
             />
           ))}
         </div>

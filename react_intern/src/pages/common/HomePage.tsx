@@ -89,6 +89,7 @@ const HomePage: React.FC = () => {
               slidesPerView={3}
               spaceBetween={40}
               onClick={() => handleViewAll(true)}
+              source="attractive"
             />
           )}
         </div>
@@ -100,6 +101,7 @@ const HomePage: React.FC = () => {
               slidesPerView={3}
               spaceBetween={40}
               onClick={() => handleViewAll(false)}
+              source="traditional"
             />
           )}
         </div>

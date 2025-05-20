@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 
 export const useHotels = () => {
   const hotelData = useSelector((state: any) => state.hotelDataSlide.hotelData);
+  const isSave = useSelector((state: any) => state.hotelDataSlide.isSave);
 
   return useQuery({
     queryKey: ["hotels"],
     queryFn: getHotels,
-    enabled: !hotelData || hotelData.length === 0,
+    enabled: !hotelData || hotelData.length === 0 || isSave,
   });
 };
 

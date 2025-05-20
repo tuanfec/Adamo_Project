@@ -1,3 +1,4 @@
+import { Comment } from "@/types/tour";
 import { z } from "zod";
 
 export const createCheckoutSchema = (t: (key: string) => string) =>
@@ -17,4 +18,15 @@ export const createCheckoutSchema = (t: (key: string) => string) =>
 
 export type CheckoutFormValues = z.infer<
   ReturnType<typeof createCheckoutSchema>
+>;
+
+export const createCommnetSchema = (t: (key: string) => string) =>
+  z.object({
+    rating: z.number().min(1, { message: t("comment.rating") }),
+    title: z.string().min(1, { message: t("comment.title") }),
+    content: z.string().min(1, { message: t("comment.content") }),
+  });
+
+export type CommentSchemaValue = z.infer<
+  ReturnType<typeof createCommnetSchema>
 >;

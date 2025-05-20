@@ -37,7 +37,7 @@ export const ReviewCardHotel: React.FC<ReviewCardHotelProps> = ({
         </div>
         <div
           onClick={onClick}
-          className="text-[#FF7B42] font-medium mt-2 cursor-pointer bg-white border dark:bg-[#575656] dark:border-gray-300 dark:text-[#d8d8d8] border-[#FF7B42] text-center px-4 py-2">
+          className="text-[#FF7B42] font-medium mt-2 cursor-pointer border  border-[#FF7B42] text-center px-4 py-2">
           {t("ReviewCard.Writereview")}{" "}
         </div>
       </div>
