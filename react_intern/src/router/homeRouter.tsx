@@ -31,6 +31,10 @@ export default function HomeRouter() {
         <Route path="/checkout/hotel/:id" element={<CheckOutPage />} />
         <Route path="/thanks" element={<ThanksPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route
+          path="/tours/view_all/destination/:location"
+          element={<ViewAllList />}
+        />
 
         <Route path="/hotels" element={<HotelPage />} />
         <Route path="/hotels/search" element={<SearchHotel />} />

@@ -1,13 +1,15 @@
 import { CardTour } from "../home/CardTour";
 import { useNavigate } from "react-router-dom";
 import { useTourList } from "@/hooks/useTourList";
-import { useMemo, useEffect } from "react";
-import { TourData } from "@/types/tour";
-import { useHotels } from "@/hooks/useHotels";
+import { useMemo, useEffect, use, useState } from "react";
+import { useChangeSaveHotel, useHotels } from "@/hooks/useHotels";
 import { HotelFormData } from "@/types/hotel";
 import { HotelCard } from "../home/HotelCard";
-import { Loading } from "../common/Loading";
 import { useTranslation } from "react-i18next";
+import { useChangeSaveTour } from "@/hooks/useTours";
+import { useNotification } from "../notifiction/NotificationProvider";
+import { useQueryClient } from "@tanstack/react-query";
+import { TourData } from "@/types/tour";
 interface RelatedTourProps {
   source: string;
   currentTourId?: string;
@@ -20,36 +22,45 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
   isHotel,
 }) => {
   const { t } = useTranslation();
-  const { data: tourData, isLoading } = useTourList(source);
   const navigate = useNavigate();
+  const notification = useNotification();
+
+  const { data: tourData } = useTourList(source);
   const { data: hotelData } = useHotels();
+
+  const [fixedRandomTours, setFixedRandomTours] = useState<TourData[]>([]);
+  const [fixedRandomHotels, setFixedRandomHotels] = useState<HotelFormData[]>(
+    []
+  );
+  const [hasRandomized, setHasRandomized] = useState(false);
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (tourData && tourData.length > 0 && !hasRandomized) {
+      setHasRandomized(true);
+      const filtered = currentTourId
+        ? tourData.filter((tour) => tour.id !== currentTourId)
+        : tourData;
+
+      const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+      setFixedRandomTours(shuffled.slice(0, Math.min(6, shuffled.length)));
+    }
+  }, [tourData, currentTourId, hasRandomized]);
+
+  useEffect(() => {
+    if (hotelData && hotelData.length > 0 && !hasRandomized) {
+      setHasRandomized(true);
+      const filtered = currentTourId
+        ? hotelData.filter((hotel: any) => hotel.id !== currentTourId)
+        : hotelData;
+
+      const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+      setFixedRandomHotels(shuffled.slice(0, Math.min(6, shuffled.length)));
+    }
+  }, [hotelData, currentTourId, hasRandomized]);
+
+  useEffect(() => {
+    setHasRandomized(false);
   }, [currentTourId]);
-
-  const randomTours = useMemo(() => {
-    if (!tourData || tourData.length === 0) return [];
-
-    const filteredTours = currentTourId
-      ? tourData.filter((tour) => tour.id !== currentTourId)
-      : tourData;
-
-    const shuffled = [...filteredTours].sort(() => 0.5 - Math.random());
-
-    return shuffled.slice(0, Math.min(6, shuffled.length));
-  }, [tourData, currentTourId]);
-
-  const relatedHotels = useMemo(() => {
-    if (!hotelData || hotelData.length === 0) return [];
-
-    const filteredHotels = currentTourId
-      ? hotelData.filter((hotel: HotelFormData) => hotel.id !== currentTourId)
-      : hotelData;
-
-    const shuffled = [...filteredHotels].sort(() => 0.5 - Math.random());
-
-    return shuffled.slice(0, Math.min(6, shuffled.length));
-  }, [hotelData, currentTourId]);
 
   const viewDetail = (id: string) => {
     if (isHotel) {
@@ -64,18 +75,80 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
       });
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-[200px]">
-        <Loading />
-      </div>
+  const changeSave = useChangeSaveHotel();
+  const queryClient = useQueryClient();
+  const handleChangeSaveHotel = (id: string) => {
+    const oldSave = hotelData?.find((hotel: any) => hotel.id === id)?.isSave;
+    const newSave = !oldSave;
+    changeSave.mutate(
+      {
+        id,
+        isSave: newSave,
+      },
+      {
+        onSuccess: () => {
+          queryClient.setQueryData(["hotels"], (oldData: any) => {
+            if (!oldData) return oldData;
+            return oldData.map((hotel: any) => {
+              if (hotel.id === id) {
+                return { ...hotel, isSave: newSave };
+              }
+              return hotel;
+            });
+          });
+          setFixedRandomHotels((prev) =>
+            prev.map((hotel) =>
+              hotel.id === id ? { ...hotel, isSave: newSave } : hotel
+            )
+          );
+          notification.success({
+            message: newSave
+              ? t("notification.saveHotlel")
+              : t("notification.unsaveHotel"),
+          });
+        },
+        onError: (error) => {
+          console.error("Error updating save status:", error);
+        },
+      }
     );
-  }
-
-  if (!randomTours.length && !relatedHotels.length) {
-    return null;
-  }
+  };
+  const handleChangeSaveTour = (id: string) => {
+    const oldSave = tourData?.find((tour) => tour.id === id)?.isSave;
+    const newSave = !oldSave;
+    changeSave.mutate(
+      {
+        id,
+        isSave: newSave,
+      },
+      {
+        onSuccess: () => {
+          queryClient.setQueryData(["tours"], (oldData: any) => {
+            if (!oldData) return oldData;
+            return oldData.map((tour: any) => {
+              if (tour.id === id) {
+                return { ...tour, isSave: newSave };
+              }
+              return tour;
+            });
+          });
+          setFixedRandomTours((prev) =>
+            prev.map((tour) =>
+              tour.id === id ? { ...tour, isSave: newSave } : tour
+            )
+          );
+          notification.success({
+            message: newSave
+              ? t("notification.saveTour")
+              : t("notification.unsaveTour"),
+          });
+        },
+        onError: (error) => {
+          console.error("Error updating save status:", error);
+        },
+      }
+    );
+  };
 
   return (
     <div>
@@ -88,10 +161,16 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
         {isHotel
-          ? relatedHotels.map((item) => (
-              <HotelCard data={item} onClick={() => viewDetail(item.id)} />
+          ? fixedRandomHotels.map((item) => (
+              <HotelCard
+                data={item}
+                onClick={() => viewDetail(item.id)}
+                handleChangeSaveHotel={() =>
+                  handleChangeSaveHotel(item.id || "")
+                }
+              />
             ))
-          : randomTours.map((item, index) => (
+          : fixedRandomTours.map((item, index) => (
               <CardTour
                 onClick={() => viewDetail(item.id)}
                 key={item.id || index}
@@ -105,6 +184,7 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
                 price={item.price}
                 isSave={item.isSave}
                 isHover={true}
+                handleChangeSaveTour={() => handleChangeSaveTour(item.id || "")}
               />
             ))}
       </div>

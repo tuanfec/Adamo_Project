@@ -14,22 +14,22 @@ import { DescriptionTour } from "@/components/tourDetail/DescriptionTour";
 import { RelatedTour } from "@/components/tourDetail/RelatedTour";
 import { AdditionaInfor } from "@/components/tourDetail/AdditionalInfor";
 import { ReviewTour } from "@/components/tourDetail/ReviewTour/Index";
-import { Loading } from "@/components/common/Loading";
-import { useQueryClient } from "@tanstack/react-query";
+import { useNotification } from "@/components/notifiction/NotificationProvider";
+import { useTranslation } from "react-i18next";
 
 const ViewDetail: React.FC = () => {
+  const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
   const { source } = useParams();
-  const isAttractive = source === "attractive";
-  const { data: tourDataDetail } = useTourDetail(id ?? "", isAttractive);
-  const dispatch = useDispatch();
-  console.log("tourDataDetail", tourDataDetail);
+  const { t } = useTranslation();
+  const notification = useNotification();
+
+  const { data: tourDataDetail } = useTourDetail(id ?? "", source ?? "");
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     dispatch(setStatePage(PageState.DESCRIPTION));
-    // Update tour detail in redux when data changes
     if (tourDataDetail) {
       dispatch(setTourDetail(tourDataDetail));
     }
@@ -38,17 +38,23 @@ const ViewDetail: React.FC = () => {
   const statePage = useSelector((state: any) => state.statePageSlide.state);
 
   const changeSave = useChangeSaveTour();
-  const fetchDataDetail = useTourDetail(id ?? "", isAttractive);
+  const fetchDataDetail = useTourDetail(id ?? "", source ?? "");
   const handleChangeSaveTour = (id: string) => {
+    const oldSave = tourDataDetail?.isSave;
+    const newSave = !oldSave;
     changeSave.mutate(
       {
         id,
-        isSave: !tourDataDetail?.isSave,
-        isAttractive: isAttractive,
+        isSave: newSave,
       },
       {
         onSuccess: () => {
           fetchDataDetail.refetch();
+          notification.success({
+            message: newSave
+              ? t("notification.saveTour")
+              : t("notification.unsaveTour"),
+          });
         },
         onError: (error) => {
           console.error("Error updating save status:", error);

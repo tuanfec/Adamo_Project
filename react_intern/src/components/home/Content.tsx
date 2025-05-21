@@ -9,12 +9,14 @@ export const Content: React.FC = () => {
       <div className="flex flex-col w-full relative min-h-[350px] mb-10">
         <img
           data-aos="fade-right"
+          data-aos-duration="1000"
           className="lg:max-w-[445px] lg:min-h-[541px] h-[300px] md:max-w-[80%] "
           src={image1}
           alt="image"
         />
         <img
           data-aos="fade-left"
+          data-aos-duration="1000"
           className="absolute bottom-0 lg:right-10 right-0 lg:max-w-[347px] lg:min-h-[347px] md:max-w-[347px] max-w-[200px] min-h-[200px]"
           src={image2}
           alt="image"

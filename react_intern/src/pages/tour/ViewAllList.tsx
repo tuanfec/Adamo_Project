@@ -8,13 +8,19 @@ import banner from "@assets/banner_img.jpg";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { setTourData } from "@/app/slide/tourDataSlide";
+import { useGetTourByLocation } from "@/hooks/useTours";
 const ViewAllList: React.FC = () => {
   const { t } = useTranslation();
   const { source } = useParams();
   const header = useLocation().state?.header;
   const { data, isLoading } = useTourList(source);
   const tourData = useSelector((state: any) => state.tourDataSlide.tourData);
+  const { data: destinationData } = useGetTourByLocation(
+    useLocation().state?.location
+  );
+
   const distpath = useDispatch();
+  const isDestination = useLocation().pathname.includes("destination");
 
   useEffect(() => {
     distpath(setTourData(data));
@@ -32,11 +38,20 @@ const ViewAllList: React.FC = () => {
       isShow={true}>
       <div className="py-8">
         <Breadcrumb />
-        <ViewAll
-          tourData={tourData && tourData.length > 0 ? tourData : data}
-          isLoading={isLoading}
-          header={header ?? ""}
-        />
+        {isDestination ? (
+          <ViewAll
+            tourData={destinationData}
+            isLoading={isLoading}
+            header={header ?? ""}
+            isDestination={isDestination}
+          />
+        ) : (
+          <ViewAll
+            tourData={tourData && tourData.length > 0 ? tourData : data}
+            isLoading={isLoading}
+            header={header ?? ""}
+          />
+        )}
       </div>
     </CommonLayout>
   );

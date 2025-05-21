@@ -358,7 +358,11 @@
       "RoomUnselectedDes": "Bạn đã bỏ chọn phòng"
     },
     "Login": "Vui lòng đăng nhập để bình luận",
-    "postCommentSuccess": "Đăng bình luận thành công"
+    "postCommentSuccess": "Đăng bình luận thành công",
+    "saveTour": "Gói du lịch đã được lưu thành công",
+    "unsaveTour": "Gói du lịch đã được hủy lưu thành công",
+    "saveHotlel": "Khách sạn đã được lưu thành công",
+    "unsaveHotel": "Khách sạn đã được hủy lưu thành công"
   },
   "ReviewCard": {
     "Wonderful": "Tuyệt Vời",
@@ -383,5 +387,7 @@
   "Good": "Tốt 8+",
   "Pleasant": "Tạm ổn 7+",
   "NotFound": "Không có gói du lịch nào khớp với bộ lọc của bạn",
-  "experiences": "trải nghiệm"
+  "experiences": "trải nghiệm",
+  "ViewAll": "Xem Tất Cả",
+  "NoFoundHotel": "Không có khách sạn nào khớp với bộ lọc của bạn"
 }

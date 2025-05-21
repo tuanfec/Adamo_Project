@@ -1,8 +1,7 @@
 import { setAllTour } from "@/app/slide/tourDataSlide";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
-import { Loading } from "@/components/common/Loading";
 import { ViewAll } from "@/components/home/ViewAll";
-import { useAttractiveTours, useTraditionalTours } from "@/hooks/useTours";
+import { useGetAllTours } from "@/hooks/useTours";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,36 +16,17 @@ const SearchTour = () => {
   );
   const dataTour = useSelector((state: any) => state.tourDataSlide.allTour);
 
-  const { data: attractiveData, isLoading: isLoadingAttractive } =
-    useAttractiveTours();
-  const { data: traditionalData, isLoading: isLoadingTraditional } =
-    useTraditionalTours();
-
-  const attractiveToursWithSource = (attractiveData || []).map((tour: any) => ({
-    ...tour,
-    source: "attractive",
-  }));
-  const traditionalToursWithSource = (traditionalData || []).map(
-    (tour: any) => ({
-      ...tour,
-      source: "traditional",
-    })
-  );
+  const { data } = useGetAllTours();
 
   useEffect(() => {
-    const allTourData = [
-      ...(attractiveToursWithSource || []),
-      ...(traditionalToursWithSource || []),
-    ];
+    {
+      if (data) {
+        dispatch(setAllTour(data));
+      }
+    }
+  }, [data, dispatch]);
 
-    dispatch(setAllTour(allTourData));
-  }, [attractiveData, traditionalData, dispatch]);
-
-  if (isLoadingAttractive || isLoadingTraditional) {
-    return <Loading />;
-  }
-
-  const dataFilter = dataTour.filter((item: any) => {
+  const dataFilter = dataTour?.filter((item: any) => {
     const matchLocation =
       !searchTour.location ||
       item.location

@@ -14,19 +14,23 @@ import { ReviewTour } from "@/components/tourDetail/ReviewTour/Index";
 import { useHotelDetail } from "@/hooks/useHotels";
 import { setHotelDetail } from "@/app/slide/hotelDataSlide";
 import { SelectRoom } from "@/components/selectRoom";
-import { useChangeSaveHotel } from "@/hooks/useTours";
+import { useChangeSaveHotel } from "@/hooks/useHotels";
+import { useNotification } from "@/components/notifiction/NotificationProvider";
+import { useTranslation } from "react-i18next";
 
 const HotelDetail: React.FC = () => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const { source } = useParams();
+  const notification = useNotification();
+
   const { data: hotelDataDetail } = useHotelDetail(id ?? "");
-  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     dispatch(setStatePage(PageState.DESCRIPTION));
-    // Update tour detail in redux when data changes
     if (hotelDataDetail) {
       dispatch(setHotelDetail(hotelDataDetail));
     }
@@ -37,14 +41,21 @@ const HotelDetail: React.FC = () => {
   const changeSave = useChangeSaveHotel();
   const fetchDataDetail = useHotelDetail(id ?? "");
   const handleChangeSaveHotel = (id: string) => {
+    const oldSave = hotelDataDetail?.isSave;
+    const newSave = !oldSave;
     changeSave.mutate(
       {
         id,
-        isSave: !hotelDataDetail?.isSave,
+        isSave: newSave,
       },
       {
         onSuccess: () => {
           fetchDataDetail.refetch();
+          notification.success({
+            message: newSave
+              ? t("notification.saveHotlel")
+              : t("notification.unsaveHotel"),
+          });
         },
         onError: (error) => {
           console.error("Error updating save status:", error);

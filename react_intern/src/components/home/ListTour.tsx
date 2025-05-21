@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "./ListTour.css";
 import { TourData } from "@/types/tour";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface ListTourProps {
   data: TourData[];
@@ -15,6 +16,7 @@ interface ListTourProps {
   spaceBetween?: number;
   onClick?: () => void;
   source?: string;
+  isDestination?: boolean;
 }
 
 export const ListTour: React.FC<ListTourProps> = ({
@@ -24,13 +26,23 @@ export const ListTour: React.FC<ListTourProps> = ({
   spaceBetween,
   onClick,
   source,
+  isDestination,
 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const viewDetail = (id: string, source: string) => {
-    navigate(`/tours/view_detail/${source}/${id}`, {
-      state: { previousHeader: header, id },
-    });
+
+  const viewDetail = (id?: string, source?: string, location?: string) => {
+    if (isDestination) {
+      navigate(`/tours/view_all/destination/${location}`, {
+        state: { location },
+      });
+    } else {
+      navigate(`/tours/view_detail/${source}/${id}`, {
+        state: { previousHeader: header, id },
+      });
+    }
   };
+
   return (
     <div className="flex flex-col gap-4 my-10">
       <div className="flex justify-between items-center">
@@ -39,8 +51,8 @@ export const ListTour: React.FC<ListTourProps> = ({
         </p>
         <button
           onClick={onClick}
-          className="bg-black dark:bg-[#FF7B42] dark:text-white cursor-pointer lg:mt-10 text-white h-[38px] w-[92px]">
-          View All
+          className="bg-black dark:bg-[#FF7B42] dark:text-white cursor-pointer lg:mt-10 text-white h-[38px] w-fit px-4">
+          {t("ViewAll")}
         </button>
       </div>
       <div className="relative">
@@ -64,7 +76,9 @@ export const ListTour: React.FC<ListTourProps> = ({
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <CardTour
-                onClick={() => viewDetail(item.id, source || "attractive")}
+                onClick={() =>
+                  viewDetail(item.id, source || "attractive", item.location)
+                }
                 image={item.image?.[0]}
                 title={item.title}
                 description={item.description}

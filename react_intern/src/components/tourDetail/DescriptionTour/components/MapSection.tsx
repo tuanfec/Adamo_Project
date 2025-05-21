@@ -26,7 +26,6 @@ export const MapSection: React.FC<MapSectionProps> = ({
     location?.coordinates?.lat && location?.coordinates?.lng
       ? [location.coordinates.lat, location.coordinates.lng]
       : [40.8518, 14.2681];
-  console.log(isContact);
   return (
     <div>
       <div

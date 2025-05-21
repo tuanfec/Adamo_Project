@@ -1,6 +1,7 @@
-import { getHotels } from "@/api/homeAPI";
+import { changeSaveHotel, getHotels } from "@/api/homeAPI";
 import { getHotelDetail } from "@/api/homeAPI";
-import { useQuery } from "@tanstack/react-query";
+import { ChangeSave } from "@/types/tour";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 
 export const useHotels = () => {
@@ -18,5 +19,13 @@ export const useHotelDetail = (id: string) => {
   return useQuery({
     queryKey: ["hotelDetail", id],
     queryFn: () => getHotelDetail(id),
+  });
+};
+export const useChangeSaveHotel = () => {
+  return useMutation({
+    mutationKey: ["changeSaveHotel"],
+    mutationFn: async ({ isSave, id }: ChangeSave) => {
+      return await changeSaveHotel(id, isSave);
+    },
   });
 };

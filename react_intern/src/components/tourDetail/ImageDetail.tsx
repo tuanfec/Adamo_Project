@@ -17,6 +17,7 @@ export const ImageDetail: React.FC<{
 }> = ({ data, isRoom, roomData, onSubmit }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const { t } = useTranslation();
+
   return (
     <div className={`relative`}>
       {/* Main Swiper */}
@@ -61,7 +62,7 @@ export const ImageDetail: React.FC<{
           className={`absolute top-0 right-4 cursor-pointer z-10 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
           <Tooltip
             title={data?.isSave ? t("CardTour.saved") : t("CardTour.save")}>
-            <FaBookmark className="text-6xl" />
+            <FaBookmark className="text-5xl" />
           </Tooltip>{" "}
         </button>
       </div>
