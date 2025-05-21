@@ -61,20 +61,28 @@ const HomePage: React.FC = () => {
     dispatch(setDestination(allDestinations));
   }, [attractiveData, traditionalData, hotelData, dispatch]);
 
-  const handleViewAll = (isAttractive: boolean) => {
+  const handleViewAll = (isAttractive?: boolean, isDestination?: boolean) => {
     dispatch(setAllTour(allTourData));
     if (isAttractive) {
       dispatch(setTourData(attractiveData));
-    } else {
+    } else if (!isAttractive && !isDestination) {
       dispatch(setTourData(traditionalData));
     }
-    navigate(`/tours/view_all/${isAttractive ? "attractive" : "traditional"}`, {
-      state: {
-        header: isAttractive
-          ? "Attractive tour and interesting experiences"
-          : "Experience the traditional cultural beauties of Vietnam",
-      },
-    });
+    if (isDestination) {
+      navigate(`/tours/view_all_destination`, {
+        state: {
+          from: "destination",
+        },
+      });
+    } else
+      navigate(
+        `/tours/view_all/${isAttractive ? "attractive" : "traditional"}`,
+        {
+          state: {
+            header: isAttractive ? "attractive" : "traditional",
+          },
+        }
+      );
   };
 
   return (
@@ -90,7 +98,10 @@ const HomePage: React.FC = () => {
       <div className="py-8 ">
         <Content />
         <div data-aos="fade-up" data-aos-duration="1000">
-          <ListDestinations DataDestinations={allDestinationsRedux} />
+          <ListDestinations
+            onClick={() => handleViewAll(true, true)}
+            DataDestinations={allDestinationsRedux}
+          />
         </div>
         <div data-aos="fade-up" data-aos-duration="1000">
           {attractiveTourRedux && (
@@ -99,7 +110,7 @@ const HomePage: React.FC = () => {
               header={t("homePage.listTour_2")}
               slidesPerView={3}
               spaceBetween={40}
-              onClick={() => handleViewAll(true)}
+              onClick={() => handleViewAll(true, false)}
               source="attractive"
             />
           )}
@@ -111,7 +122,7 @@ const HomePage: React.FC = () => {
               header={t("homePage.listTour_3")}
               slidesPerView={3}
               spaceBetween={40}
-              onClick={() => handleViewAll(false)}
+              onClick={() => handleViewAll(false, false)}
               source="traditional"
             />
           )}

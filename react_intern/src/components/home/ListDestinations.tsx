@@ -1,9 +1,10 @@
 import { ListTour } from "./ListTour";
 import { useTranslation } from "react-i18next";
 
-const ListDestinations: React.FC<{ DataDestinations: any }> = ({
-  DataDestinations,
-}) => {
+const ListDestinations: React.FC<{
+  DataDestinations: any;
+  onClick?: () => void;
+}> = ({ DataDestinations, onClick }) => {
   const { t } = useTranslation();
   return (
     <div>
@@ -14,6 +15,7 @@ const ListDestinations: React.FC<{ DataDestinations: any }> = ({
           slidesPerView={4}
           spaceBetween={30}
           isDestination={true}
+          onClick={onClick}
         />
       )}
     </div>

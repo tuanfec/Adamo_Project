@@ -35,6 +35,7 @@ export default function HomeRouter() {
           path="/tours/view_all/destination/:location"
           element={<ViewAllList />}
         />
+        <Route path="/tours/view_all_destination" element={<ViewAllList />} />
 
         <Route path="/hotels" element={<HotelPage />} />
         <Route path="/hotels/search" element={<SearchHotel />} />

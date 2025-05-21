@@ -19,12 +19,14 @@ interface ViewAllProps {
   isLoading: boolean;
   header: string;
   isDestination?: boolean;
+  isAllDestination?: boolean;
 }
 
 export const ViewAll: React.FC<ViewAllProps> = ({
   tourData,
   header,
   isDestination,
+  isAllDestination,
 }) => {
   const filter = useSelector((state: any) => state.tourDataSlide.filter);
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
   const [isFilter, setIsFilter] = useState(false);
   const [itemsPerPage] = useState(21);
   const dispatch = useDispatch();
+  console.log(isAllDestination);
 
   // Check if filter has been applied (after clicking Apply Filter)
   const isFilterApplied = filter?.isApplied;
@@ -78,10 +81,15 @@ export const ViewAll: React.FC<ViewAllProps> = ({
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
-  const viewDetail = (id: string, source: string) => {
-    navigate(`/tours/view_detail/${source}/${id}`, {
-      state: { previousHeader: header, id },
-    });
+  const viewDetail = (id: string, source: string, location?: string) => {
+    if (isAllDestination) {
+      navigate(`/tours/view_all/destination/${location}`, {
+        state: { location },
+      });
+    } else
+      navigate(`/tours/view_detail/${source}/${id}`, {
+        state: { previousHeader: header, id },
+      });
   };
   const renderPaginationButtons = () => {
     if (totalPages <= 1) return null;
@@ -173,17 +181,19 @@ export const ViewAll: React.FC<ViewAllProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentItems.map((item: TourData, index) => (
               <CardTour
-                onClick={() => viewDetail(item.id, item.tourType || "")}
+                onClick={() =>
+                  viewDetail(item.id, item.tourType || "", item.location || "")
+                }
                 key={index}
                 image={item.image?.[0]}
-                title={item.title}
-                description={item.description}
-                experiences={item.experiences}
-                location={item.location}
-                votes={item.reviews.rating}
-                duration={item.duration}
-                price={item.price}
-                isSave={item.isSave}
+                title={item?.title}
+                description={item?.description}
+                experiences={item?.experiences}
+                location={item?.location}
+                votes={item?.reviews?.rating}
+                duration={item?.duration}
+                price={item?.price}
+                isSave={item?.isSave}
                 isHover={true}
                 handleChangeSaveTour={() => handleChangeSaveTour(item.id || "")}
               />
