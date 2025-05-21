@@ -50,6 +50,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
   type FormValues = z.infer<typeof zodSchema>;
   // Redux selectors
   const allTour = useSelector((state: any) => state.tourDataSlide.allTour);
+
   const searchTour = useSelector(
     (state: any) => state.tourDataSlide.searchTour
   );

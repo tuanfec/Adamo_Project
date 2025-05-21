@@ -1,6 +1,6 @@
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ViewAll } from "@/components/home/ViewAll";
-import { useAttractiveTours } from "@/hooks/useTours";
+import { useGetAllTours } from "@/hooks/useTours";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@/assets/banner_img.jpg";
 import { useTranslation } from "react-i18next";
@@ -9,13 +9,10 @@ import { useDispatch } from "react-redux";
 import { setTourData } from "@/app/slide/tourDataSlide";
 const TourPage: React.FC = () => {
   const dispath = useDispatch();
-  const { data: tourData, isLoading } = useAttractiveTours();
+  const { data: tourData, isLoading } = useGetAllTours();
   const { t } = useTranslation();
-  console.log(tourData);
 
   useEffect(() => {
-    console.log(1);
-
     dispath(setTourData(tourData));
   }, [tourData]);
 
@@ -31,7 +28,6 @@ const TourPage: React.FC = () => {
       isShow={true}>
       <Breadcrumb />
       <ViewAll
-        from="attractive"
         tourData={tourData}
         isLoading={isLoading}
         header={t("homePage.listTour_2")}

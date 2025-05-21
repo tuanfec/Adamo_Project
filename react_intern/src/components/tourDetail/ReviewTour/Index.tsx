@@ -11,7 +11,6 @@ import { useTranslation } from "react-i18next";
 import { useComment, usePostComment } from "@/hooks/useTours";
 import { CommentSchemaValue } from "@/types/zod";
 import { useQueryClient } from "@tanstack/react-query";
-import { log } from "console";
 interface ReviewTourProps {
   data: ReviewStats;
   isHotel: boolean;

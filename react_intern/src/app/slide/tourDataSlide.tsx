@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { set } from "react-hook-form";
 const initialState = {
   tourData: [],
   tourDetail: [],
@@ -30,6 +29,9 @@ const initialState = {
     type: [],
   },
   isSave: false,
+  attractiveTour: [],
+  traditionalTour: [],
+  destination: [],
 };
 
 const tourDataSlide = createSlice({
@@ -63,6 +65,15 @@ const tourDataSlide = createSlice({
     setIsSave: (state, action) => {
       state.isSave = action.payload;
     },
+    setAttractiveTour: (state, action) => {
+      state.attractiveTour = action.payload;
+    },
+    setTraditionalTour: (state, action) => {
+      state.traditionalTour = action.payload;
+    },
+    setDestination: (state, action) => {
+      state.destination = action.payload;
+    },
   },
 });
 
@@ -76,5 +87,8 @@ export const {
   setAllTour,
   setSearchTour,
   setIsSave,
+  setAttractiveTour,
+  setTraditionalTour,
+  setDestination,
 } = tourDataSlide.actions;
 export default tourDataSlide.reducer;

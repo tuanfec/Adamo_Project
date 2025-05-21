@@ -1,20 +1,21 @@
 import instance from "@/services/axios";
 
-export const getAttractiveTours = async () => {
-  const response = await instance.get("http://localhost:3000/attractiveTours");
-  return response.data;
-};
-
-export const getTraditionalCultureTours = async () => {
+export const getAttractiveTours = async (tourType: string) => {
   const response = await instance.get(
-    "http://localhost:3000/traditionalCultureTours"
+    `http://localhost:3000/tours?tourType=${tourType}`
   );
   return response.data;
 };
 
-export const getTourDetail = async (id: string, isAttractive: boolean) => {
+export const getAllTours = async () => {
+  const response = await instance.get("http://localhost:3000/tours");
+  console.log("response", response.data);
+  return response.data;
+};
+
+export const getTourDetail = async (id: string, tourType: string) => {
   const response = await instance.get(
-    `http://localhost:3000/${isAttractive ? "attractiveTours" : "traditionalCultureTours"}/${id}`
+    `http://localhost:3000/tours/${id}?tourType=${tourType}`
   );
   return response.data;
 };
@@ -45,17 +46,8 @@ export const postComment = async (data: any) => {
   await instance.post(`http://localhost:3000/comments`, data);
 };
 
-export const changeSaveTourAttractive = async (id: string, isSave: boolean) => {
-  await instance.patch(`http://localhost:3000/attractiveTours/${id}`, {
-    isSave,
-  });
-};
-
-export const changeSaveTourTraditional = async (
-  id: string,
-  isSave: boolean
-) => {
-  await instance.patch(`http://localhost:3000/traditionalCultureTours/${id}`, {
+export const changeSaveTours = async (id: string, isSave: boolean) => {
+  await instance.patch(`http://localhost:3000/tours/${id}`, {
     isSave,
   });
 };
@@ -64,4 +56,17 @@ export const changeSaveHotel = async (id: string, isSave: boolean) => {
   await instance.patch(`http://localhost:3000/hotels/${id}`, {
     isSave,
   });
+};
+
+export const getAllTourByLocation = async (location: string) => {
+  const res = await instance.get(
+    `http://localhost:3000/tours?location=${location}`
+  );
+
+  return res.data;
+};
+
+export const getDestinations = async () => {
+  const response = await instance.get(`http://localhost:3000/Destinations`);
+  return response.data;
 };

@@ -1,10 +1,16 @@
 import { EmailSubcription } from "@/components/home/EmailSubcription";
 import { Content } from "@/components/home/Content";
 import { ListTour } from "@/components/home/ListTour";
-import { useAttractiveTours, useTraditionalTours } from "@/hooks/useTours";
+import { useDataTours, useGetAllTours } from "@/hooks/useTours";
 import { Loading } from "@/components/common/Loading";
-import { useDispatch } from "react-redux";
-import { setAllTour, setTourData } from "@/app/slide/tourDataSlide";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setAllTour,
+  setAttractiveTour,
+  setDestination,
+  setTourData,
+  setTraditionalTour,
+} from "@/app/slide/tourDataSlide";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FloatButton } from "antd";
@@ -13,37 +19,49 @@ import banner from "@/assets/banner_img.jpg";
 import { useTranslation } from "react-i18next";
 import { useHotels } from "@/hooks/useHotels";
 import { setHotelData } from "@/app/slide/hotelDataSlide";
+import ListDestinations from "@/components/home/ListDestinations";
+import { useAllDestinations } from "@/hooks/useTours";
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { data: attractiveData, isLoading: isLoadingAttractive } =
-    useAttractiveTours();
-  const { data: traditionalData, isLoading: isLoadingTraditional } =
-    useTraditionalTours();
-  const { data: hotelData } = useHotels();
-
   const navigate = useNavigate();
 
-  // Add source to each tour item
-  const attractiveWithSource = attractiveData?.map((tour: any) => ({
-    ...tour,
-    source: "attractive",
-  }));
-  const traditionalWithSource = traditionalData?.map((tour: any) => ({
-    ...tour,
-    source: "traditional",
-  }));
+  //Get data from API
+  const { data: attractiveData } = useDataTours("attractive");
+  const { data: traditionalData } = useDataTours("traditional");
+  const { data: hotelData } = useHotels();
+  const { data: allTourData } = useGetAllTours();
+  const { data: allDestinations } = useAllDestinations();
 
-  const allTourData = [...(attractiveData || []), ...(traditionalData || [])];
+  //Select data from redux
+  const attractiveTourRedux = useSelector(
+    (state: any) => state.tourDataSlide.attractiveTour
+  );
+  const traditionalTourRedux = useSelector(
+    (state: any) => state.tourDataSlide.traditionalTour
+  );
+  const allDestinationsRedux = useSelector(
+    (state: any) => state.tourDataSlide.destination
+  );
+
+  //dispatch data to redux
   useEffect(() => {
+    if (
+      !attractiveData ||
+      !traditionalData ||
+      !hotelData ||
+      !allTourData ||
+      !allDestinations
+    )
+      return;
     dispatch(setAllTour(allTourData));
     dispatch(setHotelData(hotelData));
+    dispatch(setAttractiveTour(attractiveData));
+    dispatch(setTraditionalTour(traditionalData));
+    dispatch(setDestination(allDestinations));
   }, [attractiveData, traditionalData, hotelData, dispatch]);
 
-  if (isLoadingAttractive || isLoadingTraditional) {
-    return <Loading />;
-  }
   const handleViewAll = (isAttractive: boolean) => {
     dispatch(setAllTour(allTourData));
     if (isAttractive) {
@@ -59,6 +77,7 @@ const HomePage: React.FC = () => {
       },
     });
   };
+
   return (
     <CommonLayout
       title={t("banner.homePage.title")}
@@ -72,19 +91,12 @@ const HomePage: React.FC = () => {
       <div className="py-8 ">
         <Content />
         <div data-aos="fade-up" data-aos-duration="1000">
-          {attractiveData && (
-            <ListTour
-              data={attractiveData}
-              header={t("homePage.listTour_1")}
-              slidesPerView={4}
-              spaceBetween={40}
-            />
-          )}
+          <ListDestinations DataDestinations={allDestinationsRedux} />
         </div>
         <div data-aos="fade-up" data-aos-duration="1000">
-          {attractiveWithSource && (
+          {attractiveTourRedux && (
             <ListTour
-              data={attractiveWithSource}
+              data={attractiveTourRedux}
               header={t("homePage.listTour_2")}
               slidesPerView={3}
               spaceBetween={40}
@@ -94,9 +106,9 @@ const HomePage: React.FC = () => {
           )}
         </div>
         <div data-aos="fade-up" data-aos-duration="1000">
-          {traditionalWithSource && (
+          {traditionalTourRedux && (
             <ListTour
-              data={traditionalWithSource}
+              data={traditionalTourRedux}
               header={t("homePage.listTour_3")}
               slidesPerView={3}
               spaceBetween={40}

@@ -64,6 +64,7 @@ export interface TourData {
   startDate?: string;
   endDate?: string;
   isSave?: boolean;
+  tourType?: string;
   overview: [Overview, { listOverview: ListOverview[] }];
   include: Include[][];
   departure: Departure[];

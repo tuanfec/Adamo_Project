@@ -4,14 +4,18 @@ import { Pagination } from "../common/Pagination";
 import { useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useChangeSaveHotel } from "@/hooks/useTours";
+import { useChangeSaveHotel } from "@/hooks/useHotels";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { setIsSave } from "@/app/slide/hotelDataSlide";
+import { useTranslation } from "react-i18next";
+import { useNotification } from "@/components/notifiction/NotificationProvider";
 export const ListHotels: React.FC<{
   hotels: HotelFormData[];
   isFilterApplied: boolean;
 }> = ({ hotels, isFilterApplied }) => {
+  const { t } = useTranslation();
+  const notification = useNotification();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(2);
   const totalPages = Math.ceil(hotels.length / itemsPerPage);
@@ -45,6 +49,8 @@ export const ListHotels: React.FC<{
   const changeSave = useChangeSaveHotel();
   const useQueyClient = useQueryClient();
   const handleChangeSaveHotel = (id: string) => {
+    const oldSave = hotels?.find((hotel) => hotel.id === id)?.isSave;
+    const newSave = !oldSave;
     dispatch(setIsSave(true));
     changeSave.mutate(
       {
@@ -55,6 +61,11 @@ export const ListHotels: React.FC<{
         onSuccess: () => {
           dispatch(setIsSave(false));
           useQueyClient.invalidateQueries({ queryKey: ["hotels"] });
+          notification.success({
+            message: newSave
+              ? t("notification.saveHotlel")
+              : t("notification.unsaveHotel"),
+          });
         },
         onError: (error) => {
           console.error("Error updating save status:", error);
@@ -77,9 +88,7 @@ export const ListHotels: React.FC<{
         </div>
       ) : (
         <div className="flex justify-center items-center py-20">
-          <p className="text-2xl text-gray-500">
-            No hotels found matching your filters
-          </p>
+          <p className="text-2xl text-gray-500">{t("NoFoundHotel")}</p>
         </div>
       )}
       <Pagination

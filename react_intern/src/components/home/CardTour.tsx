@@ -67,7 +67,7 @@ export const CardTour: React.FC<CardTourProps> = ({
       </div>
 
       <div className="cursor-pointer" onClick={onClick}>
-        {location && (
+        {location && !experiences && (
           <div className="flex items-center gap-2 mt-2">
             <HiOutlineLocationMarker className="text-2xl text-[#FF7B42]" />
             <p className="text-gray-600 dark:text-[#bbbbbb] text-sm">
@@ -101,9 +101,14 @@ export const CardTour: React.FC<CardTourProps> = ({
         {description && <p className="text-gray-600">{description}</p>}
       </div>
       {experiences && (
-        <p className="font-thin text-[#1C1C1E] ">
-          {experiences} {t("experiences")}
-        </p>
+        <div>
+          <p className="text-black dark:text-white text-xl font-medium mt-2">
+            {location}
+          </p>
+          <p className="font-thin text-[#1C1C1E] dark:text-[#bbbbbb] text-sm ">
+            {experiences} {t("experiences")}
+          </p>
+        </div>
       )}
     </div>
   );

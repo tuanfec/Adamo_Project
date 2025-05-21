@@ -3,38 +3,39 @@ import { CardTour } from "./CardTour";
 import { useDispatch, useSelector } from "react-redux";
 import { FilterForm } from "../form/FilterForm";
 import React from "react";
-import { IoMdClose } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "../common/Pagination";
-import { Loading } from "../common/Loading";
 import { TourData } from "@/types/tour";
-import { FloatButton } from "antd";
+import { FloatButton, message } from "antd";
 import { Filter } from "../common/Filter";
 import { useTranslation } from "react-i18next";
 import { useChangeSaveTour } from "@/hooks/useTours";
 import { useQueryClient } from "@tanstack/react-query";
-import { set } from "react-hook-form";
 import { setIsSave } from "@/app/slide/tourDataSlide";
+import { useNotification } from "@/components/notifiction/NotificationProvider";
 
 interface ViewAllProps {
   tourData: TourData[];
   isLoading: boolean;
   header: string;
-  from?: string;
+  isDestination?: boolean;
 }
 
-export const ViewAll: React.FC<ViewAllProps> = ({ tourData, header, from }) => {
+export const ViewAll: React.FC<ViewAllProps> = ({
+  tourData,
+  header,
+  isDestination,
+}) => {
   const filter = useSelector((state: any) => state.tourDataSlide.filter);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [isFilter, setIsFilter] = useState(false);
   const [itemsPerPage] = useState(21);
-  const { source } = useParams();
   const dispatch = useDispatch();
-  const sourceView = source || from;
   // Check if filter has been applied (after clicking Apply Filter)
   const isFilterApplied = filter?.isApplied;
   const { t } = useTranslation();
+  const notification = useNotification();
 
   const displayData =
     isFilterApplied && tourData
@@ -77,7 +78,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({ tourData, header, from }) => {
     setCurrentPage(currentPage + 1);
   };
   const viewDetail = (id: string, source: string) => {
-    navigate(`/tours/view_detail/${sourceView || source}/${id}`, {
+    navigate(`/tours/view_detail/${source}/${id}`, {
       state: { previousHeader: header, id },
     });
   };
@@ -99,22 +100,45 @@ export const ViewAll: React.FC<ViewAllProps> = ({ tourData, header, from }) => {
   const changeSave = useChangeSaveTour();
   const useQueyClient = useQueryClient();
   const handleChangeSaveTour = (id: string) => {
+    const oldIsSave = tourData.find((item) => item.id === id)?.isSave;
+    const newIsSave = !oldIsSave;
     dispatch(setIsSave(true));
     changeSave.mutate(
       {
         id,
-        isSave: !tourData.find((item) => item.id === id)?.isSave,
-        isAttractive: sourceView === "attractive",
+        isSave: newIsSave,
       },
       {
         onSuccess: () => {
-          useQueyClient.invalidateQueries({
-            queryKey: ["tours"],
+          useQueyClient.setQueryData(["tours"], (oldData: any) => {
+            if (!oldData) return oldData;
+            return oldData.map((tour: any) => {
+              if (tour.id === id) {
+                return { ...tour, isSave: newIsSave };
+              }
+              return tour;
+            });
           });
-          useQueyClient.invalidateQueries({
-            queryKey: ["attractiveTours"],
+          useQueyClient.setQueryData(["allTours"], (oldData: any) => {
+            if (!oldData) return oldData;
+            return oldData.map((tour: any) => {
+              if (tour.id === id) {
+                return { ...tour, isSave: newIsSave };
+              }
+              return tour;
+            });
           });
+          if (isDestination) {
+            useQueyClient.invalidateQueries({
+              queryKey: ["tourByLocation"],
+            });
+          }
           dispatch(setIsSave(false));
+          notification.success({
+            message: newIsSave
+              ? t("notification.saveTour")
+              : t("notification.unsaveTour"),
+          });
         },
         onError: (error) => {
           console.error("Error updating save status:", error);
@@ -132,7 +156,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({ tourData, header, from }) => {
         <div className="flex flex-row-reverse md:flex-row lg:flex-row justify-end flex-1 relative">
           <Filter isFilter={isFilter} setIsFilter={setIsFilter} />
           {isFilter && (
-            <div className="absolute lg:w-1/2 w-full top-20 lg:right-0 z-10 shadow-lg">
+            <div className="absolute lg:w-1/2 w-full top-20 lg:right-0 z-100 shadow-lg">
               <FilterForm tourData={tourData} />
             </div>
           )}
@@ -148,7 +172,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({ tourData, header, from }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentItems.map((item: TourData, index) => (
               <CardTour
-                onClick={() => viewDetail(item.id, item.source || "")}
+                onClick={() => viewDetail(item.id, item.tourType || "")}
                 key={index}
                 image={item.image?.[0]}
                 title={item.title}

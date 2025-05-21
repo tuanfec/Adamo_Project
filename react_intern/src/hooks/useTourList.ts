@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import { getAttractiveTours, getTraditionalCultureTours } from "@/api/homeAPI";
+import { getAttractiveTours } from "@/api/homeAPI";
 
 export const useTourList = (header?: string | undefined) => {
   const [data, setData] = useState<any[]>([]);
@@ -12,9 +12,9 @@ export const useTourList = (header?: string | undefined) => {
   const getToursByHeader = async (headerText: string) => {
     switch (headerText) {
       case "attractive":
-        return getAttractiveTours();
+        return getAttractiveTours("attractive");
       case "traditional":
-        return getTraditionalCultureTours();
+        return getAttractiveTours("traditional");
       default:
         throw new Error("Invalid tour type");
     }

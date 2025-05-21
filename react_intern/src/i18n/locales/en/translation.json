@@ -358,7 +358,11 @@
       "RoomUnselectedDes": "You have unselected the room"
     },
     "Login": "Please login to comment",
-    "postCommentSuccess": "Comment posted successfully"
+    "postCommentSuccess": "Comment posted successfully",
+    "saveTour": "Tour saved successfully",
+    "unsaveTour": "Tour unsaved successfully",
+    "saveHotlel": "Hotel saved successfully",
+    "unsaveHotel": "Hotel unsaved successfully"
   },
   "ReviewCard": {
     "Wonderful": "Wonderful",
@@ -383,5 +387,7 @@
   "Good": "Good",
   "Pleasant": "Pleasant",
   "NotFound": "No tours found matching your filters",
-  "experiences": "experiences"
+  "experiences": "experiences",
+  "ViewAll": "View All",
+  "NoFoundHotel": "No hotels found matching your filters"
 }
