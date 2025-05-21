@@ -8,6 +8,9 @@ import "./ListTour.css";
 import { TourData } from "@/types/tour";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useChangeSaveTour } from "@/hooks/useTours";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNotification } from "@/components/notifiction/NotificationProvider";
 
 interface ListTourProps {
   data: TourData[];
@@ -30,6 +33,41 @@ export const ListTour: React.FC<ListTourProps> = ({
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const notification = useNotification();
+
+  const changeSave = useChangeSaveTour();
+  const useQueyClient = useQueryClient();
+  const handleChangeSaveTour = (id: string) => {
+    const oldIsSave = data.find((item) => item.id === id)?.isSave;
+    const newIsSave = !oldIsSave;
+    changeSave.mutate(
+      {
+        id,
+        isSave: newIsSave,
+      },
+      {
+        onSuccess: () => {
+          useQueyClient.setQueryData(["tourData", source], (oldData: any) => {
+            if (!oldData) return oldData;
+            return oldData.map((tour: any) => {
+              if (tour.id === id) {
+                return { ...tour, isSave: newIsSave };
+              }
+              return tour;
+            });
+          });
+          notification.success({
+            message: newIsSave
+              ? t("notification.saveTour")
+              : t("notification.unsaveTour"),
+          });
+        },
+        onError: (error) => {
+          console.error("Error updating save status:", error);
+        },
+      }
+    );
+  };
 
   const viewDetail = (id?: string, source?: string, location?: string) => {
     if (isDestination) {
@@ -89,6 +127,7 @@ export const ListTour: React.FC<ListTourProps> = ({
                 price={item.price}
                 isSave={item.isSave}
                 isHover={true}
+                handleChangeSaveTour={() => handleChangeSaveTour(item.id || "")}
               />
             </SwiperSlide>
           ))}

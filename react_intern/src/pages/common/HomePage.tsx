@@ -2,7 +2,6 @@ import { EmailSubcription } from "@/components/home/EmailSubcription";
 import { Content } from "@/components/home/Content";
 import { ListTour } from "@/components/home/ListTour";
 import { useDataTours, useGetAllTours } from "@/hooks/useTours";
-import { Loading } from "@/components/common/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setAllTour,
@@ -105,7 +104,7 @@ const HomePage: React.FC = () => {
             />
           )}
         </div>
-        <div data-aos="fade-up" data-aos-duration="1000">
+        <div data-aos-duration="1000">
           {traditionalTourRedux && (
             <ListTour
               data={traditionalTourRedux}

@@ -9,7 +9,7 @@ const ListDestinations: React.FC<{ DataDestinations: any }> = ({
     <div>
       {DataDestinations && (
         <ListTour
-          header={t("homePage.listTour_2")}
+          header={t("homePage.listTour_1")}
           data={DataDestinations}
           slidesPerView={4}
           spaceBetween={30}

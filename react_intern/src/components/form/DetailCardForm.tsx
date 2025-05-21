@@ -6,7 +6,6 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useParams } from "react-router-dom";
-import { TourData } from "@/types/tour";
 import { HotelFormData, Room } from "@/types/hotel";
 import { CustomDropdown } from "./CustomDropdown";
 import { ButtonCountRoom } from "./hotel/ButtonCountRoom";
@@ -15,19 +14,10 @@ import { setSelectedRoom } from "@/app/slide/hotelDataSlide";
 import { setStatePage, PageState } from "@/app/slide/statePageSlide";
 import { useNotification } from "../notifiction/NotificationProvider";
 import { useTranslation } from "react-i18next";
-
-// Form validation schema
-const zodSchema = z.object({
-  adult: z.number().min(1, "Adult is required"),
-  child: z.number().min(0, "Child is required"),
-});
-type FormValues = z.infer<typeof zodSchema>;
-
 interface DetailCardFormProps {
   isHotel: boolean;
   hotelData?: HotelFormData;
 }
-
 export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   isHotel,
   hotelData,
@@ -37,8 +27,16 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   const navigate = useNavigate();
   const { id } = useParams();
   const notification = useNotification();
-  const [isOpenTotalGuest, setIsOpenTotalGuest] = useState(false);
   const { t } = useTranslation();
+
+  const [isOpenTotalGuest, setIsOpenTotalGuest] = useState(false);
+
+  // Form validation schema
+  const zodSchema = z.object({
+    adult: z.number().min(1, t("Adult")),
+    child: z.number().min(0, t("Child")),
+  });
+  type FormValues = z.infer<typeof zodSchema>;
 
   // Redux selectors
   const tourDetail = useSelector(
@@ -149,7 +147,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
     if (totalGuestCapacity > totalRoomCapacity && isHotel) {
       notification.warning({
         message: t("notification.DetailCardForm.WarnningGuestTitle"),
-        description: `${t("notification.DetailCardForm.WarnningGuest")} (${totalGuestCapacity}) ${t("notification.DetailCardForm.RoomeRemove_1")} (${totalRoomCapacity}). ${t("notification.DetailCardForm.RoomeRemove_2")}`,
+        description: `${t("notification.DetailCardForm.WarnningGuest")} "${totalGuestCapacity}" ${t("notification.DetailCardForm.WarnningGuest_1")} "${totalRoomCapacity}". ${t("notification.DetailCardForm.WarnningGuest_2")}`,
         duration: 5,
         placement: "topRight",
       });

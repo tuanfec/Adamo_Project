@@ -211,8 +211,8 @@
       },
       "phone": {
         "required": "Số điện thoại là bắt buộc",
-        "min": "Số điện thoại phải có ít nhất 1 ký tự",
-        "max": "Số điện thoại phải có tối đa 10 ký tự"
+        "min": "Số điện thoại phải có 10 ký tự",
+        "max": "Số điện thoại không được lớn hơn 10 ký tự"
       }
     }
   },
@@ -333,7 +333,7 @@
       "RoomeRemove": "Bạn đã xóa lựa chọn phòng",
       "WarnningSelectRoom": "Vui lòng chọn phòng! Nhấp vào đây để chọn phòng",
       "WarnningGuest": "Tổng số khách là",
-      "WarnningGuest_1": "đã vượt quá sức chứa của phòng",
+      "WarnningGuest_1": "người và đã vượt quá sức chứa của phòng là",
       "WarnningGuest_2": "Vui lòng chọn thêm phòng hoặc giảm số lượng khách.",
       "WarnningGuestTitle": "Sức chứa khách vượt quá"
     },
@@ -389,5 +389,8 @@
   "NotFound": "Không có gói du lịch nào khớp với bộ lọc của bạn",
   "experiences": "trải nghiệm",
   "ViewAll": "Xem Tất Cả",
-  "NoFoundHotel": "Không có khách sạn nào khớp với bộ lọc của bạn"
+  "NoFoundHotel": "Không có khách sạn nào khớp với bộ lọc của bạn",
+  "Confirm": "Xác nhận",
+  "Adult": "Người lớn là bắt buộc",
+  "Child": "Trẻ em không được nhỏ hơn 0"
 }

@@ -11,19 +11,24 @@ const CheckoutForm = () => {
   const { t } = useTranslation();
   const schema = createCheckoutSchema(t);
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CheckoutFormValues>({
+  const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      paymentMethod: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+    },
   });
   const onSubmit = (data: CheckoutFormValues) => {
     console.log(data);
     navigate("/Thanks");
   };
   return (
-    <div className="min-h-screen bg-white text-[#2A2A2A] dark:bg-[#1e1e1e] ">
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="min-h-screen bg-white text-[#2A2A2A] dark:bg-[#1e1e1e] ">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="mb-8">
@@ -48,29 +53,24 @@ const CheckoutForm = () => {
 
           {/* Form Section */}
           <div className="lg:col-span-2 space-y-8 order-last lg:order-first">
-            <TravelerForm
-              register={register}
-              handleSubmit={handleSubmit}
-              errors={errors}
-            />
+            <TravelerForm form={form} />
             <div className="border-b border-gray-200 dark:border-gray-600 w-full mb-6"></div>
 
             <PaymentMethod
-              register={register}
-              handleSubmit={handleSubmit}
-              errors={errors}
+              register={form.register}
+              handleSubmit={form.handleSubmit}
+              errors={form.formState.errors}
             />
             {/* Complete Booking Button */}
             <button
               type="submit"
-              onClick={handleSubmit(onSubmit)}
               className="w-full bg-[#FF7B42] text-white py-3 font-medium text-lg">
               {t("checkOut.completeBooking")}
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

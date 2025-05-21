@@ -1,13 +1,14 @@
-import { Comment } from "@/types/tour";
 import { z } from "zod";
 
 export const createCheckoutSchema = (t: (key: string) => string) =>
   z.object({
-    paymentMethod: z.string().min(1, t("checkOut.zod.paymentMethod")),
-    firstName: z.string().min(1, t("checkOut.zod.firstName")),
-    lastName: z.string().min(1, t("checkOut.zod.lastName")),
-    email: z.string().email(t("checkOut.zod.email")),
-    phone: z.string().min(1, t("checkOut.zod.phone")),
+    paymentMethod: z
+      .string()
+      .min(1, { message: t("checkOut.zod.paymentMethod") }),
+    firstName: z.string().min(1, { message: t("checkOut.zod.firstName") }),
+    lastName: z.string().min(1, { message: t("checkOut.zod.lastName") }),
+    email: z.string().email({ message: t("checkOut.zod.email") }),
+    phone: z.string().min(1, { message: t("checkOut.zod.phone") }),
     address: z.string().optional(),
     city: z.string().optional(),
     state: z.string().optional(),

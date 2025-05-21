@@ -32,6 +32,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
   const [isFilter, setIsFilter] = useState(false);
   const [itemsPerPage] = useState(21);
   const dispatch = useDispatch();
+
   // Check if filter has been applied (after clicking Apply Filter)
   const isFilterApplied = filter?.isApplied;
   const { t } = useTranslation();

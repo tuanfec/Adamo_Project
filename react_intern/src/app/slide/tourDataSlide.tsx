@@ -8,12 +8,11 @@ const initialState = {
     duration: [],
     typeTour: [],
   },
-  totalGuest: [
-    {
-      adult: 0,
-      child: 0,
-    },
-  ],
+  totalGuest: {
+    adult: 0,
+    child: 0,
+  },
+
   location: {
     coordinates: {
       lat: 0,

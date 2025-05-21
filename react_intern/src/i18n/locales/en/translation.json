@@ -211,8 +211,8 @@
       },
       "phone": {
         "required": "Phone is required",
-        "min": "Phone must be at least 1 character",
-        "max": "Phone must be at most 10 characters"
+        "min": "Phone must be at 10 character",
+        "max": "Phone number must not be longer than 10 characters"
       }
     }
   },
@@ -333,7 +333,7 @@
       "RoomeRemove": "You have remove the room",
       "WarnningSelectRoom": "Please select a room! Click here to select room",
       "WarnningGuest": "The total number of guests",
-      "WarnningGuest_1": "exceeds the room capacity",
+      "WarnningGuest_1": "people and have exceeded the capacity of the room is",
       "WarnningGuest_2": "Please select additional rooms or reduce number of guests.",
       "WarnningGuestTitle": "Guest Capacity Exceeded"
     },
@@ -389,5 +389,8 @@
   "NotFound": "No tours found matching your filters",
   "experiences": "experiences",
   "ViewAll": "View All",
-  "NoFoundHotel": "No hotels found matching your filters"
+  "NoFoundHotel": "No hotels found matching your filters",
+  "Confirm": "Confirm",
+  "Adult": "Adult is required",
+  "Child": "Children must not be under 0"
 }

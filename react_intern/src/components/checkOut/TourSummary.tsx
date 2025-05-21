@@ -98,9 +98,9 @@ const TourSummary: React.FC = () => {
             </div>
             {hotelData && (
               <div className="flex flex-col gap-4">
-                {selectedRoom.map((item: Room) => {
+                {selectedRoom.map((item: Room, index: number) => {
                   return (
-                    <div className="flex justify-between">
+                    <div key={index} className="flex justify-between">
                       <div className="flex gap-2 items-center">
                         <p className="text-md font-medium text-[#FF7B42]">
                           {item?.numberSelect}x

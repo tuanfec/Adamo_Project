@@ -1,12 +1,11 @@
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import React, { ReactNode, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setTotalGuest } from "@/app/slide/tourDataSlide";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import {
   UseFormRegister,
   UseFormHandleSubmit,
-  FieldValues,
   Path,
   UseFormSetValue,
 } from "react-hook-form";
@@ -67,6 +66,7 @@ export const CustomDropdown = <
   const [selectedTypeConfirmed, setSelectedTypeConfirmed] = React.useState<
     string[]
   >([]);
+  console.log(totalGuest);
 
   // Lấy giá trị type hiện tại từ react-hook-form
   const selectedTypes = watch && type ? watch("type") : [];
@@ -176,7 +176,7 @@ export const CustomDropdown = <
       {isTotalGuest && isOpen && (
         <form
           onSubmit={handleSubmit(onConfirm)}
-          className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] border border-gray-200 dark:border-gray-700 rounded-md shadow-lg max-h-[200px] overflow-y-auto">
+          className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] border border-gray-200 dark:border-gray-700 rounded-md shadow-lg min-h-fit overflow-y-auto">
           <div className="flex flex-col py-5 px-5 gap-6">
             <div className="flex flex-row gap-4">
               <div className="flex flex-col">
@@ -221,7 +221,7 @@ export const CustomDropdown = <
             <button
               type="submit"
               className="bg-[#FF7B42] w-full font-medium text-white py-5 hover:bg-orange-600 transition-colors rounded-md">
-              Confirm
+              {t("Confirm")}
             </button>
           </div>
         </form>

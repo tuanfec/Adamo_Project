@@ -24,7 +24,9 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const notification = useNotification();
+  const queryClient = useQueryClient();
 
+  // Fetch the list of tours and hotels
   const { data: tourData } = useTourList(source);
   const { data: hotelData } = useHotels();
 
@@ -32,23 +34,29 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
   const [fixedRandomHotels, setFixedRandomHotels] = useState<HotelFormData[]>(
     []
   );
-  const [hasRandomized, setHasRandomized] = useState(false);
+  const [hasRandomizedTour, setHasRandomizedTour] = useState(false);
+  const [hasRandomizedHotel, setHasRandomizedHotel] = useState(false);
 
+  const changeSaveHotel = useChangeSaveHotel();
+  const changeSaveTour = useChangeSaveTour();
+
+  // Randomize the tours and hotels
   useEffect(() => {
-    if (tourData && tourData.length > 0 && !hasRandomized) {
-      setHasRandomized(true);
+    if (tourData && tourData.length > 0 && !hasRandomizedTour) {
       const filtered = currentTourId
         ? tourData.filter((tour) => tour.id !== currentTourId)
         : tourData;
+      console.log(1);
 
       const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+      setHasRandomizedTour(true);
       setFixedRandomTours(shuffled.slice(0, Math.min(6, shuffled.length)));
     }
-  }, [tourData, currentTourId, hasRandomized]);
+  }, [tourData, currentTourId, hasRandomizedTour]);
 
   useEffect(() => {
-    if (hotelData && hotelData.length > 0 && !hasRandomized) {
-      setHasRandomized(true);
+    if (hotelData && hotelData.length > 0 && !hasRandomizedHotel) {
+      setHasRandomizedHotel(true);
       const filtered = currentTourId
         ? hotelData.filter((hotel: any) => hotel.id !== currentTourId)
         : hotelData;
@@ -56,10 +64,11 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
       const shuffled = [...filtered].sort(() => 0.5 - Math.random());
       setFixedRandomHotels(shuffled.slice(0, Math.min(6, shuffled.length)));
     }
-  }, [hotelData, currentTourId, hasRandomized]);
+  }, [hotelData, currentTourId, hasRandomizedHotel]);
 
   useEffect(() => {
-    setHasRandomized(false);
+    setHasRandomizedHotel(false);
+    setHasRandomizedTour(false);
   }, [currentTourId]);
 
   const viewDetail = (id: string) => {
@@ -75,15 +84,19 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
       });
     }
   };
-  const changeSave = useChangeSaveHotel();
-  const queryClient = useQueryClient();
+
+  // Function to handle the save status change for hotels and tours
   const handleChangeSaveHotel = (id: string) => {
-    const oldSave = hotelData?.find((hotel: any) => hotel.id === id)?.isSave;
-    const newSave = !oldSave;
-    changeSave.mutate(
+    const oldSaveHotel = hotelData?.find(
+      (hotel: any) => hotel.id === id
+    )?.isSave;
+    const newSaveHotel = !oldSaveHotel;
+    console.log("newSaveHotel", newSaveHotel);
+
+    changeSaveHotel.mutate(
       {
         id,
-        isSave: newSave,
+        isSave: newSaveHotel,
       },
       {
         onSuccess: () => {
@@ -91,18 +104,18 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
             if (!oldData) return oldData;
             return oldData.map((hotel: any) => {
               if (hotel.id === id) {
-                return { ...hotel, isSave: newSave };
+                return { ...hotel, isSave: newSaveHotel };
               }
               return hotel;
             });
           });
           setFixedRandomHotels((prev) =>
             prev.map((hotel) =>
-              hotel.id === id ? { ...hotel, isSave: newSave } : hotel
+              hotel.id === id ? { ...hotel, isSave: newSaveHotel } : hotel
             )
           );
           notification.success({
-            message: newSave
+            message: newSaveHotel
               ? t("notification.saveHotlel")
               : t("notification.unsaveHotel"),
           });
@@ -114,12 +127,14 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
     );
   };
   const handleChangeSaveTour = (id: string) => {
-    const oldSave = tourData?.find((tour) => tour.id === id)?.isSave;
-    const newSave = !oldSave;
-    changeSave.mutate(
+    const oldSaveTour = tourData?.find((tour) => tour.id === id)?.isSave;
+    const newSaveTour = !oldSaveTour;
+    console.log("newSaveTour", newSaveTour);
+
+    changeSaveTour.mutate(
       {
         id,
-        isSave: newSave,
+        isSave: newSaveTour,
       },
       {
         onSuccess: () => {
@@ -127,18 +142,18 @@ export const RelatedTour: React.FC<RelatedTourProps> = ({
             if (!oldData) return oldData;
             return oldData.map((tour: any) => {
               if (tour.id === id) {
-                return { ...tour, isSave: newSave };
+                return { ...tour, isSave: newSaveTour };
               }
               return tour;
             });
           });
           setFixedRandomTours((prev) =>
             prev.map((tour) =>
-              tour.id === id ? { ...tour, isSave: newSave } : tour
+              tour.id === id ? { ...tour, isSave: newSaveTour } : tour
             )
           );
           notification.success({
-            message: newSave
+            message: newSaveTour
               ? t("notification.saveTour")
               : t("notification.unsaveTour"),
           });

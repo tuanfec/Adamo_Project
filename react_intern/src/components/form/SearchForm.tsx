@@ -25,11 +25,15 @@ const getUnique = (arr: any[]) => [...new Set(arr)];
 export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const notification = useNotification();
+  const { t } = useTranslation();
+
   const [isOpenTour, setIsOpenTour] = useState(false);
   const [isOpenTotalGuest, setIsOpenTotalGuest] = useState(false);
   const [selectedTab, setSelectedTab] = useState<"tour" | "hotel">("tour");
-  const notification = useNotification();
-  const { t } = useTranslation();
+  const totalGuest = useSelector(
+    (state: any) => state.tourDataSlide.totalGuest
+  );
   useEffect(() => {
     setSelectedTab(isTour ? "tour" : "hotel");
   }, [isTour]);
@@ -48,6 +52,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
       path: ["endDate"],
     });
   type FormValues = z.infer<typeof zodSchema>;
+
   // Redux selectors
   const allTour = useSelector((state: any) => state.tourDataSlide.allTour);
 
@@ -94,8 +99,6 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
       );
     });
   }, [selectedTab, searchTour, searchHotel, setValue]);
-
-  const totalGuest = { adult: watch("adult"), child: watch("child") };
 
   // Handle form submit
   const handleSearch = (data: FormValues) => {
@@ -213,7 +216,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
             <CustomDropdown<FormValues>
               totalGuest={totalGuest}
               isOpen={isOpenTotalGuest}
-              isTotalGuest
+              isTotalGuest={true}
               onToggle={() => setIsOpenTotalGuest(!isOpenTotalGuest)}
               placeholder={t("formSearch.input.placeholder_3")}
               icon={<FiUsers className="text-xl text-[#FF7B42]" />}
@@ -221,6 +224,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
               register={register}
               handleSubmit={handleSubmit}
               errors={errors}
+              setValue={setValue}
             />
           </div>
 
