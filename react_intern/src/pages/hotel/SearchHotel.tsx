@@ -54,7 +54,13 @@ const SearchHotel = () => {
       isShow={true}>
       <div className="py-8 ">
         <Breadcrumb />
-        <ListHotels hotels={dataFilter} isFilterApplied={false} />
+        {dataFilter.length > 0 ? (
+          <ListHotels hotels={dataFilter} isFilterApplied={false} />
+        ) : (
+          <div className="flex justify-center items-center py-20">
+            <p className="text-2xl text-gray-500">{t("NotFoundSearchHotel")}</p>
+          </div>
+        )}
       </div>
     </CommonLayout>
   );

@@ -82,7 +82,8 @@
       "placeholder_2": "Thể loại du lịch",
       "placeholder_3": "Số hành khách",
       "Adult": "Người lớn",
-      "Child": "Trẻ em"
+      "Child": "Trẻ em",
+      "Date": "Chọn ngày cho chuyến đi"
     },
     "zod": {
       "adult": {
@@ -392,5 +393,48 @@
   "NoFoundHotel": "Không có khách sạn nào khớp với bộ lọc của bạn",
   "Confirm": "Xác nhận",
   "Adult": "Người lớn là bắt buộc",
-  "Child": "Trẻ em không được nhỏ hơn 0"
+  "Child": "Trẻ em không được nhỏ hơn 0",
+  "NotFoundSearchTour": "Không có gói du lịch nào khớp với tìm kiếm của bạn",
+  "NotFoundSearchHotel": "Không có gói khách sạn nào khớp với tìm kiếm của bạn",
+  "IsLogin": "Yêu cầu đăng nhập",
+  "Message": "Bạn cần phải đăng nhập để có thể tiếp tục đặt.",
+  "discount": "Giảm giá",
+  "discountNoti": "Bạn đã áp dụng thành công mã giảm giá.",
+  "thanks": {
+    "thankstext": "Cảm ơn!",
+    "des1": "Đơn hàng của bạn đã được đặt thành công.",
+    "des2": "Thông tin đặt hàng đã được gửi qua email cho bạn. Cảm ơn bạn!",
+    "backhome": "Trở lại nhà của chúng tôi"
+  },
+  "adult": "Người lớn",
+  "child": "Trẻ em",
+  "booking": {
+    "SelectedRoom": "Phòng đã chọn",
+    "Type": "Thể loại",
+    "Time": "Thời gian",
+    "HotelRules": "Quy định khách sạn",
+    "Checkin": "Giờ nhận phòng",
+    "Checkout": "Giờ trả phòng",
+    "Hotel": "Khách sạn",
+    "Tour": "Gói du lịch",
+    "Name": "Tên",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "createAt": "Ngày đặt",
+    "paymentMethod": "Phương thức thanh toán",
+    "Status": "Trạng thái",
+    "successful": "Thành công",
+    "product": "Sản phẩm",
+    "total": "Tổng cộng",
+    "price": "Giá",
+    "Provisionaltotal": "Giá tạm tính",
+    "voucher": "Mã giảm giá",
+    "Finaltotal": "Giá cuối cùng",
+    "userInfor": "Thông tin khách hàng",
+    "orderinformation": "Thông tin đơn hàng",
+    "novoucher": "Không có mã giảm giá",
+    "quantity": "Số lượng",
+    "hasended": "Đã kết thúc",
+    "Comingsoon": "Sắp diễn ra"
+  }
 }

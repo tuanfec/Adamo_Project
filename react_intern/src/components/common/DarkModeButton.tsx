@@ -5,6 +5,7 @@ import { MoonOutlined, SettingOutlined, SunOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { RiEnglishInput } from "react-icons/ri";
 import { LiaVine } from "react-icons/lia";
+import { ButtonChange } from "../custum/Button/ButtonChange";
 
 export const DarkModeButton = () => {
   const { setTheme } = useTheme();
@@ -36,6 +37,7 @@ export const DarkModeButton = () => {
           tooltip="Light mode"
         />
       )}
+      <ButtonChange />
       {i18n.language === "en" ? (
         <FloatButton
           icon={<LiaVine />}

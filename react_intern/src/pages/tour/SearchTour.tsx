@@ -48,6 +48,7 @@ const SearchTour = () => {
 
     return matchLocation && matchType && matchStartDate && matchEndDate;
   });
+  console.log(dataFilter);
 
   return (
     <CommonLayout
@@ -61,11 +62,17 @@ const SearchTour = () => {
       isShow={true}>
       <div className="py-8 ">
         <Breadcrumb />
-        <ViewAll
-          tourData={dataFilter}
-          isLoading={false}
-          header={t("banner.tourPage.header")}
-        />
+        {dataFilter.length > 0 ? (
+          <ViewAll
+            tourData={dataFilter}
+            isLoading={false}
+            header={t("banner.tourPage.header")}
+          />
+        ) : (
+          <div className="flex justify-center items-center py-20">
+            <p className="text-2xl text-gray-500">{t("NotFoundSearchTour")}</p>
+          </div>
+        )}
       </div>
     </CommonLayout>
   );

@@ -66,11 +66,12 @@ export const CustomDropdown = <
   const [selectedTypeConfirmed, setSelectedTypeConfirmed] = React.useState<
     string[]
   >([]);
-  console.log(totalGuest);
 
   // Lấy giá trị type hiện tại từ react-hook-form
   const selectedTypes = watch && type ? watch("type") : [];
   const onConfirm = (data: any) => {
+    console.log(data);
+
     dispatch(setTotalGuest({ adult: data.adult, child: data.child }));
     onToggle?.();
   };
@@ -102,11 +103,11 @@ export const CustomDropdown = <
   }, [isTotalGuest, setValue, totalGuest]);
 
   return (
-    <div className="relative bg-white w-full dark:bg-[#2121216b] dark:text-[#ffffff]">
+    <div className="relative bg-white w-full  dark:bg-[#2121216b] dark:text-[#ffffff]">
       <div className="absolute left-5 top-1/2 -translate-y-1/2">{icon}</div>
       <div
         onClick={onToggle}
-        className="w-full py-5 pl-12 pr-4 text-sm cursor-pointer flex justify-between items-center">
+        className="w-full py-5 pl-12 pr-4   text-sm cursor-pointer flex justify-between items-center">
         {/* Hiển thị cho dropdown số khách */}
         {isTotalGuest ? (
           <span
@@ -148,7 +149,7 @@ export const CustomDropdown = <
 
       {/* Dropdown chọn loại tour */}
       {type && isOpen && (
-        <div className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] dark:border-gray-700 border border-gray-200 rounded-md shadow-lg max-h-[200px] overflow-y-auto p-4 flex flex-col gap-2">
+        <div className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] dark:border-gray-700 border border-gray-200 rounded-md shadow-lg min-h-fit overflow-y-auto p-4 flex flex-col gap-2">
           {type.map((item: string) => (
             <label
               key={item}
@@ -167,16 +168,14 @@ export const CustomDropdown = <
             type="button"
             onClick={onConfirmType}
             className="mt-2 bg-[#FF7B42] w-full font-medium text-white py-2 hover:bg-orange-600 transition-colors rounded-md">
-            Confirm
+            {t("Confirm")}
           </button>
         </div>
       )}
 
       {/* Dropdown chọn số khách */}
       {isTotalGuest && isOpen && (
-        <form
-          onSubmit={handleSubmit(onConfirm)}
-          className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] border border-gray-200 dark:border-gray-700 rounded-md shadow-lg min-h-fit overflow-y-auto">
+        <div className="absolute z-20 w-full mt-1 bg-white dark:bg-[#2d2b2b] border border-gray-200 dark:border-gray-700 rounded-md shadow-lg min-h-fit overflow-y-auto">
           <div className="flex flex-col py-5 px-5 gap-6">
             <div className="flex flex-row gap-4">
               <div className="flex flex-col">
@@ -220,11 +219,12 @@ export const CustomDropdown = <
             </div>
             <button
               type="submit"
+              onClick={handleSubmit(onConfirm)}
               className="bg-[#FF7B42] w-full font-medium text-white py-5 hover:bg-orange-600 transition-colors rounded-md">
               {t("Confirm")}
             </button>
           </div>
-        </form>
+        </div>
       )}
     </div>
   );

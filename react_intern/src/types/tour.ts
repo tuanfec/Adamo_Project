@@ -162,3 +162,14 @@ export type ChangeSave = {
   id: string;
   isAttractive?: boolean;
 };
+
+export type Voucher = {
+  id: string;
+  discount: number;
+  remaining: number;
+};
+
+export type ReduceVoucher = {
+  remaining: number;
+  id: string;
+};
