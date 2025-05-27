@@ -1853,5 +1853,1089 @@
         "https://res.cloudinary.com/dboapyvvu/image/upload/v1747733932/Ngomon2_sdqefl.jpg"
       ]
     }
+  ],
+  "voucher": [
+    {
+      "id": "1",
+      "discount": 10,
+      "remaining": 1
+    },
+    {
+      "id": "2",
+      "discount": 20,
+      "remaining": 0
+    },
+    {
+      "id": "4",
+      "discount": 30,
+      "remaining": 0
+    },
+    {
+      "id": "5",
+      "discount": 5,
+      "remaining": 1
+    }
+  ],
+  "booking": [
+    {
+      "id": "d708",
+      "paymentMethod": "credit_card",
+      "firstName": "Tuan",
+      "lastName": "Anh",
+      "email": "vidutuanto@gmail.com",
+      "phone": "0966348981",
+      "address": "Ha Noi",
+      "city": "Thach That",
+      "zipCode": "00120",
+      "country": "Vietnam",
+      "discount": 0,
+      "selectedVoucher": null,
+      "finalPrice": 80,
+      "totalGuest": {
+        "adult": 1,
+        "child": 0
+      },
+      "selectedRoom": [
+        {
+          "id": "1",
+          "name": "Family Suite",
+          "price": 80,
+          "image": [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+            "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+          ],
+          "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+          "area": 120,
+          "bed": "2 Queen Bed",
+          "guests": 4,
+          "amenities": [
+            "Air conditioning",
+            "Private Bathroom",
+            "Flat-screen TV",
+            "Free WiFi",
+            "Free toiletries",
+            "Shower",
+            "Safe",
+            "Toilet",
+            "Towels",
+            "Tile/Marble floor",
+            "Desk",
+            "Refrigerator",
+            "Telephone",
+            "Ironing facilities",
+            "Satellite channels",
+            "Tea/Coffee make",
+            "Hairdryer"
+          ],
+          "quantity": 10,
+          "discount": 10,
+          "numberSelect": 1
+        }
+      ],
+      "addOn": {
+        "breakfast": {
+          "numberSelect": 0
+        },
+        "extraBed": {
+          "numberSelect": 0
+        }
+      },
+      "hotelData": {
+        "id": "29",
+        "image": [
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/anh-ks-den_h10o3g.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/unnamed_doimsi.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/Hotel_dvq9f3.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/2_wixfob.jpg"
+        ],
+        "title": "The Grand Palace Hotel",
+        "isSave": false,
+        "location": "Hanoi, Vietnam",
+        "hotelStar": 4,
+        "addOn": {
+          "breakfast": {
+            "price": 15
+          },
+          "extraBed": {
+            "price": 5
+          }
+        },
+        "startDate": "2025-04-02",
+        "endDate": "2025-04-04",
+        "reviews": {
+          "rating": 9,
+          "totalReviews": 295,
+          "ratingBreakdown": {
+            "7": 5,
+            "8": 10,
+            "9": 80,
+            "9.5": 200
+          }
+        },
+        "tourDescription": {
+          "overview": [
+            "Opposite Durban’s famous beachfront, Blue Waters Hotel is within walking distance of the Suncoast Casino and the iconic Moses Mabhida Stadium. Both uShaka Marine World and Greyville Racecourse are within 2.5 mi from the property.",
+            "The spacious rooms and suites feature LCD TVs along with coffee-and-tea-making facilities. Each is equipped with air conditioning and a work desk. There is also plenty of luggage storage space. Most rooms come with furnished balconies and offer a view of the Indian Ocean.",
+            "Guests at Blue Waters can enjoy afternoon tea and cake in the Florida Lounge overlooking the ocean. The Versailles Restaurant provides buffet and á la carte service for lunch and dinner.",
+            "Leisure facilities at the Hotel Blue Waters include an indoor swimming pool, sauna and a squash court. There is also an outdoor rooftop swimming pool and guests can enjoy drinks with sunset views at the rooftop bar.",
+            "The Durban North Beach area is a good location for walking, running and cycling. Hotel Blue Waters is 5 minutes’ drive from the Durban ICC and 10 minutes’ drive from Durban’s city center. Durban Station is 1.2 mi away, while King Shaka International Airport is 19 mi from the property.",
+            "Couples in particular like the location – they rated it 9.1 for a two-person trip.",
+            "We speak your language!"
+          ],
+          "hotelAmenities": [
+            [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer",
+              "Electric kettle",
+              "Wake-up service",
+              "Wardrobe or closet"
+            ]
+          ],
+          "rules": {
+            "time": {
+              "checkIn": "14:00 am",
+              "checkOut": "12:00 pm"
+            },
+            "roleInformation": [
+              "Smoking is not allowed",
+              "Security deposit will not be collected at this hotel",
+              "Check-out time is 12:00 AM",
+              "Pets are not allowed",
+              "Credit cards are not accepted at this hotel",
+              "No additional tax has to be paid at the hotel",
+              "On-site parking is available",
+              "Check-in time is 2:00 PM",
+              "Unmarried couples are allowed",
+              "Couples are welcome",
+              "Guests can check in using any Domestic or International ID proof with photograph"
+            ]
+          },
+          "map": {
+            "coordinates": {
+              "lat": 40.8518,
+              "lng": 14.2681
+            }
+          }
+        },
+        "rooms": [
+          {
+            "id": "1",
+            "name": "Family Suite",
+            "price": 80,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 120,
+            "bed": "2 Queen Bed",
+            "guests": 4,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 10,
+            "discount": 10
+          },
+          {
+            "id": "2",
+            "name": "Standard room",
+            "price": 200,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 90,
+            "bed": "1 Queen Bed",
+            "guests": 2,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 3,
+            "discount": 10
+          }
+        ]
+      },
+      "totalPrice": 80,
+      "userId": "A1UNqaBL8zUwCcIDHXV3WKKpObu1",
+      "createAt": "2025-05-26T04:09:53.875Z"
+    },
+    {
+      "id": "d7082",
+      "paymentMethod": "credit_card",
+      "firstName": "Tuan",
+      "lastName": "Anh",
+      "email": "vidutuanto@gmail.com",
+      "phone": "0966348981",
+      "address": "Ha Noi",
+      "city": "Thach That",
+      "zipCode": "00120",
+      "country": "Vietnam",
+      "discount": 0,
+      "selectedVoucher": null,
+      "finalPrice": 80,
+      "totalGuest": {
+        "adult": 1,
+        "child": 0
+      },
+      "selectedRoom": [
+        {
+          "id": "1",
+          "name": "Family Suite",
+          "price": 80,
+          "image": [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+            "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+          ],
+          "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+          "area": 120,
+          "bed": "2 Queen Bed",
+          "guests": 4,
+          "amenities": [
+            "Air conditioning",
+            "Private Bathroom",
+            "Flat-screen TV",
+            "Free WiFi",
+            "Free toiletries",
+            "Shower",
+            "Safe",
+            "Toilet",
+            "Towels",
+            "Tile/Marble floor",
+            "Desk",
+            "Refrigerator",
+            "Telephone",
+            "Ironing facilities",
+            "Satellite channels",
+            "Tea/Coffee make",
+            "Hairdryer"
+          ],
+          "quantity": 10,
+          "discount": 10,
+          "numberSelect": 1
+        }
+      ],
+      "addOn": {
+        "breakfast": {
+          "numberSelect": 0
+        },
+        "extraBed": {
+          "numberSelect": 0
+        }
+      },
+      "hotelData": {
+        "id": "29",
+        "image": [
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/anh-ks-den_h10o3g.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/unnamed_doimsi.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/Hotel_dvq9f3.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/2_wixfob.jpg"
+        ],
+        "title": "The Grand Palace Hotel",
+        "isSave": false,
+        "location": "Hanoi, Vietnam",
+        "hotelStar": 4,
+        "addOn": {
+          "breakfast": {
+            "price": 15
+          },
+          "extraBed": {
+            "price": 5
+          }
+        },
+        "startDate": "2025-04-02",
+        "endDate": "2025-04-04",
+        "reviews": {
+          "rating": 9,
+          "totalReviews": 295,
+          "ratingBreakdown": {
+            "7": 5,
+            "8": 10,
+            "9": 80,
+            "9.5": 200
+          }
+        },
+        "tourDescription": {
+          "overview": [
+            "Opposite Durban’s famous beachfront, Blue Waters Hotel is within walking distance of the Suncoast Casino and the iconic Moses Mabhida Stadium. Both uShaka Marine World and Greyville Racecourse are within 2.5 mi from the property.",
+            "The spacious rooms and suites feature LCD TVs along with coffee-and-tea-making facilities. Each is equipped with air conditioning and a work desk. There is also plenty of luggage storage space. Most rooms come with furnished balconies and offer a view of the Indian Ocean.",
+            "Guests at Blue Waters can enjoy afternoon tea and cake in the Florida Lounge overlooking the ocean. The Versailles Restaurant provides buffet and á la carte service for lunch and dinner.",
+            "Leisure facilities at the Hotel Blue Waters include an indoor swimming pool, sauna and a squash court. There is also an outdoor rooftop swimming pool and guests can enjoy drinks with sunset views at the rooftop bar.",
+            "The Durban North Beach area is a good location for walking, running and cycling. Hotel Blue Waters is 5 minutes’ drive from the Durban ICC and 10 minutes’ drive from Durban’s city center. Durban Station is 1.2 mi away, while King Shaka International Airport is 19 mi from the property.",
+            "Couples in particular like the location – they rated it 9.1 for a two-person trip.",
+            "We speak your language!"
+          ],
+          "hotelAmenities": [
+            [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer",
+              "Electric kettle",
+              "Wake-up service",
+              "Wardrobe or closet"
+            ]
+          ],
+          "rules": {
+            "time": {
+              "checkIn": "14:00 am",
+              "checkOut": "12:00 pm"
+            },
+            "roleInformation": [
+              "Smoking is not allowed",
+              "Security deposit will not be collected at this hotel",
+              "Check-out time is 12:00 AM",
+              "Pets are not allowed",
+              "Credit cards are not accepted at this hotel",
+              "No additional tax has to be paid at the hotel",
+              "On-site parking is available",
+              "Check-in time is 2:00 PM",
+              "Unmarried couples are allowed",
+              "Couples are welcome",
+              "Guests can check in using any Domestic or International ID proof with photograph"
+            ]
+          },
+          "map": {
+            "coordinates": {
+              "lat": 40.8518,
+              "lng": 14.2681
+            }
+          }
+        },
+        "rooms": [
+          {
+            "id": "1",
+            "name": "Family Suite",
+            "price": 80,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 120,
+            "bed": "2 Queen Bed",
+            "guests": 4,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 10,
+            "discount": 10
+          },
+          {
+            "id": "2",
+            "name": "Standard room",
+            "price": 200,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 90,
+            "bed": "1 Queen Bed",
+            "guests": 2,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 3,
+            "discount": 10
+          }
+        ]
+      },
+      "totalPrice": 80,
+      "userId": "A1UNqaBL8zUwCcIDHXV3WKKpObu2",
+      "createAt": "2025-05-26T04:09:53.875Z"
+    },
+    {
+      "id": "a3a0",
+      "paymentMethod": "credit_card",
+      "firstName": "Tuan",
+      "lastName": "Anh",
+      "email": "vidutuanto@gmail.com",
+      "phone": "0966348981",
+      "address": "Ha Noi",
+      "city": "Thach That",
+      "zipCode": "00120",
+      "country": "Vietnam",
+      "discount": 30,
+      "selectedVoucher": "4",
+      "finalPrice": 53.9,
+      "tourDetail": {
+        "image": [
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1745461435/xgfh90pf4aznstdjzzdt.jpg",
+          "https://images.unsplash.com/photo-1528127269322-539801943592",
+          "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b",
+          "https://images.unsplash.com/photo-1540778339538-067edc084897"
+        ],
+        "title": "t",
+        "isSave": false,
+        "location": "Hanoi, Vietnam",
+        "price": 77,
+        "duration": "5 days - 4 night",
+        "tourType": "attractive",
+        "startDate": "2025-04-08",
+        "endDate": "2025-04-12",
+        "type": "Wildlife",
+        "reviews": {
+          "rating": 4.5,
+          "totalReviews": 100,
+          "ratingBreakdown": {
+            "1": 10,
+            "2": 15,
+            "3": 25,
+            "4": 30,
+            "5": 20
+          }
+        },
+        "id": "2",
+        "content": "t"
+      },
+      "total": 77,
+      "totalGuest": {
+        "adult": 1,
+        "child": 0
+      },
+      "userId": "A1UNqaBL8zUwCcIDHXV3WKKpObu1",
+      "createAt": "2025-05-26T09:02:48.836Z"
+    },
+    {
+      "id": "383b",
+      "paymentMethod": "paypal",
+      "firstName": "Tuan",
+      "lastName": "Anh",
+      "email": "vidutuanto@gmail.com",
+      "phone": "0966348981",
+      "address": "Ha Noi",
+      "city": "Thach That",
+      "zipCode": "00120",
+      "country": "Vietnam",
+      "discount": 10,
+      "selectedVoucher": "1",
+      "finalPrice": 288,
+      "totalGuest": {
+        "adult": 1,
+        "child": 0
+      },
+      "selectedRoom": [
+        {
+          "id": "1",
+          "name": "Family Suite",
+          "price": 80,
+          "image": [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+            "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+          ],
+          "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+          "area": 120,
+          "bed": "2 Queen Bed",
+          "guests": 4,
+          "amenities": [
+            "Air conditioning",
+            "Private Bathroom",
+            "Flat-screen TV",
+            "Free WiFi",
+            "Free toiletries",
+            "Shower",
+            "Safe",
+            "Toilet",
+            "Towels",
+            "Tile/Marble floor",
+            "Desk",
+            "Refrigerator",
+            "Telephone",
+            "Ironing facilities",
+            "Satellite channels",
+            "Tea/Coffee make",
+            "Hairdryer"
+          ],
+          "quantity": 10,
+          "discount": 10,
+          "numberSelect": 1
+        },
+        {
+          "id": "2",
+          "name": "Standard room",
+          "price": 200,
+          "image": [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+            "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+          ],
+          "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+          "area": 90,
+          "bed": "1 Queen Bed",
+          "guests": 2,
+          "amenities": [
+            "Air conditioning",
+            "Private Bathroom",
+            "Flat-screen TV",
+            "Free WiFi",
+            "Free toiletries",
+            "Shower",
+            "Safe",
+            "Toilet",
+            "Towels",
+            "Tile/Marble floor",
+            "Desk",
+            "Refrigerator",
+            "Telephone",
+            "Ironing facilities",
+            "Satellite channels",
+            "Tea/Coffee make",
+            "Hairdryer"
+          ],
+          "quantity": 3,
+          "discount": 10,
+          "numberSelect": 1
+        }
+      ],
+      "addOn": {
+        "breakfast": {
+          "numberSelect": 1,
+          "price": 15
+        },
+        "extraBed": {
+          "numberSelect": 1,
+          "price": 5
+        }
+      },
+      "hotelData": {
+        "id": "29",
+        "image": [
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/anh-ks-den_h10o3g.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/unnamed_doimsi.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/Hotel_dvq9f3.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/2_wixfob.jpg"
+        ],
+        "title": "The Grand Palace Hotel",
+        "isSave": false,
+        "location": "Hanoi, Vietnam",
+        "hotelStar": 4,
+        "addOn": {
+          "breakfast": {
+            "price": 15
+          },
+          "extraBed": {
+            "price": 5
+          }
+        },
+        "startDate": "2025-04-02",
+        "endDate": "2025-04-04",
+        "reviews": {
+          "rating": 9,
+          "totalReviews": 295,
+          "ratingBreakdown": {
+            "7": 5,
+            "8": 10,
+            "9": 80,
+            "9.5": 200
+          }
+        },
+        "tourDescription": {
+          "overview": [
+            "Opposite Durban’s famous beachfront, Blue Waters Hotel is within walking distance of the Suncoast Casino and the iconic Moses Mabhida Stadium. Both uShaka Marine World and Greyville Racecourse are within 2.5 mi from the property.",
+            "The spacious rooms and suites feature LCD TVs along with coffee-and-tea-making facilities. Each is equipped with air conditioning and a work desk. There is also plenty of luggage storage space. Most rooms come with furnished balconies and offer a view of the Indian Ocean.",
+            "Guests at Blue Waters can enjoy afternoon tea and cake in the Florida Lounge overlooking the ocean. The Versailles Restaurant provides buffet and á la carte service for lunch and dinner.",
+            "Leisure facilities at the Hotel Blue Waters include an indoor swimming pool, sauna and a squash court. There is also an outdoor rooftop swimming pool and guests can enjoy drinks with sunset views at the rooftop bar.",
+            "The Durban North Beach area is a good location for walking, running and cycling. Hotel Blue Waters is 5 minutes’ drive from the Durban ICC and 10 minutes’ drive from Durban’s city center. Durban Station is 1.2 mi away, while King Shaka International Airport is 19 mi from the property.",
+            "Couples in particular like the location – they rated it 9.1 for a two-person trip.",
+            "We speak your language!"
+          ],
+          "hotelAmenities": [
+            [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer",
+              "Electric kettle",
+              "Wake-up service",
+              "Wardrobe or closet"
+            ]
+          ],
+          "rules": {
+            "time": {
+              "checkIn": "14:00 am",
+              "checkOut": "12:00 pm"
+            },
+            "roleInformation": [
+              "Smoking is not allowed",
+              "Security deposit will not be collected at this hotel",
+              "Check-out time is 12:00 AM",
+              "Pets are not allowed",
+              "Credit cards are not accepted at this hotel",
+              "No additional tax has to be paid at the hotel",
+              "On-site parking is available",
+              "Check-in time is 2:00 PM",
+              "Unmarried couples are allowed",
+              "Couples are welcome",
+              "Guests can check in using any Domestic or International ID proof with photograph"
+            ]
+          },
+          "map": {
+            "coordinates": {
+              "lat": 40.8518,
+              "lng": 14.2681
+            }
+          }
+        },
+        "rooms": [
+          {
+            "id": "1",
+            "name": "Family Suite",
+            "price": 80,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 120,
+            "bed": "2 Queen Bed",
+            "guests": 4,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 10,
+            "discount": 10
+          },
+          {
+            "id": "2",
+            "name": "Standard room",
+            "price": 200,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 90,
+            "bed": "1 Queen Bed",
+            "guests": 2,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 3,
+            "discount": 10
+          }
+        ]
+      },
+      "totalPrice": 320,
+      "userId": "A1UNqaBL8zUwCcIDHXV3WKKpObu1",
+      "createAt": "2025-05-27T03:59:22.531Z"
+    },
+    {
+      "id": "6836",
+      "paymentMethod": "credit_card",
+      "firstName": "Tuan",
+      "lastName": "Anh",
+      "email": "vidutuanto@gmail.com",
+      "phone": "0966348981",
+      "address": "Ha Noi",
+      "city": "Thach That",
+      "zipCode": "00120",
+      "country": "Vietnam",
+      "discount": 10,
+      "selectedVoucher": "1",
+      "finalPrice": 283.5,
+      "totalGuest": {
+        "adult": 1,
+        "child": 0
+      },
+      "selectedRoom": [
+        {
+          "id": "2",
+          "name": "Standard room",
+          "price": 200,
+          "image": [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+            "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+          ],
+          "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+          "area": 90,
+          "bed": "1 Queen Bed",
+          "guests": 2,
+          "amenities": [
+            "Air conditioning",
+            "Private Bathroom",
+            "Flat-screen TV",
+            "Free WiFi",
+            "Free toiletries",
+            "Shower",
+            "Safe",
+            "Toilet",
+            "Towels",
+            "Tile/Marble floor",
+            "Desk",
+            "Refrigerator",
+            "Telephone",
+            "Ironing facilities",
+            "Satellite channels",
+            "Tea/Coffee make",
+            "Hairdryer"
+          ],
+          "quantity": 3,
+          "discount": 10,
+          "numberSelect": 1
+        },
+        {
+          "id": "1",
+          "name": "Family Suite",
+          "price": 80,
+          "image": [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+            "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+          ],
+          "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+          "area": 120,
+          "bed": "2 Queen Bed",
+          "guests": 4,
+          "amenities": [
+            "Air conditioning",
+            "Private Bathroom",
+            "Flat-screen TV",
+            "Free WiFi",
+            "Free toiletries",
+            "Shower",
+            "Safe",
+            "Toilet",
+            "Towels",
+            "Tile/Marble floor",
+            "Desk",
+            "Refrigerator",
+            "Telephone",
+            "Ironing facilities",
+            "Satellite channels",
+            "Tea/Coffee make",
+            "Hairdryer"
+          ],
+          "quantity": 10,
+          "discount": 10,
+          "numberSelect": 1
+        }
+      ],
+      "addOn": {
+        "breakfast": {
+          "numberSelect": 2,
+          "price": 15
+        },
+        "extraBed": {
+          "numberSelect": 1,
+          "price": 5
+        }
+      },
+      "hotelData": {
+        "id": "29",
+        "image": [
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/anh-ks-den_h10o3g.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/unnamed_doimsi.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517087/Hotel_dvq9f3.jpg",
+          "https://res.cloudinary.com/dboapyvvu/image/upload/v1746517088/2_wixfob.jpg"
+        ],
+        "title": "The Grand Palace Hotel",
+        "isSave": false,
+        "location": "Hanoi, Vietnam",
+        "hotelStar": 4,
+        "addOn": {
+          "breakfast": {
+            "price": 15
+          },
+          "extraBed": {
+            "price": 5
+          }
+        },
+        "startDate": "2025-04-02",
+        "endDate": "2025-04-04",
+        "reviews": {
+          "rating": 9,
+          "totalReviews": 295,
+          "ratingBreakdown": {
+            "7": 5,
+            "8": 10,
+            "9": 80,
+            "9.5": 200
+          }
+        },
+        "tourDescription": {
+          "overview": [
+            "Opposite Durban’s famous beachfront, Blue Waters Hotel is within walking distance of the Suncoast Casino and the iconic Moses Mabhida Stadium. Both uShaka Marine World and Greyville Racecourse are within 2.5 mi from the property.",
+            "The spacious rooms and suites feature LCD TVs along with coffee-and-tea-making facilities. Each is equipped with air conditioning and a work desk. There is also plenty of luggage storage space. Most rooms come with furnished balconies and offer a view of the Indian Ocean.",
+            "Guests at Blue Waters can enjoy afternoon tea and cake in the Florida Lounge overlooking the ocean. The Versailles Restaurant provides buffet and á la carte service for lunch and dinner.",
+            "Leisure facilities at the Hotel Blue Waters include an indoor swimming pool, sauna and a squash court. There is also an outdoor rooftop swimming pool and guests can enjoy drinks with sunset views at the rooftop bar.",
+            "The Durban North Beach area is a good location for walking, running and cycling. Hotel Blue Waters is 5 minutes’ drive from the Durban ICC and 10 minutes’ drive from Durban’s city center. Durban Station is 1.2 mi away, while King Shaka International Airport is 19 mi from the property.",
+            "Couples in particular like the location – they rated it 9.1 for a two-person trip.",
+            "We speak your language!"
+          ],
+          "hotelAmenities": [
+            [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer",
+              "Electric kettle",
+              "Wake-up service",
+              "Wardrobe or closet"
+            ]
+          ],
+          "rules": {
+            "time": {
+              "checkIn": "14:00 am",
+              "checkOut": "12:00 pm"
+            },
+            "roleInformation": [
+              "Smoking is not allowed",
+              "Security deposit will not be collected at this hotel",
+              "Check-out time is 12:00 AM",
+              "Pets are not allowed",
+              "Credit cards are not accepted at this hotel",
+              "No additional tax has to be paid at the hotel",
+              "On-site parking is available",
+              "Check-in time is 2:00 PM",
+              "Unmarried couples are allowed",
+              "Couples are welcome",
+              "Guests can check in using any Domestic or International ID proof with photograph"
+            ]
+          },
+          "map": {
+            "coordinates": {
+              "lat": 40.8518,
+              "lng": 14.2681
+            }
+          }
+        },
+        "rooms": [
+          {
+            "id": "1",
+            "name": "Family Suite",
+            "price": 80,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 120,
+            "bed": "2 Queen Bed",
+            "guests": 4,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 10,
+            "discount": 10
+          },
+          {
+            "id": "2",
+            "name": "Standard room",
+            "price": 200,
+            "image": [
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              "https://images.unsplash.com/photo-1465101046530-73398c7f28ca"
+            ],
+            "description": "The Family Suite is a spacious room that can accommodate up to 4 people. It features a king-size bed and a sofa bed, providing ample space for a family or group of friends. The room is equipped with modern amenities and a private bathroom.",
+            "area": 90,
+            "bed": "1 Queen Bed",
+            "guests": 2,
+            "amenities": [
+              "Air conditioning",
+              "Private Bathroom",
+              "Flat-screen TV",
+              "Free WiFi",
+              "Free toiletries",
+              "Shower",
+              "Safe",
+              "Toilet",
+              "Towels",
+              "Tile/Marble floor",
+              "Desk",
+              "Refrigerator",
+              "Telephone",
+              "Ironing facilities",
+              "Satellite channels",
+              "Tea/Coffee make",
+              "Hairdryer"
+            ],
+            "quantity": 3,
+            "discount": 10
+          }
+        ]
+      },
+      "totalPrice": 315,
+      "userId": "A1UNqaBL8zUwCcIDHXV3WKKpObu1",
+      "createAt": "2025-05-27T04:24:05.236Z"
+    }
   ]
 }

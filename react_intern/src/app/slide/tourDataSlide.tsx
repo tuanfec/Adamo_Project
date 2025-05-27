@@ -9,7 +9,7 @@ const initialState = {
     typeTour: [],
   },
   totalGuest: {
-    adult: 0,
+    adult: 1,
     child: 0,
   },
 

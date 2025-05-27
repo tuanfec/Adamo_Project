@@ -70,3 +70,34 @@ export const getDestinations = async () => {
   const response = await instance.get(`http://localhost:3000/Destinations`);
   return response.data;
 };
+
+export const getVoucher = async () => {
+  const response = await instance.get(`http://localhost:3000/voucher`);
+  return response.data;
+};
+
+export const postBooking = async (data: any) => {
+  await instance.post(`http://localhost:3000/booking`, data);
+};
+
+export const reduceVoucher = async (remaining: any, id: string) => {
+  try {
+    await instance.patch(`http://localhost:3000/voucher/${id}`, {
+      remaining,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getBookHistory = async () => {
+  const response = await instance.get(`http://localhost:3000/booking`);
+  return response.data;
+};
+
+export const getBookHistoryDetail = async (userId: string) => {
+  const response = await instance.get(
+    `http://localhost:3000/booking?userId=${userId}`
+  );
+  return response.data;
+};

@@ -15,6 +15,10 @@ const ContactPage = lazy(() => import("@/pages/common/ContactPage"));
 const SearchHotel = lazy(() => import("@/pages/hotel/SearchHotel"));
 const CheckOutPage = lazy(() => import("@/pages/common/CheckOutPage"));
 const NotFoundPage = lazy(() => import("@/pages/common/NotFoundPage"));
+const BookHistoryPage = lazy(() => import("@/pages/common/BookHistoryPage"));
+const BookHistoryDetailPage = lazy(
+  () => import("@/pages/common/BookHistoryDetail")
+);
 import { Loading } from "@/components/common/Loading";
 
 export default function HomeRouter() {
@@ -42,6 +46,8 @@ export default function HomeRouter() {
         <Route path="/hotels/view_detail/:id" element={<HotelDetail />} />
         <Route path="/policy" element={<PolicyPage />} />
         {/* <Route path="*" element={<NotFoundPage />} /> */}
+        <Route path="/book_history" element={<BookHistoryPage />} />
+        <Route path="/book_history/:id" element={<BookHistoryDetailPage />} />
       </Routes>
     </Suspense>
   );

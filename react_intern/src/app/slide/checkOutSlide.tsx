@@ -14,6 +14,7 @@ interface BookingSlideState {
     specialRequirement: string;
   };
   paymentMethod: string;
+  voucher: [];
 }
 
 const initialState: BookingSlideState = {
@@ -30,6 +31,7 @@ const initialState: BookingSlideState = {
     specialRequirement: "",
   },
   paymentMethod: "",
+  voucher: [],
 };
 
 const BookingSlide = createSlice({
@@ -42,8 +44,12 @@ const BookingSlide = createSlice({
     setPaymentMethod: (state, action) => {
       state.paymentMethod = action.payload;
     },
+    setVoucher: (state, action) => {
+      state.voucher = action.payload;
+    },
   },
 });
 
-export const { setBookingForm, setPaymentMethod } = BookingSlide.actions;
+export const { setBookingForm, setPaymentMethod, setVoucher } =
+  BookingSlide.actions;
 export default BookingSlide.reducer;

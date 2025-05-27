@@ -117,8 +117,8 @@ const TravelerForm: React.FC<TravelerFormProps> = ({ form }) => {
         </div>
 
         {/* Address Section */}
-        <div>
-          <h2 className=" text-xl font-medium text-[#2A2A2A] mb-4 dark:text-white">
+        <div className="flex flex-col gap-6">
+          <h2 className=" text-xl font-medium text-[#2A2A2A]  dark:text-white">
             {t("checkOut.address")}
           </h2>
           <div className="grid grid-cols-1 gap-4">

@@ -8,21 +8,97 @@ import { FiUsers } from "react-icons/fi";
 import { CiLocationOn } from "react-icons/ci";
 import { AddOn, Room } from "@/types/hotel";
 import { useTranslation } from "react-i18next";
+import { useGetVoucher } from "@/hooks/useComon";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { useEffect, useMemo, useState } from "react";
+import { useNotification } from "../notifiction/NotificationProvider";
+import { useDispatch } from "react-redux";
+import { setVoucher } from "@/app/slide/checkOutSlide";
+import { Voucher } from "@/types/tour";
 const zodSchema = z.object({
   adult: z.number().min(1, "Adult is required"),
   child: z.number().min(0, "Child is required"),
 });
 type FormValues = z.infer<typeof zodSchema>;
 
-const TourSummary: React.FC = () => {
+type TourSummaryProps = {
+  onChange?: (data: {
+    discount: number;
+    selectedVoucher: string | null;
+    finalPrice: number;
+    tourDetail: any;
+    total: number;
+    totalGuest: any;
+    selectedRoom: any;
+    addOn: any;
+    hotelData: any;
+    totalPrice: number;
+  }) => void;
+};
+
+const TourSummary: React.FC<TourSummaryProps> = ({ onChange }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const notification = useNotification();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ resolver: zodResolver(zodSchema) });
+
+  const [selectedVoucher, setSelectedVoucher] = useState<string | null>(null);
+  const [discount, setDiscount] = useState(0);
   const { tourDetail, total, totalGuest } = useLocation().state;
   const { selectedRoom, addOn, hotelData, totalPrice } = useLocation().state;
+
+  const { data: voucherData } = useGetVoucher();
+
+  useEffect(() => {
+    if (selectedVoucher) {
+      const voucherSelect = voucherData?.find(
+        (voucher: Voucher) => voucher.id === selectedVoucher
+      );
+      dispatch(setVoucher(voucherSelect));
+    }
+  }, [dispatch, selectedVoucher]);
+
+  const finalPrice = useMemo(() => {
+    if (tourDetail) {
+      return total - (total * discount) / 100;
+    } else {
+      return totalPrice - (totalPrice * discount) / 100;
+    }
+  }, [totalPrice, discount, total]);
+
+  const noti = () => {
+    notification.success({
+      message: t("discountNoti"),
+    });
+  };
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({
+        discount,
+        selectedVoucher,
+        finalPrice,
+        tourDetail,
+        total,
+        totalGuest,
+        selectedRoom,
+        addOn,
+        hotelData,
+        totalPrice,
+      });
+    }
+  }, [finalPrice]);
 
   return (
     <div className="w-full h-full ">
@@ -85,13 +161,35 @@ const TourSummary: React.FC = () => {
                 errors={errors}
               />
 
-              <div className="flex relative w-full items-center gap-4">
-                <input
-                  className="bg-white dark:bg-[#7a7a7a9d] dark:text-white w-2/3 py-4 px-3 text-sm cursor-pointer"
-                  type="text"
-                  placeholder={t("checkOut.promoCode")}
-                />
-                <button className="border w-1/3 border-[#FF7B42] text-[#FF7B42] dark:text-white dark:border-white font-medium text-lg h-[52px] px-4">
+              <div className="flex relative w-full justify-between items-center gap-4">
+                <Select onValueChange={(id) => setSelectedVoucher(id)}>
+                  <SelectTrigger className="py-6 w-1/2 dark:text-white text-black rounded-none border border-[#bbbbbb]">
+                    <SelectValue placeholder={t("checkOut.promoCode")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {voucherData?.map(
+                      (voucher: any, index: number) =>
+                        voucher?.remaining > 0 && (
+                          <SelectItem
+                            className="dark:text-[#FF7B42]"
+                            key={index}
+                            value={voucher.id.toString()}>
+                            {t("discount")} {voucher.discount} %
+                          </SelectItem>
+                        )
+                    )}
+                  </SelectContent>
+                </Select>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const selected = voucherData?.find(
+                      (v: any) => v.id.toString() === selectedVoucher
+                    );
+                    setDiscount(selected ? selected.discount : 0);
+                    noti();
+                  }}
+                  className="border w-1/3 border-[#FF7B42] text-[#FF7B42] cursor-pointer hover:bg-[#FF7B42] hover:text-white font-medium text-lg h-[49px] px-4">
                   {t("checkOut.apply")}
                 </button>
               </div>
@@ -165,11 +263,20 @@ const TourSummary: React.FC = () => {
       </div>
       <div className="flex bg-black items-center justify-between lg:py-8 py-6 text-white px-7 mb-10">
         <p className="text-xl font-normal">{t("checkOut.total")}: </p>{" "}
-        {tourDetail ? (
-          <p className="font-bold text-xl ">${total || tourDetail?.price}</p>
-        ) : (
-          <p className="font-bold text-xl ">${totalPrice}</p>
-        )}
+        <div className="flex flex-col">
+          {tourDetail ? (
+            <p
+              className={`font-bold text-xl ${discount ? "line-through" : ""} ${discount ? "text-[#bbbbbb]" : ""}`}>
+              ${total || tourDetail?.price}
+            </p>
+          ) : (
+            <p
+              className={`font-bold text-xl ${discount ? "line-through" : ""}  ${discount ? "text-[#bbbbbb]" : ""}`}>
+              ${totalPrice}
+            </p>
+          )}
+          {discount > 0 && <p className="font-bold text-xl ">${finalPrice}</p>}
+        </div>
       </div>
     </div>
   );

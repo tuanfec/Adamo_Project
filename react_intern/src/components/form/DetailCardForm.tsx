@@ -14,6 +14,7 @@ import { setSelectedRoom } from "@/app/slide/hotelDataSlide";
 import { setStatePage, PageState } from "@/app/slide/statePageSlide";
 import { useNotification } from "../notifiction/NotificationProvider";
 import { useTranslation } from "react-i18next";
+import { Button, Space } from "antd";
 interface DetailCardFormProps {
   isHotel: boolean;
   hotelData?: HotelFormData;
@@ -59,6 +60,8 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   } = useForm<FormValues>({ resolver: zodResolver(zodSchema) });
 
   // Helpers
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
   const checkRoom = selectedRoom.some((selectedItem: Room) =>
     hotelData?.rooms?.some((hotelRoom) => hotelRoom.id === selectedItem.id)
   );
@@ -66,19 +69,27 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   const minPrice = Math.min(
     ...(hotelData?.rooms?.map((item) => item.price) || [])
   );
+
+  // Tổng tiền của tour
   const total =
     tourDetail?.price * totalGuest?.adult +
     (tourDetail?.price * totalGuest?.child) / 2;
-  const totalPrice = selectedRoom.reduce((acc: number, room: Room) => {
-    return (
-      acc +
-      room.price * (room.numberSelect || 0) +
-      (hotelData?.addOn?.breakfast?.price || 0) *
-        (addOn?.breakfast?.numberSelect || 0) +
-      (hotelData?.addOn?.extraBed?.price || 0) *
-        (addOn?.extraBed?.numberSelect || 0)
-    );
-  }, 0);
+
+  // Tổng tiền phòng
+  const roomTotal = selectedRoom.reduce(
+    (acc: number, room: Room) => acc + room.price * (room.numberSelect || 0),
+    0
+  );
+  const breakfastTotal =
+    (hotelData?.addOn?.breakfast?.price || 0) *
+    (addOn?.breakfast?.numberSelect || 0);
+
+  const extraBedTotal =
+    (hotelData?.addOn?.extraBed?.price || 0) *
+    (addOn?.extraBed?.numberSelect || 0);
+
+  // Tổng cộng của hotel
+  const totalPrice = roomTotal + breakfastTotal + extraBedTotal;
 
   // Room capacity
   const totalRoomCapacity = selectedRoom.reduce(
@@ -131,8 +142,34 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
     }
   };
 
+  const openNotification = () => {
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Space>
+        <button
+          className="px-3 py-1 bg-[#FF7B42] text-white font-medium rounded-lg cursor-pointer hover:bg-[#ff7b42dd]"
+          onClick={() => {
+            notification.destroy(key);
+            navigate("/login", { state: { from: window.location.pathname } });
+          }}>
+          {t("Confirm")}
+        </button>
+      </Space>
+    );
+    notification.open({
+      message: t("IsLogin"),
+      description: t("Message"),
+      btn,
+      key,
+      duration: 5,
+    });
+  };
+
   const handleBookNow = () => {
-    if (selectedRoom.length === 0 && isHotel) {
+    if (!isLoggedIn) {
+      openNotification();
+    }
+    if (selectedRoom.length === 0 && isHotel && isLoggedIn) {
       notification.warning({
         message: t("notification.DetailCardForm.WarnningSelectRoom"),
         placement: "topRight",
@@ -144,7 +181,7 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
       });
       return;
     }
-    if (totalGuestCapacity > totalRoomCapacity && isHotel) {
+    if (totalGuestCapacity > totalRoomCapacity && isHotel && isLoggedIn) {
       notification.warning({
         message: t("notification.DetailCardForm.WarnningGuestTitle"),
         description: `${t("notification.DetailCardForm.WarnningGuest")} "${totalGuestCapacity}" ${t("notification.DetailCardForm.WarnningGuest_1")} "${totalRoomCapacity}". ${t("notification.DetailCardForm.WarnningGuest_2")}`,
@@ -153,11 +190,11 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
       });
       return;
     }
-    if (isHotel) {
+    if (isHotel && isLoggedIn) {
       navigate(`/checkout/hotel/${id}`, {
         state: { selectedRoom, addOn, hotelData, totalPrice, totalGuest },
       });
-    } else {
+    } else if (!isHotel && isLoggedIn) {
       navigate(`/checkout/tour/${id}`, {
         state: { tourDetail, total, totalGuest },
       });

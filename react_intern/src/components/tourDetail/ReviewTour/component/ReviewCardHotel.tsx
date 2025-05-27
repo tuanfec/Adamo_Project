@@ -20,11 +20,11 @@ export const ReviewCardHotel: React.FC<ReviewCardHotelProps> = ({
   return (
     <div className="flex gap-5 items-center">
       <div className="text-5xl my-10 font-bold size-30 bg-[#FF7B42] text-white justify-center items-center flex ">
-        {stats.rating}
+        {stats?.rating}
       </div>
       <div className="flex flex-col gap-2">
         <div className="text-3xl font-medium">
-          {typeRate[stats.rating as keyof typeof typeRate]}
+          {typeRate[stats?.rating as keyof typeof typeRate]}
         </div>
         <div className="flex items-center gap-2">
           <p className="text-gray-600 dark:text-[#bbbbbb]">
@@ -32,7 +32,7 @@ export const ReviewCardHotel: React.FC<ReviewCardHotelProps> = ({
           </p>
           <span className="font-medium text-[#4F4F4F] dark:text-[#d8d8d8]">
             {" "}
-            {stats.totalReviews} {t("ReviewCard.reviews")}
+            {stats?.totalReviews} {t("ReviewCard.reviews")}
           </span>
         </div>
         <div
