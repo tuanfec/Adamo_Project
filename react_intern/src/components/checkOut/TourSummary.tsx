@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { FiUsers } from "react-icons/fi";
 import { CiLocationOn } from "react-icons/ci";
-import { AddOn, Room } from "@/types/hotel";
+import { Room } from "@/types/hotel";
 import { useTranslation } from "react-i18next";
 import { useGetVoucher } from "@/hooks/useComon";
 import {

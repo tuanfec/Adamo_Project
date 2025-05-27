@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import paycard from "@/assets/paycard.png";
 import paypal from "@/assets/paypal.png";
 import {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FilterForm } from "@/components/form/FilterForm";
 import { HotelFormData } from "@/types/hotel";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";

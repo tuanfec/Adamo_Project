@@ -14,7 +14,7 @@ import { setSelectedRoom } from "@/app/slide/hotelDataSlide";
 import { setStatePage, PageState } from "@/app/slide/statePageSlide";
 import { useNotification } from "../notifiction/NotificationProvider";
 import { useTranslation } from "react-i18next";
-import { Button, Space } from "antd";
+import { Space } from "antd";
 interface DetailCardFormProps {
   isHotel: boolean;
   hotelData?: HotelFormData;

@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { useNotification } from "../notifiction/NotificationProvider";
 import { useTranslation } from "react-i18next";
 import { DateRangePickerForm } from "../ui/DateRangePickerForm";
-import { format } from "date-fns";
 
 interface SearchTourProps {
   isHeader: boolean;

@@ -1,4 +1,4 @@
-import { Comment, ReviewStats, Overview } from "@/types/tour";
+import { Comment, ReviewStats } from "@/types/tour";
 
 export interface HotelFormData {
   id: string;

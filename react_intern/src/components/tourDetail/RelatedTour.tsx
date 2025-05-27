@@ -1,7 +1,7 @@
 import { CardTour } from "../home/CardTour";
 import { useNavigate } from "react-router-dom";
 import { useTourList } from "@/hooks/useTourList";
-import { useMemo, useEffect, use, useState } from "react";
+import { useEffect, useState } from "react";
 import { useChangeSaveHotel, useHotels } from "@/hooks/useHotels";
 import { HotelFormData } from "@/types/hotel";
 import { HotelCard } from "../home/HotelCard";
