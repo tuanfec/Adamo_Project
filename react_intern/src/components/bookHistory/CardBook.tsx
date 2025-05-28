@@ -1,9 +1,9 @@
 import { BiSolidCircleHalf } from "react-icons/bi";
 import { ContentCard } from "./ContentCard";
-import { QRCode } from "antd";
 import { GoDotFill } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { QRImage } from "../common/QR";
 
 interface DataBook {
   data: any;
@@ -12,7 +12,7 @@ interface DataBook {
 export const CardBook: React.FC<DataBook> = ({ data }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/book_history/${data.id}`, {
+    navigate(`/booking_history/${data.id}`, {
       state: {
         data: data,
       },
@@ -46,11 +46,8 @@ export const CardBook: React.FC<DataBook> = ({ data }) => {
         <GoDotFill className="absolute size-4 md:size-7 left-[-10px] md:left-[-16px] md:top-[65%] top-[-8px] lg:top-[65%] dark:text-[#1E1E1E] text-white" />
         <BiSolidCircleHalf className="size-4 md:size-7 absolute left-[-10px] md:left-[-16px] rotate-90 md:top-[-17px] top-[-8px] lg:top-[-14px] dark:text-[#1E1E1E] text-white" />
         <BiSolidCircleHalf className="size-4 md:size-7 absolute left-[-10px] md:left-[-16px] -rotate-90 md:bottom-[-17px] bottom-[-8px] lg:bottom-[-14px] dark:text-[#1E1E1E] text-white" />
-        <div className="flex justify-center items-center h-full">
-          <QRCode
-            value="http://localhost:5173/thanks"
-            icon="https://res.cloudinary.com/dboapyvvu/image/upload/b_rgb:333B4C/v1748227154/logo_bpgiym.png"
-          />
+        <div className="flex justify-center  items-center h-full">
+          <QRImage value={`http://localhost:5173/booking_history/${data.id}`} />
         </div>
       </div>
     </div>

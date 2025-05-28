@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutUser } from "@/services/authService";
 import { useNotification } from "@/components/notifiction/NotificationProvider";
 import { useTranslation } from "react-i18next";
+import { CgProfile } from "react-icons/cg";
 
 interface NavItem {
   label: string;
@@ -13,12 +14,14 @@ interface NavItem {
 }
 
 export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
   const notification = useNotification();
   const { t } = useTranslation();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenProfile, setIsOpentProfile] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
     // Check login status from localStorage
@@ -58,6 +61,13 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
     { label: "navbar.tour", path: "/tours" },
     { label: "navbar.hotels", path: "/hotels" },
     { label: "navbar.contact", path: "/contact" },
+  ];
+  const userItem: NavItem[] = [
+    {
+      label: "navbar.booking_history",
+      path: "/booking_history",
+      isLoggedIn: true,
+    },
     {
       label: "navbar.login",
       path: "/Login",
@@ -70,9 +80,10 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
       onClick: handleLogout,
     },
   ];
+  console.log(isOpenProfile);
 
   // Filter nav items based on login status
-  const filteredNavItems = navItems.filter((item) => {
+  const filteredNavItems = userItem.filter((item) => {
     if (item.isLoggedIn === undefined) return true;
     return item.isLoggedIn === isLoggedIn;
   });
@@ -98,33 +109,73 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
         className={`hidden ml-35 lg:flex items-center justify-center dark:text-white gap-20 ${
           textColor ? textColor : "text-white"
         }`}>
-        {filteredNavItems.map((item) =>
-          item.onClick ? (
-            <button
-              key={item.label}
-              onClick={item.onClick}
-              className={`transition-colors duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1`}>
-              {t(item.label)}
-            </button>
-          ) : (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`transition-colors  dark:hover:text-orange-400 duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
-                isActive(item.path) ? "text-orange-400" : ""
-              }`}>
-              {t(item.label)}
-              {/* {item.label} */}
-            </Link>
-          )
-        )}
+        {navItems.map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className={`transition-colors  dark:hover:text-orange-400 duration-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
+              isActive(item.path) ? "text-orange-400" : ""
+            }`}>
+            {t(item.label)}
+            {/* {item.label} */}
+          </Link>
+        ))}
+        <div className="relative">
+          <CgProfile
+            onClick={() => setIsOpentProfile(!isOpenProfile)}
+            className="size-5 cursor-pointer hover:text-orange-400"
+          />
+          {isOpenProfile && (
+            <div
+              className=" min-w-[150px] absolute right-1 text-right flex flex-col gap-2 mt-2 items-end text-white cursor-pointer bg-black/80 p-4 rounded"
+              role="menu">
+              {filteredNavItems.map((item) =>
+                item.onClick ? (
+                  <button
+                    key={item.label}
+                    onClick={() => {
+                      item.onClick?.();
+                      setIsOpen(false);
+                    }}
+                    className="hover:text-orange-400 text-right w-full hover:bg-[#515158] cursor-pointer transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1"
+                    role="menuitem">
+                    {t(item.label)}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`hover:text-orange-400 w-full hover:bg-[#515158] cursor-pointer transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
+                      isActive(item.path) ? "text-orange-400" : ""
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                    role="menuitem">
+                    {t(item.label)}
+                  </Link>
+                )
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
       {isOpen && (
         <div
-          className="lg:hidden min-w-[150px] absolute right-1 text-right flex flex-col gap-2 mt-2 text-white cursor-pointer bg-black/50 p-4 rounded"
+          className="lg:hidden min-w-[150px] absolute right-1 text-right flex flex-col gap-2 mt-2 text-white cursor-pointer bg-black p-4 rounded"
           role="menu"
           aria-orientation="vertical">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`hover:text-orange-400 hover:bg-[#515158] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
+                isActive(item.path) ? "text-orange-400" : ""
+              }`}
+              onClick={() => setIsOpen(false)}
+              role="menuitem">
+              {t(item.label)}
+            </Link>
+          ))}
           {filteredNavItems.map((item) =>
             item.onClick ? (
               <button
@@ -133,7 +184,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
                   item.onClick?.();
                   setIsOpen(false);
                 }}
-                className="hover:text-orange-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1"
+                className="hover:text-orange-400 hover:bg-[#515158] cursor-pointer transition-colors text-right duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1"
                 role="menuitem">
                 {t(item.label)}
               </button>
@@ -141,7 +192,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`hover:text-orange-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
+                className={`hover:text-orange-400 transition-colors hover:bg-[#515158] duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 rounded-sm px-2 py-1 ${
                   isActive(item.path) ? "text-orange-400" : ""
                 }`}
                 onClick={() => setIsOpen(false)}

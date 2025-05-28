@@ -5,7 +5,7 @@
   --_slider-bg-clr: rgba(12, 74, 110, 0.65); /* slider color unchecked */
   --_slider-bg-clr-on: rgba(12, 74, 110, 1); /* slider color checked */
   --_slider-txt-clr: #ffffff;
-  --_label-padding: 0.4rem 0.8rem; /* padding around the labels -  this gives the switch it's global width and height */
+  --_label-padding: 0.46rem 1rem; /* padding around the labels -  this gives the switch it's global width and height */
   --_switch-easing: cubic-bezier(
     0.47,
     1.64,
@@ -18,7 +18,7 @@
   justify-content: center;
   position: relative;
   border-radius: 9999px;
-  margin-right: 40px;
+  margin-right: 50px;
   cursor: pointer;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   position: relative;

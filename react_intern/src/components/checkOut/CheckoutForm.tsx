@@ -19,7 +19,6 @@ const CheckoutForm = () => {
   const queryClient = useQueryClient();
   const [tourSummaryData, setTourSummaryData] = useState<any>({});
   const voucherData = useSelector((state: any) => state.bookingSlide.voucher);
-  console.log("voucherData", voucherData);
 
   const user: User | null = (() => {
     try {

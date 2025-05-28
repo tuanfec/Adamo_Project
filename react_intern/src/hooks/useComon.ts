@@ -1,11 +1,13 @@
 import {
-  getBookHistory,
+  getBookHistoryByUser,
+  getBookHistoryDetail,
   getVoucher,
   postBooking,
   reduceVoucher,
 } from "@/api/homeAPI";
 import { ReduceVoucher } from "@/types/tour";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
 export const useGetVoucher = () => {
   return useQuery({
@@ -32,9 +34,20 @@ export const useReduceVoucher = () => {
   });
 };
 
-export const useGetBookHistory = () => {
+export const useGetBookHistory = (userId: string) => {
+  const BookingHistoryDataRedux = useSelector(
+    (state: any) => state.bookingSlide.bookHistory
+  );
   return useQuery({
-    queryKey: ["bookhistory"],
-    queryFn: getBookHistory,
+    queryKey: ["bookHistory"],
+    queryFn: () => getBookHistoryByUser(userId),
+    enabled: !BookingHistoryDataRedux || BookingHistoryDataRedux.length === 0,
+  });
+};
+
+export const useGetBookHistoryDetail = (id: string | undefined) => {
+  return useQuery({
+    queryKey: ["bookHistoryDetail"],
+    queryFn: () => getBookHistoryDetail(id),
   });
 };

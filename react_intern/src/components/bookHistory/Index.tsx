@@ -1,49 +1,65 @@
 import { useGetBookHistory } from "@/hooks/useComon";
 import { Tabs, TabsProps } from "antd";
 import { CardBook } from "./CardBook";
-import { Loading } from "../common/Loading";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setBookHistory } from "@/app/slide/checkOutSlide";
 
 export const BookHistory = () => {
   const { t } = useTranslation();
-  const { data: BookHistoryData, isLoading } = useGetBookHistory();
-  if (isLoading) {
-    return <Loading />;
-  }
+  const dispath = useDispatch();
+
+  const BookingHistoryDataRedux = useSelector(
+    (state: any) => state.bookingSlide.bookHistory
+  );
+
+  const userId: any = (() => {
+    try {
+      const stored = localStorage.getItem("user");
+      if (!stored) return null;
+      const parsed = JSON.parse(stored);
+      return {
+        id: parsed.uid,
+      };
+    } catch (error) {
+      return null;
+    }
+  })();
+
+  const { data: BookHistoryData } = useGetBookHistory(userId.id);
+
+  useEffect(() => {
+    if (BookHistoryData) {
+      dispath(setBookHistory(BookHistoryData));
+    }
+  }, [BookHistoryData]);
+
   const items: TabsProps["items"] = [
     {
       key: "1",
-      label: t("booking.hasended"),
+      label: t("booking.Comingsoon"),
       children: (
         <>
-          {BookHistoryData.map((data: any, index: number) => (
-            <div className="lg:my-8 md:my-6 my-5">
-              <CardBook key={index} data={data} />
-            </div>
-          ))}
+          {BookingHistoryDataRedux &&
+            BookingHistoryDataRedux.map((data: any, index: number) => (
+              <div key={index} className="lg:my-8 md:my-6 my-5">
+                <CardBook data={data} />
+              </div>
+            ))}
         </>
       ),
     },
     {
       key: "2",
-      label: t("booking.Comingsoon"),
+      label: t("booking.hasended"),
       children: "Content of Tab Pane 2",
     },
   ];
 
-  const onChange = (key: string) => {
-    console.log(key);
-  };
-
   return (
     <div>
-      <Tabs
-        defaultActiveKey="1"
-        items={items}
-        onChange={onChange}
-        type="card"
-        tabBarGutter={20}
-      />
+      <Tabs defaultActiveKey="1" items={items} type="card" tabBarGutter={20} />
     </div>
   );
 };

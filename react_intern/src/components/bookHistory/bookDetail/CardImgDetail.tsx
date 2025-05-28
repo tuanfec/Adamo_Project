@@ -14,7 +14,7 @@ export const CardImgDetail: React.FC<{ data: any; isHotel: boolean }> = ({
       </p>
       <img
         src={isHotel ? data?.hotelData?.image[0] : data?.tourDetail?.image[0]}
-        alt={data.name}
+        alt={data?.name}
         className="object-cover aspect-[2/1] rounded-sm mb-5"
       />
       <div className="flex flex-col md:flex-row justify-between items-start">

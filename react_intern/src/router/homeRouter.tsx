@@ -46,8 +46,11 @@ export default function HomeRouter() {
         <Route path="/hotels/view_detail/:id" element={<HotelDetail />} />
         <Route path="/policy" element={<PolicyPage />} />
         {/* <Route path="*" element={<NotFoundPage />} /> */}
-        <Route path="/book_history" element={<BookHistoryPage />} />
-        <Route path="/book_history/:id" element={<BookHistoryDetailPage />} />
+        <Route path="/booking_history" element={<BookHistoryPage />} />
+        <Route
+          path="/booking_history/:id"
+          element={<BookHistoryDetailPage />}
+        />
       </Routes>
     </Suspense>
   );

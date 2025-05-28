@@ -7,7 +7,8 @@
     "hotels": "Khách sạn",
     "login": "Đăng nhập",
     "register": "Đăng ký",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "booking_history": "Đã đặt"
   },
   "footer": {
     "partner": "Hợp tác với chúng tôi",

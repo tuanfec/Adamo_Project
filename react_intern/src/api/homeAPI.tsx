@@ -90,12 +90,12 @@ export const reduceVoucher = async (remaining: any, id: string) => {
   }
 };
 
-export const getBookHistory = async () => {
-  const response = await instance.get(`http://localhost:3000/booking`);
+export const getBookHistoryDetail = async (id: string | undefined) => {
+  const response = await instance.get(`http://localhost:3000/booking/${id}`);
   return response.data;
 };
 
-export const getBookHistoryDetail = async (userId: string) => {
+export const getBookHistoryByUser = async (userId: string) => {
   const response = await instance.get(
     `http://localhost:3000/booking?userId=${userId}`
   );

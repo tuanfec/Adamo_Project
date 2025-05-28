@@ -15,6 +15,7 @@ interface BookingSlideState {
   };
   paymentMethod: string;
   voucher: [];
+  bookHistory: [];
 }
 
 const initialState: BookingSlideState = {
@@ -32,6 +33,7 @@ const initialState: BookingSlideState = {
   },
   paymentMethod: "",
   voucher: [],
+  bookHistory: [],
 };
 
 const BookingSlide = createSlice({
@@ -47,9 +49,12 @@ const BookingSlide = createSlice({
     setVoucher: (state, action) => {
       state.voucher = action.payload;
     },
+    setBookHistory: (state, action) => {
+      state.bookHistory = action.payload;
+    },
   },
 });
 
-export const { setBookingForm, setPaymentMethod, setVoucher } =
+export const { setBookingForm, setPaymentMethod, setVoucher, setBookHistory } =
   BookingSlide.actions;
 export default BookingSlide.reducer;

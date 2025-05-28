@@ -7,7 +7,8 @@
     "hotels": "Hotels",
     "login": "Login",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "booking_history": "Booked"
   },
   "footer": {
     "partner": "Partner with us",
