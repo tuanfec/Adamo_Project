@@ -47,7 +47,9 @@ export const CardBook: React.FC<DataBook> = ({ data }) => {
         <BiSolidCircleHalf className="size-4 md:size-7 absolute left-[-10px] md:left-[-16px] rotate-90 md:top-[-17px] top-[-8px] lg:top-[-14px] dark:text-[#1E1E1E] text-white" />
         <BiSolidCircleHalf className="size-4 md:size-7 absolute left-[-10px] md:left-[-16px] -rotate-90 md:bottom-[-17px] bottom-[-8px] lg:bottom-[-14px] dark:text-[#1E1E1E] text-white" />
         <div className="flex justify-center  items-center h-full">
-          <QRImage value={`http://localhost:5173/booking_history/${data.id}`} />
+          <QRImage
+            value={`${import.meta.env.VITE_BASE_URL}/booking_history/${data.id}`}
+          />
         </div>
       </div>
     </div>
