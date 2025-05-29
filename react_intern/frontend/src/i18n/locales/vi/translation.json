@@ -149,7 +149,11 @@
     "About": "Về Chúng Tôi",
     "Policy": "Chính Sách",
     "Tours": "Gói Du Lịch",
-    "Hotels": "Khách Sạn"
+    "Hotels": "Khách Sạn",
+    "BookHistory": "Danh sách đã đặt",
+    "BookDetail": "Chi tiết đơn hàng",
+    "home": "Trang chủ",
+    "save": "Đã lưu"
   },
   "CardTour": {
     "from": "từ",

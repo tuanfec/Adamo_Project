@@ -159,7 +159,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="lg:mb-10 w-full font-medium flex flex-col lg:flex-row md:flex-col">
-        <p className="lg:w-[50%] md:w-[80%] w-full text-4xl mt-[7px] dark:text-[#ffffff]">
+        <p className="lg:w-[50%] md:w-[80%] w-full lg:text-4xl md:text-3xl text-2xl mt-[7px] dark:text-[#ffffff]">
           {header}
         </p>
         <div className="flex flex-row-reverse md:flex-row lg:flex-row justify-end flex-1 relative">

@@ -83,13 +83,13 @@ export const ListTour: React.FC<ListTourProps> = ({
 
   return (
     <div className="flex flex-col gap-4 my-10">
-      <div className="flex justify-between items-center">
-        <p className="text-4xl md:text-3xl font-medium lg:w-[60%] w-[80%]">
+      <div className="flex md:flex-row flex-col gap-2 justify-between md:items-center">
+        <p className="lg:text-4xl md:text-3xl text-2xl font-medium lg:w-[60%] md:w-[60%] full">
           {header}
         </p>
         <button
           onClick={onClick}
-          className="bg-black dark:bg-[#FF7B42] dark:text-white cursor-pointer lg:mt-10 text-white h-[38px] w-fit px-4">
+          className="bg-black rounded dark:bg-[#FF7B42] dark:text-white cursor-pointer lg:mt-10  text-white py-2 w-fit px-4">
           {t("ViewAll")}
         </button>
       </div>

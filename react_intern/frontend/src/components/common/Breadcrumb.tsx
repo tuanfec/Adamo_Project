@@ -17,7 +17,10 @@ export const Breadcrumb = () => {
   const isTourSearch = paths[0] === "tours" && paths[1] === "search";
   const isHotelDetailView = paths[0] === "hotels" && paths[1] === "view_detail";
   const isHotelSearch = paths[0] === "hotels" && paths[1] === "search";
-  const items: BreadcrumbItem[] = [{ label: "Home", path: "/" }];
+  const isBookHistoryDetail =
+    paths[0] === "booking_history" && paths[1] === "detail";
+
+  const items: BreadcrumbItem[] = [{ label: t("Breadcrumb.home"), path: "/" }];
 
   if (paths[0] === "tours") {
     items.push({ label: t("Breadcrumb.Tours"), path: "/tours" });
@@ -60,6 +63,23 @@ export const Breadcrumb = () => {
       });
     }
   }
+
+  if (paths[0] === "booking_history") {
+    items.push({
+      label: t("Breadcrumb.BookHistory"),
+      path: "/booking_history",
+    });
+    if (isBookHistoryDetail) {
+      items.push({
+        label: t("Breadcrumb.BookDetail"),
+        path: location.pathname,
+      });
+    }
+  }
+  if (paths[0] === "save") {
+    items.push({ label: t("Breadcrumb.save"), path: "/save" });
+  }
+
   if (paths[0] === "contact") {
     items.push({ label: t("Breadcrumb.Contact"), path: "/contact" });
   }

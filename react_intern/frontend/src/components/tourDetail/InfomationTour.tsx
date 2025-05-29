@@ -21,29 +21,29 @@ export const InfomationTour: React.FC<{ isTour: boolean }> = ({ isTour }) => {
 
   return (
     <div>
-      <div className="flex items-center my-5 justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-center md:justify-between my-5 gap-4">
         {!isTour && (
           <div
             onClick={() => dispatch(setStatePage(PageState.SELECT_ROOM))}
-            className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.SELECT_ROOM)}`}>
+            className={`font-medium text-xl  lg:text-2xl cursor-pointer ${getTextColor(PageState.SELECT_ROOM)}`}>
             {t("Infomation.SelectRoom")}
           </div>
         )}
         <div
           onClick={() => dispatch(setStatePage(PageState.DESCRIPTION))}
-          className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.DESCRIPTION)}`}>
+          className={`font-medium text-xl  lg:text-2xl cursor-pointer ${getTextColor(PageState.DESCRIPTION)}`}>
           {t("Infomation.Descriptions")}
         </div>
         {isTour && (
           <div
             onClick={() => dispatch(setStatePage(PageState.ADDITIONAL_INFOR))}
-            className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.ADDITIONAL_INFOR)}`}>
+            className={`font-medium text-xl  lg:text-2xl cursor-pointer ${getTextColor(PageState.ADDITIONAL_INFOR)}`}>
             {t("Infomation.AdditionalInfor")}
           </div>
         )}
         <div
           onClick={() => dispatch(setStatePage(PageState.REVIEWS))}
-          className={`font-medium text-xl lg:text-2xl cursor-pointer ${getTextColor(PageState.REVIEWS)}`}>
+          className={`font-medium text-xl  lg:text-2xl cursor-pointer ${getTextColor(PageState.REVIEWS)}`}>
           {t("Infomation.Reviews")}(
           {isTour
             ? tourDetail?.reviews?.totalReviews

@@ -52,7 +52,7 @@ export default function HomeRouter() {
         {/* <Route path="*" element={<NotFoundPage />} /> */}
         <Route path="/booking_history" element={<BookHistoryPage />} />
         <Route
-          path="/booking_history/:id"
+          path="/booking_history/detail/:id"
           element={<BookHistoryDetailPage />}
         />
       </Routes>

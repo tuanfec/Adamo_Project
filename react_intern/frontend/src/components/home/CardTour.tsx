@@ -52,7 +52,7 @@ export const CardTour: React.FC<CardTourProps> = ({
             }}
             className={`absolute z-20 cursor-pointer top-0 right-4 ${isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
             <Tooltip title={isSave ? t("CardTour.saved") : t("CardTour.save")}>
-              <FaBookmark className="text-3xl" />
+              <FaBookmark className="lg:text-4xl text-3xl" />
             </Tooltip>
           </div>
         )}

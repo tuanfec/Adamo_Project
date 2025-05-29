@@ -26,7 +26,7 @@ export const Content: React.FC = () => {
         data-aos="fade-up-left"
         data-aos-duration="1000"
         className="flex flex-col gap-14 lg:w-[80%] ">
-        <div className="text-4xl md:text-3xl font-medium ">
+        <div className="lg:text-4xl md:text-3xl text-2xl font-medium ">
           {t("aboutPage.content_1.title_1")}{" "}
           <span className="text-[#FF7B42] ">NgaoduVietnam</span>
           {t("aboutPage.content_1.title_2")}{" "}

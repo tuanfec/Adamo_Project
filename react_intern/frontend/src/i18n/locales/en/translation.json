@@ -149,7 +149,11 @@
     "About": "About",
     "Policy": "Policy",
     "Tours": "Tours",
-    "Hotels": "Hotels"
+    "Hotels": "Hotels",
+    "BookHistory": "Booked List",
+    "BookDetail": "Booked Detail",
+    "home": "Home",
+    "save": "Saved"
   },
   "CardTour": {
     "from": "from",

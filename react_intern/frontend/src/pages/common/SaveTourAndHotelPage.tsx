@@ -1,3 +1,4 @@
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ViewAll } from "@/components/home/ViewAll";
 import { Header } from "@/components/hotels/Header";
 import { ListHotels } from "@/components/hotels/ListHotels";
@@ -40,6 +41,7 @@ const SaveTourAndHotel = () => {
   return (
     <DetailLayout>
       <div className="my-10">
+        <Breadcrumb />
         <Tabs items={items} type="card" tabBarGutter={20} />
       </div>
     </DetailLayout>

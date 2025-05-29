@@ -12,7 +12,7 @@ interface DataBook {
 export const CardBook: React.FC<DataBook> = ({ data }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/booking_history/${data.id}`, {
+    navigate(`/booking_history/detail/${data.id}`, {
       state: {
         data: data,
       },
@@ -23,22 +23,21 @@ export const CardBook: React.FC<DataBook> = ({ data }) => {
   return (
     <div
       onClick={handleClick}
-      className="flex gap-1 rounded-md transition-all duration-300 hover:scale-102 cursor-pointer">
+      className="flex gap-1 relative rounded-md transition-all duration-300 hover:scale-102 cursor-pointer">
       <img
         src={isHotel ? data?.hotelData?.image[0] : data?.tourDetail?.image[0]}
         alt={data.name}
-        className="object-cover aspect-[1/1]  lg:w-1/5 lg:h-1/4 md:w-1/3 w-1/3 rounded-l-md"
+        className="object-cover aspect-[1/1]  lg:w-1/5 lg:h-1/4 md:w-1/4 w-1/3 rounded-l-md"
       />
-
-      <div className="dark:bg-[#515158] bg-[#e2e2e3] w-full rounded-r-md relative">
+      <div className="absolute  bg-[#a34d28]  text-white  rounded-br-4xl  rounded-tl-md px-6 py-2 italic text-xs font-medium md:text-sm lg:text-base">
+        {isHotel ? t("booking.Hotel") : t("booking.Tour")}
+      </div>
+      <div className="dark:bg-[#515158] bg-[#e2e2e3] w-full md:w-[85%] rounded-r-md relative">
         <div className="p-3 md:p-3 lg:p-5">
           <ContentCard isHotel={isHotel} data={data} />
         </div>
         <BiSolidCircleHalf className="size-4 md:size-7 absolute left-[-10px] md:left-[-16px] rotate-90 md:top-[-17px] top-[-8px] lg:top-[-14px] dark:text-[#1E1E1E] text-white" />
         <BiSolidCircleHalf className="size-4 md:size-7 absolute left-[-10px] md:left-[-16px] -rotate-90 md:bottom-[-17px] bottom-[-8px] lg:bottom-[-14px] dark:text-[#1E1E1E] text-white" />
-        <div className="absolute top-0 right-0 dark:bg-[#333B4C] bg-[#c2c2c4] text-white rounded-bl-md px-6 py-1 italic text-xs font-medium md:text-sm lg:text-base">
-          {isHotel ? t("booking.Hotel") : t("booking.Tour")}
-        </div>
       </div>
       <div className="hidden relative lg:block md:block  bg-[#e2e2e3] rounded-md w-1/3">
         <GoDotFill className="absolute size-4 md:size-7 left-[-10px] md:left-[-16px] md:top-[25%] top-[-8px] lg:top-[25%] dark:text-[#1E1E1E] text-white" />

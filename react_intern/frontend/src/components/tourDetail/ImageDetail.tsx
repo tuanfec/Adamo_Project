@@ -62,7 +62,7 @@ export const ImageDetail: React.FC<{
           className={`absolute top-0 right-4 cursor-pointer z-10 ${data?.isSave ? "text-[#FF7B42]" : "text-[#FFFFFF]"}`}>
           <Tooltip
             title={data?.isSave ? t("CardTour.saved") : t("CardTour.save")}>
-            <FaBookmark className="text-5xl" />
+            <FaBookmark className="lg:text-5xl md:text-5xl text-4xl" />
           </Tooltip>{" "}
         </button>
       </div>

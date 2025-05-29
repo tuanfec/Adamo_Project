@@ -23,7 +23,7 @@ export const ContentCard: React.FC<{ data: any; isHotel: boolean }> = ({
         </p>
       </div>
 
-      <div className="flex gap-2 items-center ">
+      <div className="flex flex-wrap gap-2 items-center ">
         <MdAccessTime className="lg:size-5 md:size-5 text-[#a34d28] dark:text-[#bbbbbb]" />
         <p className="italic dark:text-[#bbbbbb]">
           {isHotel ? data?.hotelData?.startDate : data?.tourDetail?.startDate}
@@ -43,7 +43,7 @@ export const ContentCard: React.FC<{ data: any; isHotel: boolean }> = ({
           {t("child")}: {data?.totalGuest?.child}
         </p>
       </div>
-      <div className="flex gap-2 items-center lg:mt-2">
+      <div className="flex flex-wrap gap-2 items-center lg:mt-2">
         {data?.hotelData?.rooms.map((room: any, index: string) => (
           <TagComponet key={index} data={room} />
         ))}
