@@ -47,7 +47,7 @@ export const CardBook: React.FC<DataBook> = ({ data }) => {
         <BiSolidCircleHalf className="size-4 md:size-7 absolute left-[-10px] md:left-[-16px] -rotate-90 md:bottom-[-17px] bottom-[-8px] lg:bottom-[-14px] dark:text-[#1E1E1E] text-white" />
         <div className="flex justify-center  items-center h-full">
           <QRImage
-            value={`${window.location.origin}/booking_history/${data.id}`}
+            value={`${window.location.origin}/booking_history/detail/${data.id}`}
           />
         </div>
       </div>

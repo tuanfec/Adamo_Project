@@ -25,7 +25,7 @@ export const Header: React.FC<{
 
   const [sortByIndex, setSortByIndex] = useState(0);
   return (
-    <div className="flex flex-col lg:flex-row lg:justify-between  lg:items-center relative mb-10">
+    <div className="flex flex-col lg:flex-row lg:justify-between z-100 lg:items-center relative mb-10">
       <p className="text-4xl mb-6 dark:text-white text-black lg:mb-0 md:mb-6 font-medium">
         {header}
       </p>
