@@ -1858,22 +1858,22 @@
     {
       "id": "1",
       "discount": 10,
-      "remaining": 0
+      "remaining": 2
     },
     {
       "id": "2",
       "discount": 20,
-      "remaining": 0
+      "remaining": 3
     },
     {
       "id": "4",
       "discount": 30,
-      "remaining": 0
+      "remaining": 2
     },
     {
       "id": "5",
       "discount": 5,
-      "remaining": 0
+      "remaining": 10
     }
   ],
   "booking": [
