@@ -15,6 +15,7 @@ import { setStatePage, PageState } from "@/app/slide/statePageSlide";
 import { useNotification } from "../notifiction/NotificationProvider";
 import { useTranslation } from "react-i18next";
 import { Space } from "antd";
+import ButtonOrder from "../custum/Button/ButtomOrder";
 interface DetailCardFormProps {
   isHotel: boolean;
   hotelData?: HotelFormData;
@@ -319,11 +320,10 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
                 </p>
               )}
             </div>
-            <button
+            <ButtonOrder
               onClick={handleSubmit(handleBookNow)}
-              className="bg-[#FF7B42] font-medium text-white py-5 hover:bg-orange-600 transition-colors rounded-md">
-              {t("Form.Booknow")}
-            </button>
+              content={t("Form.Booknow")}
+            />
           </div>
         </div>
       </div>

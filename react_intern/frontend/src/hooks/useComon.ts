@@ -47,7 +47,10 @@ export const useGetBookHistory = (userId: string) => {
 
 export const useGetBookHistoryDetail = (id: string | undefined) => {
   return useQuery({
-    queryKey: ["bookHistoryDetail"],
-    queryFn: () => getBookHistoryDetail(id),
+    queryKey: ["bookHistoryDetail", id],
+    queryFn: ({ queryKey }) => {
+      const [, id] = queryKey;
+      return getBookHistoryDetail(id);
+    },
   });
 };

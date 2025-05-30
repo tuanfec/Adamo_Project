@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useChangeSaveTour } from "@/hooks/useTours";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotification } from "@/components/notifiction/NotificationProvider";
+import { ButtomView } from "@/components/custum/Button/ButtomView";
 
 interface ListTourProps {
   data: TourData[];
@@ -82,16 +83,12 @@ export const ListTour: React.FC<ListTourProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-4 my-10">
+    <div className="flex flex-col gap-10 my-10">
       <div className="flex md:flex-row flex-col gap-2 justify-between md:items-center">
         <p className="lg:text-4xl md:text-3xl text-2xl font-medium lg:w-[60%] md:w-[60%] full">
           {header}
         </p>
-        <button
-          onClick={onClick}
-          className="bg-black rounded dark:bg-[#FF7B42] dark:text-white cursor-pointer lg:mt-10  text-white py-2 w-fit px-4">
-          {t("ViewAll")}
-        </button>
+        <ButtomView onClick={onClick} content={t("ViewAll")} />
       </div>
       <div className="relative">
         <Swiper
