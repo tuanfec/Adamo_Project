@@ -10,7 +10,7 @@ import banner from "@/assets/hotel_banner.jpg";
 import { useTranslation } from "react-i18next";
 const HotelPage: React.FC = () => {
   const { t } = useTranslation();
-  const { data: hotels } = useHotels();
+  const { data: hotels, isLoading } = useHotels();
   const dispatch = useDispatch();
 
   //select Redux data
@@ -77,11 +77,13 @@ const HotelPage: React.FC = () => {
           <ListHotels
             isFilterApplied={filterData.isApplied}
             hotels={filteredHotels}
+            isLoading={isLoading}
           />
         ) : (
           <ListHotels
             isFilterApplied={filterData.isApplied}
             hotels={sortedHotels}
+            isLoading={isLoading}
           />
         )}
       </div>

@@ -1,35 +1,38 @@
-import { ViewAll } from "@/components/home/ViewAll";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
-import { useLocation, useParams } from "react-router-dom";
-import { useTourList } from "@/hooks/useTourList";
-import { useDispatch, useSelector } from "react-redux";
+import { ViewAll } from "@/components/home/ViewAll";
+import {
+  useAllDestinations,
+  useDataTours,
+  useGetTourByLocation,
+} from "@/hooks/useTours";
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@assets/banner_img.jpg";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
-import { setTourData } from "@/app/slide/tourDataSlide";
-import { useAllDestinations, useGetTourByLocation } from "@/hooks/useTours";
+import { useLocation, useParams } from "react-router-dom";
+
 const ViewAllList: React.FC = () => {
   const { t } = useTranslation();
   const { source } = useParams();
-  const distpath = useDispatch();
 
   const header = useLocation().state?.header;
-  const tourData = useSelector((state: any) => state.tourDataSlide.tourData);
+  console.log("source", source);
 
-  const { data, isLoading } = useTourList(source);
-  const { data: tourByDestination } = useGetTourByLocation(
-    useLocation().state?.location
-  );
-  const { data: allDestinations } = useAllDestinations();
+  const { data: attractiveData, isLoading: attractiveLoading } =
+    useDataTours("attractive");
+  const { data: traditionalData, isLoading: traditionalLoading } =
+    useDataTours("traditional");
+  const { data: tourByDestination, isLoading: isLoadingDes } =
+    useGetTourByLocation(useLocation().state?.location);
+  const { data: allDestinations, isLoading: isLoadingAllDes } =
+    useAllDestinations();
 
   const isAllDestination = useLocation().state?.from === "destination";
   const isDestination = useLocation().pathname.includes("destination");
   const isAttractive = header === "attractive";
 
-  useEffect(() => {
-    distpath(setTourData(data));
-  }, [data]);
+  // useEffect(() => {
+  //   distpath(setTourData(data));
+  // }, [data]);
 
   return (
     <CommonLayout
@@ -46,7 +49,7 @@ const ViewAllList: React.FC = () => {
         {isAllDestination ? (
           <ViewAll
             tourData={allDestinations}
-            isLoading={isLoading}
+            isLoading={isLoadingAllDes}
             header={header ?? ""}
             isDestination={isDestination}
             isAllDestination={isAllDestination}
@@ -54,14 +57,14 @@ const ViewAllList: React.FC = () => {
         ) : isDestination ? (
           <ViewAll
             tourData={tourByDestination}
-            isLoading={isLoading}
+            isLoading={isLoadingDes}
             header={header ?? ""}
             isDestination={isDestination}
           />
         ) : (
           <ViewAll
-            tourData={tourData && tourData.length > 0 ? tourData : data}
-            isLoading={isLoading}
+            tourData={isAttractive ? attractiveData : traditionalData}
+            isLoading={isAttractive ? attractiveLoading : traditionalLoading}
             header={
               isAttractive ? t("homePage.listTour_2") : t("homePage.listTour_3")
             }

@@ -10,10 +10,12 @@ import { useDispatch } from "react-redux";
 import { setIsSave } from "@/app/slide/hotelDataSlide";
 import { useTranslation } from "react-i18next";
 import { useNotification } from "@/components/notifiction/NotificationProvider";
+import { LoadingCard } from "../common/LoadCard";
 export const ListHotels: React.FC<{
   hotels: HotelFormData[];
   isFilterApplied: boolean;
-}> = ({ hotels, isFilterApplied }) => {
+  isLoading: any;
+}> = ({ hotels, isFilterApplied, isLoading }) => {
   const { t } = useTranslation();
   const notification = useNotification();
   const dispatch = useDispatch();
@@ -77,7 +79,15 @@ export const ListHotels: React.FC<{
   };
   return (
     <>
-      {hotels.length !== 0 ? (
+      {isLoading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Array.from({ length: 20 }).map((_, index) => (
+            <div key={index}>
+              <LoadingCard />
+            </div>
+          ))}
+        </div>
+      ) : hotels.length !== 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentItems?.map((hotel: HotelFormData) => (
             <HotelCard
@@ -93,6 +103,7 @@ export const ListHotels: React.FC<{
           <p className="text-2xl text-gray-500">{t("NoFoundHotel")}</p>
         </div>
       )}
+
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

@@ -203,9 +203,9 @@ export const DetailCardForm: React.FC<DetailCardFormProps> = ({
   };
 
   return (
-    <div className="w-full h-full">
-      <div className="w-full bg-[#F4F4F4] dark:bg-[#7a7a7a9d] backdrop-blur-md ">
-        <div className="flex flex-col gap-4 py-7 px-7">
+    <div className="w-full h-full ">
+      <div className="w-full bg-[#F4F4F4] dark:bg-[#7a7a7a9d] backdrop-blur-md rounded-xl">
+        <div className="flex flex-col gap-4 py-10 px-7 shadow-2xl rounded-xl">
           {/* Price & duration */}
           <div className="flex items-center gap-2 ">
             <p className="text-gray-600 text-sm dark:text-[#bbbbbb]">

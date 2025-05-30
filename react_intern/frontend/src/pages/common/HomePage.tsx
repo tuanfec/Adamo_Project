@@ -62,12 +62,12 @@ const HomePage: React.FC = () => {
   }, [attractiveData, traditionalData, hotelData, dispatch]);
 
   const handleViewAll = (isAttractive?: boolean, isDestination?: boolean) => {
-    dispatch(setAllTour(allTourData));
-    if (isAttractive) {
-      dispatch(setTourData(attractiveData));
-    } else if (!isAttractive && !isDestination) {
-      dispatch(setTourData(traditionalData));
-    }
+    // dispatch(setAllTour(allTourData));
+    // if (isAttractive) {
+    //   dispatch(setTourData(attractiveData));
+    // } else if (!isAttractive && !isDestination) {
+    //   dispatch(setTourData(traditionalData));
+    // }
     if (isDestination) {
       navigate(`/tours/view_all_destination`, {
         state: {

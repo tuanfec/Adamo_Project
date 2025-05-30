@@ -35,9 +35,9 @@ export function DateRangePickerForm() {
         variant="outline"
         onClick={() => setShowCalendar(!showCalendar)}
         className={cn(
-          "w-full py-7 rounded-none border-none text-white bg-white cursor-pointer font-normal dark:bg-[#2121216b] pl-6 text-sm justify-start text-left hover:bg-white"
+          "w-full py-7 rounded-none border-none dark:text-white  bg-white cursor-pointer font-normal dark:bg-[#2121216b] pl-6 text-sm justify-start text-left hover:bg-white"
         )}>
-        <CalendarIcon className="mr-2 h-4 w-4 text-[#FF7B42]" />
+        <CalendarIcon className="ml-3 h-4 w-4 text-[#FF7B42]" />
         <span className={cn(!date.from && "text-[#bbbbbb]")}>
           {displayText}
         </span>
