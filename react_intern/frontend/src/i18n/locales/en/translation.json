@@ -444,5 +444,12 @@
     "Comingsoon": "Coming soon"
   },
   "bookSuccess": "You have successfully placed your order.",
-  "booking_history": "Return to order history list"
+  "booking_history": "Return to order history list",
+  "nofound": {
+    "404": "error",
+    "header": "Page not found",
+    "title": "Sorry, the page you are looking for doesn't exist.",
+    "button": "Go back",
+    "takeHome": "Take me home"
+  }
 }

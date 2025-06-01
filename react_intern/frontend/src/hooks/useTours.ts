@@ -28,6 +28,7 @@ export const useDataTours = (tourType: string) => {
       tourType === "attractive"
         ? attractiveTourRedux.length === 0
         : traditionalTourRedux.length === 0,
+    retry: 0,
   });
 };
 
@@ -38,7 +39,7 @@ export const useGetAllTours = () => {
   return useQuery({
     queryKey: ["allTours"],
     queryFn: getAllTours,
-    enabled: allToursData.length === 0 || isSave,
+    enabled: allToursData?.length === 0 || isSave,
   });
 };
 
@@ -92,6 +93,7 @@ export const useAllDestinations = () => {
     queryKey: ["allDestinations"],
     queryFn: getDestinations,
     enabled: allDestinationsRedux.length === 0,
+    retry: 0,
   });
 };
 

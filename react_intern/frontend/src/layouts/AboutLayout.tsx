@@ -23,9 +23,7 @@ export const AboutLayout: React.FC<{
         </div>
       </Banner>
       <main className="flex-1 relative z-0 dark:bg-[#1e1e1e] dark:text-[#ffffff]">
-        <div className="container mx-auto lg:px-35 md:px-10 px-4">
-          {children}
-        </div>
+        <div className="mx-auto lg:px-35 md:px-10 px-4">{children}</div>
       </main>
       <FooterMain />
     </div>

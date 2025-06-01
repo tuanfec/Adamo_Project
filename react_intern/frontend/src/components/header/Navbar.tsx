@@ -75,7 +75,7 @@ export const Navbar: React.FC<{ textColor?: string }> = ({ textColor }) => {
     },
     {
       label: "navbar.login",
-      path: "/Login",
+      path: "/login",
       isLoggedIn: false,
     },
     {

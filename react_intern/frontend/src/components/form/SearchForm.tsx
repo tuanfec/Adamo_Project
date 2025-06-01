@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useNotification } from "../notifiction/NotificationProvider";
 import { useTranslation } from "react-i18next";
 import { DateRangePickerForm } from "../ui/DateRangePickerForm";
+import { ButtonSearch } from "../custum/Button/ButtonSearch";
 
 interface SearchTourProps {
   isHeader: boolean;
@@ -33,6 +34,7 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
   const [isOpenTotalGuest, setIsOpenTotalGuest] = useState(false);
   const [selectedTab, setSelectedTab] = useState<"tour" | "hotel">("tour");
 
+  //data from redux
   const allTour = useSelector((state: any) => state.tourDataSlide.allTour);
   const searchTour = useSelector(
     (state: any) => state.tourDataSlide.searchTour
@@ -198,12 +200,10 @@ export const SearchForm: React.FC<SearchTourProps> = ({ isHeader, isTour }) => {
               />
             </div>
 
-            <button
-              type="submit"
+            <ButtonSearch
               onClick={handleSubmit(handleSearch)}
-              className="bg-[#FF7B42] font-medium text-white py-5 hover:bg-orange-600 transition-colors rounded-md">
-              {t("formSearch.button")}
-            </button>
+              content={t("formSearch.button")}
+            />
           </div>
         </div>
       </div>

@@ -21,6 +21,7 @@ interface ViewAllProps {
   header: string;
   isDestination?: boolean;
   isAllDestination?: boolean;
+  error?: Error | null;
 }
 
 export const ViewAll: React.FC<ViewAllProps> = ({
@@ -29,6 +30,7 @@ export const ViewAll: React.FC<ViewAllProps> = ({
   isDestination,
   isAllDestination,
   isLoading,
+  error,
 }) => {
   const filter = useSelector((state: any) => state.tourDataSlide.filter);
   const navigate = useNavigate();
@@ -178,9 +180,9 @@ export const ViewAll: React.FC<ViewAllProps> = ({
         </div>
       ) : (
         <>
-          {isLoading ? (
+          {isLoading || error?.message === "Network Error" ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Array.from({ length: 20 }).map((_, index) => (
+              {Array.from({ length: 15 }).map((_, index) => (
                 <div key={index}>
                   <LoadingCard />
                 </div>

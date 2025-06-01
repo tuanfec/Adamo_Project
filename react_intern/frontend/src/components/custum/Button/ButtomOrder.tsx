@@ -7,7 +7,9 @@ const ButtonOrder: React.FC<{
   return (
     <StyledWrapper>
       <button onClick={onClick} className="button">
-        <span className="label">+ {content}</span>
+        <span className="label">
+          <span className="content">+ {content}</span>
+        </span>
         <span className="gradient-container">
           <span className="gradient" />
         </span>
@@ -97,6 +99,15 @@ const StyledWrapper = styled.div`
       rgb(43, 43, 43) 0%,
       rgb(68, 68, 68) 100%
     );
+  }
+  .content {
+    width: 100%;
+    display: inline-block; /* hoặc block nếu phù hợp */
+    transition-duration: 500ms;
+  }
+
+  .content:hover {
+    transform: translateX(0.375rem);
   }
 
   .button:hover .gradient-container {

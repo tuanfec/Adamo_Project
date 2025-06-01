@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils"; // nếu bạn dùng className helper
+import { before } from "node:test";
 
 export function DateRangePickerForm() {
   const { watch, setValue } = useFormContext();
@@ -59,6 +60,7 @@ export function DateRangePickerForm() {
               );
             }}
             numberOfMonths={2}
+            disabled={{ before: new Date() }}
           />
         </div>
       )}

@@ -12,6 +12,7 @@ import { useChangeSaveTour } from "@/hooks/useTours";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNotification } from "@/components/notifiction/NotificationProvider";
 import { ButtomView } from "@/components/custum/Button/ButtomView";
+import { LoadingCard } from "../common/LoadCard";
 
 interface ListTourProps {
   data: TourData[];
@@ -21,6 +22,7 @@ interface ListTourProps {
   onClick?: () => void;
   source?: string;
   isDestination?: boolean;
+  error?: Error | null;
 }
 
 export const ListTour: React.FC<ListTourProps> = ({
@@ -31,10 +33,12 @@ export const ListTour: React.FC<ListTourProps> = ({
   onClick,
   source,
   isDestination,
+  error,
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const notification = useNotification();
+  console.log("error", error);
 
   const changeSave = useChangeSaveTour();
   const useQueyClient = useQueryClient();
@@ -90,47 +94,59 @@ export const ListTour: React.FC<ListTourProps> = ({
         </p>
         <ButtomView onClick={onClick} content={t("ViewAll")} />
       </div>
-      <div className="relative">
-        <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={spaceBetween}
-          slidesPerView={slidesPerView}
-          navigation
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: slidesPerView,
-            },
-            300: {
-              slidesPerView: 1,
-            },
-          }}
-          className="pb-12 relative">
-          {data.map((item, index) => (
-            <SwiperSlide key={index}>
-              <CardTour
-                onClick={() =>
-                  viewDetail(item.id, source || "attractive", item.location)
-                }
-                image={item.image?.[0]}
-                title={item.title}
-                description={item.description}
-                experiences={item.experiences}
-                votes={item.reviews?.rating}
-                location={item.location}
-                duration={item.duration}
-                price={item.price}
-                isSave={item.isSave}
-                isHover={true}
-                handleChangeSaveTour={() => handleChangeSaveTour(item.id || "")}
-              />
-            </SwiperSlide>
+      {error?.message === "Network Error" ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div key={index}>
+              <LoadingCard />
+            </div>
           ))}
-          <div className="swiper-pagination !bottom-0"></div>
-        </Swiper>
-      </div>
+        </div>
+      ) : (
+        <div className="relative">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={spaceBetween}
+            slidesPerView={slidesPerView}
+            navigation
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: slidesPerView,
+              },
+              300: {
+                slidesPerView: 1,
+              },
+            }}
+            className="pb-12 relative">
+            {data.map((item, index) => (
+              <SwiperSlide key={index}>
+                <CardTour
+                  onClick={() =>
+                    viewDetail(item.id, source || "attractive", item.location)
+                  }
+                  image={item.image?.[0]}
+                  title={item.title}
+                  description={item.description}
+                  experiences={item.experiences}
+                  votes={item.reviews?.rating}
+                  location={item.location}
+                  duration={item.duration}
+                  price={item.price}
+                  isSave={item.isSave}
+                  isHover={true}
+                  handleChangeSaveTour={() =>
+                    handleChangeSaveTour(item.id || "")
+                  }
+                />
+              </SwiperSlide>
+            ))}
+            <div className="swiper-pagination !bottom-0"></div>
+          </Swiper>
+        </div>
+      )}
     </div>
   );
 };

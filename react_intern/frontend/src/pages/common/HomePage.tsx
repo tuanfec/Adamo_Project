@@ -7,7 +7,6 @@ import {
   setAllTour,
   setAttractiveTour,
   setDestination,
-  setTourData,
   setTraditionalTour,
 } from "@/app/slide/tourDataSlide";
 import { useEffect } from "react";
@@ -27,11 +26,14 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   //Get data from API
-  const { data: attractiveData } = useDataTours("attractive");
-  const { data: traditionalData } = useDataTours("traditional");
+  const { data: attractiveData, error: errorAttractive } =
+    useDataTours("attractive");
+  const { data: traditionalData, error: errorTraditional } =
+    useDataTours("traditional");
+  const { data: allDestinations, error: errorAllDestinations } =
+    useAllDestinations();
   const { data: hotelData } = useHotels();
   const { data: allTourData } = useGetAllTours();
-  const { data: allDestinations } = useAllDestinations();
 
   //Select data from redux
   const attractiveTourRedux = useSelector(
@@ -62,12 +64,6 @@ const HomePage: React.FC = () => {
   }, [attractiveData, traditionalData, hotelData, dispatch]);
 
   const handleViewAll = (isAttractive?: boolean, isDestination?: boolean) => {
-    // dispatch(setAllTour(allTourData));
-    // if (isAttractive) {
-    //   dispatch(setTourData(attractiveData));
-    // } else if (!isAttractive && !isDestination) {
-    //   dispatch(setTourData(traditionalData));
-    // }
     if (isDestination) {
       navigate(`/tours/view_all_destination`, {
         state: {
@@ -101,6 +97,7 @@ const HomePage: React.FC = () => {
           <ListDestinations
             onClick={() => handleViewAll(true, true)}
             DataDestinations={allDestinationsRedux}
+            error={errorAllDestinations}
           />
         </div>
         <div data-aos="fade-up" data-aos-duration="1000">
@@ -112,6 +109,7 @@ const HomePage: React.FC = () => {
               spaceBetween={40}
               onClick={() => handleViewAll(true, false)}
               source="attractive"
+              error={errorAttractive}
             />
           )}
         </div>
@@ -124,6 +122,7 @@ const HomePage: React.FC = () => {
               spaceBetween={40}
               onClick={() => handleViewAll(false, false)}
               source="traditional"
+              error={errorTraditional}
             />
           )}
         </div>

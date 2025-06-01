@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { ThemeProvider } from "./config/theme-provider";
 import { DarkModeButton } from "@/components/common/DarkModeButton";
+import { AppRouterWrapper } from "./router/AppRouterWrapper";
 function App() {
   useEffect(() => {
     AOS.init();
@@ -22,8 +23,7 @@ function App() {
           <NotificationProvider>
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
               <DarkModeButton />
-              <AuthRouter />
-              <HomeRouter />
+              <AppRouterWrapper />
             </ThemeProvider>
           </NotificationProvider>
         </Provider>

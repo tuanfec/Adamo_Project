@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 const ListDestinations: React.FC<{
   DataDestinations: any;
   onClick?: () => void;
-}> = ({ DataDestinations, onClick }) => {
+  error: Error | null;
+}> = ({ DataDestinations, onClick, error }) => {
   const { t } = useTranslation();
   return (
     <div>
@@ -16,6 +17,7 @@ const ListDestinations: React.FC<{
           spaceBetween={30}
           isDestination={true}
           onClick={onClick}
+          error={error}
         />
       )}
     </div>

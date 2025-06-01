@@ -189,7 +189,7 @@ export const FilterForm: React.FC<FilterFormProps> = ({
   };
 
   return (
-    <div className="bg-white flex flex-col gap-4 p-4 dark:bg-[#282828]">
+    <div className="bg-white flex shadow-2xl rounded-lg flex-col gap-4 p-4 dark:bg-[#282828]">
       {/* header section */}
       <div className="flex flex-row justify-between items-center">
         <div className="text-[#03387D] dark:text-white font-bold text-md">

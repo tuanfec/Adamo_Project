@@ -8,31 +8,38 @@ import {
 import { CommonLayout } from "@/layouts/CommonLayout";
 import banner from "@assets/banner_img.jpg";
 import { useTranslation } from "react-i18next";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const ViewAllList: React.FC = () => {
   const { t } = useTranslation();
-  const { source } = useParams();
-
   const header = useLocation().state?.header;
-  console.log("source", source);
+  const location = useLocation().state.location;
 
-  const { data: attractiveData, isLoading: attractiveLoading } =
-    useDataTours("attractive");
-  const { data: traditionalData, isLoading: traditionalLoading } =
-    useDataTours("traditional");
-  const { data: tourByDestination, isLoading: isLoadingDes } =
-    useGetTourByLocation(useLocation().state?.location);
-  const { data: allDestinations, isLoading: isLoadingAllDes } =
-    useAllDestinations();
+  //Get data from API
+  const {
+    data: attractiveData,
+    isLoading: attractiveLoading,
+    error: errorAttractive,
+  } = useDataTours("attractive");
+  const {
+    data: traditionalData,
+    isLoading: traditionalLoading,
+    error: errorTraditional,
+  } = useDataTours("traditional");
+  const {
+    data: tourByDestination,
+    isLoading: isLoadingDes,
+    error: errorDestinations,
+  } = useGetTourByLocation(useLocation().state?.location);
+  const {
+    data: allDestinations,
+    isLoading: isLoadingAllDes,
+    error: errorAllDestinations,
+  } = useAllDestinations();
 
   const isAllDestination = useLocation().state?.from === "destination";
   const isDestination = useLocation().pathname.includes("destination");
   const isAttractive = header === "attractive";
-
-  // useEffect(() => {
-  //   distpath(setTourData(data));
-  // }, [data]);
 
   return (
     <CommonLayout
@@ -50,16 +57,18 @@ const ViewAllList: React.FC = () => {
           <ViewAll
             tourData={allDestinations}
             isLoading={isLoadingAllDes}
-            header={header ?? ""}
+            header={t("homePage.listTour_1")}
             isDestination={isDestination}
             isAllDestination={isAllDestination}
+            error={errorAllDestinations}
           />
         ) : isDestination ? (
           <ViewAll
             tourData={tourByDestination}
             isLoading={isLoadingDes}
-            header={header ?? ""}
+            header={location}
             isDestination={isDestination}
+            error={errorDestinations}
           />
         ) : (
           <ViewAll
@@ -68,6 +77,7 @@ const ViewAllList: React.FC = () => {
             header={
               isAttractive ? t("homePage.listTour_2") : t("homePage.listTour_3")
             }
+            error={isAttractive ? errorAttractive : errorTraditional}
           />
         )}
       </div>

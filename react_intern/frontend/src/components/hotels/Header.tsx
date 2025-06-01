@@ -33,7 +33,9 @@ export const Header: React.FC<{
         <div
           onClick={() => setIsSort((prev) => !prev)}
           className="flex items-center gap-2 cursor-pointer select-none">
-          <p className="text-lg font-medium text-[#FF7B42]">SORT BY:</p>
+          <p className="text-lg font-medium text-[#FF7B42]">
+            {t("Sort.title")}
+          </p>
           <div className="flex gap-2 relative items-center">
             <p className="text-lg font-md text-[#4F4F4F] dark:text-[#bbbbbb]">
               {sortBy[sortByIndex]}
@@ -54,7 +56,7 @@ export const Header: React.FC<{
         <Filter isFilter={isFilter} setIsFilter={setIsFilter} />
 
         {isFilter && (
-          <div className="absolute lg:w-1/3 md:w-1/2 w-full top-30 lg:right-0 md:right-0 z-10 shadow-lg">
+          <div className="absolute lg:w-1/3 md:w-1/2 w-full top-20 lg:right-0 md:right-0 z-10 shadow-lg">
             <FilterForm hotelData={hotelData} />
           </div>
         )}

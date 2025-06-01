@@ -1,19 +1,23 @@
+import { setAllTour } from "@/app/slide/tourDataSlide";
+import banner from "@/assets/banner_img.jpg";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ViewAll } from "@/components/home/ViewAll";
 import { useGetAllTours } from "@/hooks/useTours";
 import { CommonLayout } from "@/layouts/CommonLayout";
-import banner from "@/assets/banner_img.jpg";
-import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { setTourData } from "@/app/slide/tourDataSlide";
+
 const TourPage: React.FC = () => {
   const dispath = useDispatch();
-  const { data: tourData, isLoading } = useGetAllTours();
   const { t } = useTranslation();
 
+  const { data: tourData, isLoading } = useGetAllTours();
+
   useEffect(() => {
-    dispath(setTourData(tourData));
+    if (tourData) {
+      dispath(setAllTour(tourData));
+    }
   }, [tourData]);
 
   return (

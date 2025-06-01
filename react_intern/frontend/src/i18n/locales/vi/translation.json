@@ -444,5 +444,12 @@
     "Comingsoon": "Sắp diễn ra"
   },
   "bookSuccess": "Bạn đã đặt hàng thành công.",
-  "booking_history": "Quay lại danh sách lịch sử đơn hàng"
+  "booking_history": "Quay lại danh sách lịch sử đơn hàng",
+  "nofound": {
+    "404": "lỗi",
+    "header": "Không tìm thấy trang",
+    "title": "Rất tiếc, trang bạn đang tìm kiếm không tồn tại.",
+    "button": "Quay lại",
+    "takeHome": "Trở về trang chủ"
+  }
 }

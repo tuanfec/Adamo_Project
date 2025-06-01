@@ -14,7 +14,7 @@ const PolicyPage = lazy(() => import("@/pages/common/PolicyPage"));
 const ContactPage = lazy(() => import("@/pages/common/ContactPage"));
 const SearchHotel = lazy(() => import("@/pages/hotel/SearchHotel"));
 const CheckOutPage = lazy(() => import("@/pages/common/CheckOutPage"));
-// const NotFoundPage = lazy(() => import("@/pages/common/NotFoundPage"));
+const NotFoundPage = lazy(() => import("@/pages/common/NotFoundPage"));
 const BookHistoryPage = lazy(() => import("@/pages/common/BookHistoryPage"));
 const BookHistoryDetailPage = lazy(
   () => import("@/pages/common/BookHistoryDetail")
@@ -55,6 +55,7 @@ export default function HomeRouter() {
           path="/booking_history/detail/:id"
           element={<BookHistoryDetailPage />}
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );

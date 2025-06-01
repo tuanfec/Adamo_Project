@@ -1,45 +1,61 @@
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
-    <div className="flex items-center flex-col justify-center lg:flex-row py-28 px-6 md:px-24 md:py-20 lg:py-32 gap-16 lg:gap-28">
-      <div className="w-full lg:w-1/2">
-        <img
-          className="hidden lg:block"
-          src="https://i.ibb.co/v30JLYr/Group-192-2.png"
-          alt=""
-        />
-        <img
-          className="hidden md:block lg:hidden"
-          src="https://i.ibb.co/c1ggfn2/Group-193.png"
-          alt=""
-        />
-        <img
-          className="md:hidden"
-          src="https://i.ibb.co/8gTVH2Y/Group-198.png"
-          alt=""
-        />
+    <section className="bg-white dark:bg-gray-900 ">
+      <div className="container min-h-screen md:px-20 px-6 py-12 mx-auto flex flex-col lg:flex-row justify-center items-center lg:gap-12">
+        <div className="w-full lg:w-1/2">
+          <p className="text-sm lg:text-2xl md:text-xl font-medium dark:text-[#FF7B42] text-[#70A9C5]">
+            404 {t("nofound.404")}
+          </p>
+          <h1 className="mt-3 text-2xl lg:text-5xl font-semibold text-gray-800 dark:text-white md:text-3xl">
+            {t("nofound.header")}
+          </h1>
+          <p className="mt-4 text-sm lg:text-2xl text-gray-500 dark:text-gray-400">
+            {t("nofound.title")}
+          </p>
+
+          <div className="flex items-center mt-6 gap-x-3 ">
+            <button
+              onClick={() => navigate(-1)}
+              className="flex items-center cursor-pointer justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-5 h-5 rtl:rotate-180">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+                />
+              </svg>
+
+              <span>{t("nofound.button")}</span>
+            </button>
+
+            <button
+              onClick={() => navigate("/")}
+              className="w-1/2 px-5 py-2 text-sm tracking-wide cursor-pointer text-white transition-colors duration-200 bg-[#70A9C5] rounded-lg shrink-0 sm:w-auto hover:bg-[#70a9c5c5] dark:hover:bg-[#ff7b42b9] dark:bg-[#ff7b42ea]">
+              {t("nofound.takeHome")}
+            </button>
+          </div>
+        </div>
+
+        <div className="relative w-full mt-12 lg:w-1/2 lg:mt-0">
+          <img
+            className="w-full max-w-lg lg:mx-auto"
+            src="https://merakiui.com/images/components/illustration.svg"
+            alt=""
+          />
+        </div>
       </div>
-      <div className="w-full lg:w-1/2">
-        <h1 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800">
-          Looks like you've found the doorway to the great nothing
-        </h1>
-        <p className="py-4 text-base text-gray-800">
-          The content you’re looking for doesn’t exist. Either it was removed,
-          or you mistyped the link.
-        </p>
-        <p className="py-2 text-base text-gray-800">
-          Sorry about that! Please visit our hompage to get where you need to
-          go.
-        </p>
-        <button
-          onClick={() => navigate("/")}
-          className="w-full lg:w-auto my-4 border rounded-md px-1 sm:px-16 py-5 bg-[#FF7B42] text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
-          Go back to Homepage
-        </button>
-      </div>
-    </div>
+    </section>
   );
 };
 export default NotFoundPage;
