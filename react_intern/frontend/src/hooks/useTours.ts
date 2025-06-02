@@ -28,7 +28,7 @@ export const useDataTours = (tourType: string) => {
       tourType === "attractive"
         ? attractiveTourRedux.length === 0
         : traditionalTourRedux.length === 0,
-    retry: 0,
+    retry: 1,
   });
 };
 
@@ -93,7 +93,7 @@ export const useAllDestinations = () => {
     queryKey: ["allDestinations"],
     queryFn: getDestinations,
     enabled: allDestinationsRedux.length === 0,
-    retry: 0,
+    retry: 1,
   });
 };
 
